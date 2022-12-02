@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Registrar nueva salida</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form 
+        *ngIf="registerOutputForm" 
+        [formGroup]="registerOutputForm" 
+        (ngSubmit)="registerOutputForm.valid && registerOutput()">
+        <div class="row" *ngIf="employees">
+            <div class="col">
+                <label for="responsible" class="form-label">Responsable</label>
+                <app-dropdown 
+                    class="d-block" 
+                    [label]="'Responsable'" 
+                    [options]="employees | toDropdownItem:'userId':'name'"
+                    (onSelectOptionEvent)="onSelectResponsible($event)"></app-dropdown>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <h5>Herramientas seleccionadas</h5>
+                <app-selected-tools-list 
+                    [tools]="selectedTools"
+                    (deleteToolEvent)="onDeleteTool($event)"></app-selected-tools-list>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <h5>Listado de herramientas</h5>
+                <app-available-tools-list 
+                    [tools]="availableTools"
+                    (selectToolEvent)="onSelectTool($event)"></app-available-tools-list>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-outline-primary" [disabled]="!registerOutputForm.valid">Registrar salida</button>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+</div>
