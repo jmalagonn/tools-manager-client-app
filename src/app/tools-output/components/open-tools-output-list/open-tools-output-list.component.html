@@ -1,7 +1,8 @@
 <div class="row">
     <h4 class="mt-4 text-center">Registro de salidas de equipos</h4>
-    <div class="col">
-        <table class="table mt-4" *ngIf="outputTools">
+    <div class="col" *ngIf="outputTools">
+        <p *ngIf="!outputTools.length" class="text-center">No se encontraron registros de salida de equipos</p>
+        <table class="table mt-4" *ngIf="outputTools.length">
             <thead>
                 <tr>
                     <th>
