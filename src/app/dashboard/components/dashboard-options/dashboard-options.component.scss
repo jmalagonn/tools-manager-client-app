@@ -1,14 +1,14 @@
 .option-card {
-    border: 1px solid rgba(160,160,160,0.2);
+    border: 1px solid rgba(160, 160, 160, 0.2);
     border-radius: .5rem;
     padding: 1rem;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0px 5px 10px 0px rgba(160,160,160,0.75);
+    box-shadow: 0px 5px 10px 0px rgba(160, 160, 160, 0.75);
     position: relative;
 
     &__icon {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     a {
@@ -17,5 +17,13 @@
         height: 100%;
         left: 0;
         top: 0;
+    }
+}
+
+@media (min-width: 576px) {
+    .option-card {
+        &__icon {
+            font-size: 3rem;
+        }
     }
 }

@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ToolDetailComponent } from './containers/tool-detail/tool-detail.component';
 import { ToolsManagementComponent } from './containers/tools-management/tools-management.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ToolsManagementComponent
+  },
+  {
+    path: ':id',
+    component: ToolDetailComponent
   }
 ];
 
