@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { OutputTool } from 'src/app/Core/models/Output-tool.model';
 import { HttpService } from 'src/app/services/http.service';
 

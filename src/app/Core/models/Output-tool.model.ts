@@ -7,5 +7,5 @@ export interface OutputTool {
     outputToolId: number;
     outputToolState: OutputToolState;
     responsible: User;
-    Tools: Tool[];
+    tools: Tool[];
 }

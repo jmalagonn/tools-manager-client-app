@@ -1,8 +1,20 @@
-<div class="container">
-    <h2 class="text-center mt-3">Detalle de registro de salida de herramienta</h2>
-    <div class="row">
+<div class="container" *ngIf="outputTool">
+    <h2 class="text-center mt-3">Registro de salida de herramienta - Detalle</h2>
+    <div class="row mt-3">
         <div class="col">
-
+            <ul class="list-unstyled">
+                <li>
+                    <p><b>Fecha de creación:</b> {{ outputTool.outputDateTime | date:'medium' }}</p>
+                </li>
+                <li>
+                    <p><b>Responsable:</b> {{ outputTool.responsible.name }}</p>
+                </li>
+                <li>
+                    <p><b>Estado:</b> {{ outputTool.outputToolState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}</p>
+                </li>
+            </ul>
+            <h4 class="text-center mt-3">Listado de herramienta</h4>
+            <app-tools-list *ngIf="outputTool.tools" [tools]="outputTool.tools"></app-tools-list>            
         </div>
     </div>
 </div>

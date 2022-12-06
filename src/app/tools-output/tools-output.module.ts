@@ -9,6 +9,7 @@ import { AvailableToolsListComponent } from './components/available-tools-list/a
 import { SelectedToolsListComponent } from './components/selected-tools-list/selected-tools-list.component';
 import { OpenToolsOutputListComponent } from './components/open-tools-output-list/open-tools-output-list.component';
 import { ToolsOutputDetailComponent } from './containers/tools-output-detail/tools-output-detail.component';
+import { ToolsListComponent } from './components/tools-list/tools-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ToolsOutputDetailComponent } from './containers/tools-output-detail/too
     AvailableToolsListComponent,
     SelectedToolsListComponent,
     OpenToolsOutputListComponent,
-    ToolsOutputDetailComponent
+    ToolsOutputDetailComponent,
+    ToolsListComponent
   ],
   imports: [
     CommonModule,
