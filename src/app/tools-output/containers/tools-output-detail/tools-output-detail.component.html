@@ -10,11 +10,25 @@
                     <p><b>Responsable:</b> {{ outputTool.responsible.name }}</p>
                 </li>
                 <li>
-                    <p><b>Estado:</b> {{ outputTool.outputToolState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}</p>
+                    <p><b>Estado:</b> 
+                    {{ outputTool.outputToolState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}</p>
                 </li>
             </ul>
-            <h4 class="text-center mt-3">Listado de herramienta</h4>
-            <app-tools-list *ngIf="outputTool.tools" [tools]="outputTool.tools"></app-tools-list>            
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <h4 class="text-center mt-3">Herramientas prestadas</h4>
+            <app-tools-list *ngIf="outputTool.tools" [tools]="outputTool.tools"></app-tools-list>
+            <div class="text-center">
+                <button class="btn btn-outline-primary btn-sm"
+                    (click)="returnToolsWithNoIssues()">Devolver todo sin novedad</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <h4 class="text-center mt-3">Herramientas devueltas</h4>
         </div>
     </div>
 </div>

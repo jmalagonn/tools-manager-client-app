@@ -14,10 +14,16 @@
             <td>
                 {{ tool.toolState.toolStateName }}
             </td>
-            <td>
-                <a [routerLink]="['/tools-management', tool.toolId]">
-                    <fa-icon [icon]="faCircleInfo" class="me-2 text-primary" role="button"></fa-icon>
+            <td class="text-end">
+                <a [routerLink]="['/tools-management', tool.toolId]" class="d-inline-flex me-2">
+                    <fa-icon [icon]="faCircleInfo" class="text-primary" role="button"></fa-icon>
                 </a>
+                <button type="button" class="icon-btn me-2">
+                    <fa-icon [icon]="faCircleCheck" class="text-success" role="button"></fa-icon>
+                </button>
+                <button type="button" class="icon-btn">
+                    <fa-icon [icon]="faTriangleExclamation" class="text-warning" role="button"></fa-icon>
+                </button>
             </td>
         </tr>
     </tbody>

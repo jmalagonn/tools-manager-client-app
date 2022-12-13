@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Devolver herramientas</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h5 class="text-center">
+        Herramientas Prestadas
+    </h5>
+    <p *ngIf="outputTool && !outputTool.tools.length">No hay herramientas prestadas</p>
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let tool of outputTool?.tools">
+                <td>{{ tool.toolName }}</td>
+                <td class="text-end">
+                    <button type="button" class="btn btn-sm btn-success rounded-circle me-2">
+                        <fa-icon [icon]="faCheck"></fa-icon>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-warning rounded-circle text-white">
+                        <fa-icon [icon]="faTriangleExclamation"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center mb-3">
+        <button class="btn btn-outline-primary btn-sm">Devolver todo sin novedad</button>
+    </div>
+    <h5 class="text-center">
+        Herramientas a devolver
+    </h5>
+    <p class="text-center">No hay herramientas devueltas</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" disabled>Guardar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+</div>

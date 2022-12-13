@@ -13,7 +13,9 @@ import { Account } from '../models/Account.model';
 export class JwtInterceptor implements HttpInterceptor {
   currentAccount?: Account;
 
-  constructor(private accountService: AccountService) {}
+  constructor(
+    private accountService: AccountService,
+  ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 

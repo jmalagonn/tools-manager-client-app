@@ -8,6 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './Core/interceptors/jwt.interceptor';
 import { HeaderComponent } from './layout/header/header.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,10 +21,12 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

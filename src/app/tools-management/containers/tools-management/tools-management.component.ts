@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddToolModalComponent } from '../../components/add-tool-modal/add-tool-modal.component';
@@ -15,7 +16,8 @@ export class ToolsManagementComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getToolsList();

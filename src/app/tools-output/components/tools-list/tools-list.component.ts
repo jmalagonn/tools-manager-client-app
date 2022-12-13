@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faCircleInfo, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Tool } from 'src/app/Core/models/Tool.model';
 
 @Component({
@@ -9,6 +9,8 @@ import { Tool } from 'src/app/Core/models/Tool.model';
 })
 export class ToolsListComponent {  
   faCircleInfo = faCircleInfo;
+  faTriangleExclamation = faTriangleExclamation;
+  faCircleCheck = faCircleCheck;
   
   @Input() tools?: Tool[];
 }

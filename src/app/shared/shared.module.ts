@@ -9,6 +9,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ToDropdownItemPipe } from './pipes/to-dropdown-item.pipe';
 import { LastCharactersPipe } from './pipes/last-characters.pipe';
 import { OutputToolStatePipe } from './pipes/output-tool-state.pipe';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OutputToolStatePipe } from './pipes/output-tool-state.pipe';
     ModalModule.forRoot(),
     NgxQRCodeModule,
     BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
   ],
   exports: [
     FontAwesomeModule,
@@ -36,7 +38,8 @@ import { OutputToolStatePipe } from './pipes/output-tool-state.pipe';
     DropdownComponent,
     ToDropdownItemPipe,
     LastCharactersPipe,
-    OutputToolStatePipe
+    OutputToolStatePipe,
+    TooltipModule,
   ]
 })
 export class SharedModule { }
