@@ -461,6 +461,9 @@ SOFTWARE.
 
 
 
+ngx-spinner
+MIT
+
 qrcode
 MIT
 The MIT License (MIT)
