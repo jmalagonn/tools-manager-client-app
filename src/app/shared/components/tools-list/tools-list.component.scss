@@ -1,0 +1,10 @@
+.action-button {
+    padding: 0;
+    background: transparent;
+    border: none;
+    margin-right: .5rem;
+
+    &:last-child {
+        margin-right: none;
+    }
+}

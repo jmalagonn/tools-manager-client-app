@@ -1,0 +1,38 @@
+<table class="table" *ngIf="outputsTool && outputsTool.length">
+    <thead>
+        <tr>
+            <th>
+                Fecha de salida
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let outputTool of outputsTool">
+            <td>
+                {{ outputTool.outputDateTime | date }}
+            </td>
+            <td>
+                {{ outputTool.outputToolState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
+            </td>
+            <td>
+                <button *ngIf="actions" class="action-button">
+                    <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
+                </button>
+
+                <a [routerLink]="['/tools-output', outputTool.outputToolId]">
+                    <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p *ngIf="outputsTool && !outputsTool.length">
+    No se encontraron salidas de herramienta
+</p>

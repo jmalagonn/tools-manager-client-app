@@ -10,13 +10,20 @@ import { ToDropdownItemPipe } from './pipes/to-dropdown-item.pipe';
 import { LastCharactersPipe } from './pipes/last-characters.pipe';
 import { OutputToolStatePipe } from './pipes/output-tool-state.pipe';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ToolsListComponent } from './components/tools-list/tools-list.component';
+import { RouterModule } from '@angular/router';
+import { OutputToolListComponent } from './components/output-tool-list/output-tool-list.component';
+import { ListActionsFilterPipe } from './pipes/list-actions-filter.pipe';
 
 @NgModule({
   declarations: [
     DropdownComponent,
     ToDropdownItemPipe,
     LastCharactersPipe,
-    OutputToolStatePipe
+    OutputToolStatePipe,
+    ToolsListComponent,
+    OutputToolListComponent,
+    ListActionsFilterPipe
   ],
   imports: [
     CommonModule,
@@ -27,6 +34,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     NgxQRCodeModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
+    RouterModule,
   ],
   exports: [
     FontAwesomeModule,
@@ -40,6 +48,9 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     LastCharactersPipe,
     OutputToolStatePipe,
     TooltipModule,
+    ToolsListComponent,
+    OutputToolListComponent,
+    ListActionsFilterPipe,
   ]
 })
 export class SharedModule { }

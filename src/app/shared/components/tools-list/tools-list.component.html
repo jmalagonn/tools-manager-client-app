@@ -1,0 +1,40 @@
+<table class="table" *ngIf="tools && tools.length">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tool of tools">
+            <td>{{ tool.toolGuid | lastCharacters }}</td>
+            <td>{{ tool.toolName }}</td>
+            <td>
+                <button 
+                    *ngIf="actions! | listActionsFilter:listActions.info"
+                    class="action-button" 
+                    type="button"
+                    (click)="actionButtonClicked(tool, listActions.info)">
+                    <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
+                </button>
+                <button 
+                    *ngIf="actions! | listActionsFilter:listActions.check"
+                    class="action-button" 
+                    type="button"
+                    (click)="actionButtonClicked(tool, listActions.check)">
+                    <fa-icon [icon]="faCircleCheck" class="text-success"></fa-icon>
+                </button>
+                <button 
+                    *ngIf="actions! | listActionsFilter:listActions.warning"
+                    class="action-button" 
+                    type="button"
+                    (click)="actionButtonClicked(tool, listActions.warning)">
+                    <fa-icon [icon]="faTriangleExclamation" class="text-warning"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>   
+</table>
+
+<p *ngIf="tools && !tools.length" class="text-center">No hay herramientas</p>

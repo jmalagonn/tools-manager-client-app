@@ -1,0 +1,12 @@
+<div class="container" *ngIf="user">
+    <h2 class="text-center mt-3">Detalle de usuario</h2>
+    <div class="row mt-3">
+        <div class="col">
+            <p><b>Nombre: </b> {{ user.name }}</p>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <h4 class="text-center mb-3">Salidas de herramienta</h4>
+        <output-tool-list [outputsTool]="user.outputsTool"></output-tool-list>
+    </div>
+</div>
