@@ -20,12 +20,12 @@ export class AccountService {
   }
 
   setCurrentAccount(account: Account) {    
-    localStorage.setItem('account', JSON.stringify(account));
+    sessionStorage.setItem('account', JSON.stringify(account));
     this.currentAccountSource.next(account);
   }
 
   logout() {
-    localStorage.removeItem('account');
+    sessionStorage.removeItem('account');
     this.currentAccountSource.next(null);
     this.router.navigateByUrl("login");
   }

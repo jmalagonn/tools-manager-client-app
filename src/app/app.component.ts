@@ -15,7 +15,7 @@ export class AppComponent {
   }
 
   setCurrentAccount() {
-    const account: Account = JSON.parse(localStorage.getItem('account')!);
+    const account: Account = JSON.parse(sessionStorage.getItem('account')!);
     this.accountService.setCurrentAccount(account);
   }
 }
