@@ -5,4 +5,5 @@ export interface Tool {
     toolName: string;
     toolGuid: string;
     toolState: ToolState;
+    returnDateTime?: Date;
 }

@@ -34,10 +34,10 @@ export class ToolsOutputDetailComponent implements OnInit {
     const outputToolId = this.route.snapshot.paramMap.get('id');
 
     this.httpService.get<OutputTool>(`OutputTools/${outputToolId}`)
-      .subscribe(response => {
+      .subscribe(response => {        
         this.outputTool = response;
-        this.lentTools = this.outputTool.tools.filter(tool => tool.toolState.toolStateName.toLocaleLowerCase() == "prestado");
-        this.availableTools = this.outputTool.tools.filter(tool => tool.toolState.toolStateName.toLocaleLowerCase() == "disponible");
+        this.lentTools = this.outputTool.tools.filter(tool => !tool.returnDateTime);
+        this.availableTools = this.outputTool.tools.filter(tool => tool.returnDateTime);
       });
   }
 
