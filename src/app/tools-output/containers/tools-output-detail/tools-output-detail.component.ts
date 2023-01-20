@@ -54,7 +54,7 @@ export class ToolsOutputDetailComponent implements OnInit {
       .subscribe();
   }
 
-  returnToolWithNoIssues(tool: Tool) {
+  returnToolWithIssues(tool: Tool) {
     const body: ReturnToolsWithNews = {
       outputToolId: this.outputTool!.outputToolId,
       toolNewsDto: {
@@ -63,6 +63,13 @@ export class ToolsOutputDetailComponent implements OnInit {
     };
 
     this.httpService.post("OutputTools/return-tool-with-news", body)
+      .subscribe(response => { 
+        console.log(response);
+      });
+  }
+
+  returnToolWithNoIssues(tool: Tool) {
+    this.httpService.post(`OutputTools/return-tool-with-no-issues/${this.outputTool!.outputToolId}/${tool.toolId}`, {})
       .subscribe(response => { 
         console.log(response);
       });
