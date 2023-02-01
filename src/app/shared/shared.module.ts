@@ -14,6 +14,7 @@ import { ToolsListComponent } from './components/tools-list/tools-list.component
 import { RouterModule } from '@angular/router';
 import { OutputToolListComponent } from './components/output-tool-list/output-tool-list.component';
 import { ListActionsFilterPipe } from './pipes/list-actions-filter.pipe';
+import { ItemsListComponent } from './components/items-list/items-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListActionsFilterPipe } from './pipes/list-actions-filter.pipe';
     OutputToolStatePipe,
     ToolsListComponent,
     OutputToolListComponent,
-    ListActionsFilterPipe
+    ListActionsFilterPipe,
+    ItemsListComponent
   ],
   imports: [
     CommonModule,

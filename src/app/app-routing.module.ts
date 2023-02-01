@@ -33,6 +33,10 @@ const routes: Routes = [
       {
         path: 'tools-output',
         loadChildren: () => import('./tools-output/tools-output.module').then(m => m.ToolsOutputModule)
+      },
+      {
+        path: 'customers',
+        loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
       }
     ]
   },

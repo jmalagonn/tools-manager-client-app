@@ -16,8 +16,7 @@ export class ToolsManagementComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private httpService: HttpService,
-    private spinner: NgxSpinnerService) { }
+    private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.getToolsList();

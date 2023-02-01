@@ -1,4 +1,4 @@
-import { faScrewdriverWrench, faToolbox, faUserGroup, faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faBuilding, faScrewdriverWrench, faToolbox, faUserGroup, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from "@techiediaries/ngx-qrcode";
 
 export class AppConstants {
@@ -17,6 +17,11 @@ export class AppConstants {
             title: 'Administración de usuarios',
             icon: faUserGroup,
             path: 'users-management'
+        },
+        {
+            title: 'Clientes',
+            icon: faBuilding,
+            path: 'customers'
         },
         {
             title: 'Editar perfil',
