@@ -1,0 +1,10 @@
+<form *ngIf="editToolForm" [formGroup]="editToolForm" (ngSubmit)="editToolForm.valid && onSubmit()">
+    <div class="mb-3">
+        <label for="toolName" class="form-label fw-bold">Nombre</label>
+        <input type="text" class="form-control" id="toolName" formControlName="toolName">
+    </div>
+    <div>
+        <button class="btn btn-outline-primary" [disabled]="!editToolForm.valid" type="submit">Guardar</button>
+        <button class="btn btn-outline-dark ms-3" type="button" (click)="onCancel()">Cancelar</button>
+    </div>
+</form>

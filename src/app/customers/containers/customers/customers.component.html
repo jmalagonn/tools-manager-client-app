@@ -3,4 +3,9 @@
     <div class="text-center mt-3">
         <button class="btn btn-outline-primary" (click)="onOpenAddCustomerModal()">Agregar nuevo cliente</button>
     </div>
+    <div class="row mt-3">
+        <div class="col">
+            <app-items-list [items]="customers | toItemList:'customer'"></app-items-list>
+        </div>
+    </div>
 </div>

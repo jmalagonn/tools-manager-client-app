@@ -15,14 +15,24 @@
         </div>
         <div class="col-sm-8">
             <h6 class="text-center">Información general</h6>
-            <ul class="list-unstyled">
-                <li>
-                    <p><b>Nombre:</b> {{ tool.toolName }}</p>
-                </li>
-                <li>
-                    <p><b>Estado:</b> {{ tool.toolState.toolStateName }}</p>
-                </li>
-            </ul>
+            <ng-container *ngIf="!updatingTool">
+                <ul class="list-unstyled">
+                    <li>
+                        <p><b>Nombre:</b> {{ tool.toolName }}</p>
+                    </li>
+                    <li>
+                        <p><b>Estado:</b> {{ tool.toolState.toolStateName }}</p>
+                    </li>
+                </ul>
+                <div class="mt-3">
+                    <button class="btn btn-outline-primary" (click)="setUpdatingTool(true)" type="button">Editar herramienta</button>
+                </div>
+            </ng-container>
+            <app-edit-tool-form 
+                [tool]="tool" 
+                *ngIf="updatingTool"
+                (cancelUpdateToolEvent)="setUpdatingTool(false)"
+                (updatedToolEvent)="onToolUpdated($event)"></app-edit-tool-form>
         </div>
     </div>
 </div>

@@ -1,1 +1,30 @@
-<p>items-list works!</p>
+<table class="table" *ngIf="items && items.length">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>
+                {{ item.id }}
+            </td>
+            <td>
+                {{ item.name }}
+            </td>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p *ngIf="items && !items.length">
+    No se encontraron elementos
+</p>

@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { OutputToolListComponent } from './components/output-tool-list/output-tool-list.component';
 import { ListActionsFilterPipe } from './pipes/list-actions-filter.pipe';
 import { ItemsListComponent } from './components/items-list/items-list.component';
+import { ToItemListPipe } from './pipes/to-item-list.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ItemsListComponent } from './components/items-list/items-list.component
     ToolsListComponent,
     OutputToolListComponent,
     ListActionsFilterPipe,
-    ItemsListComponent
+    ItemsListComponent,
+    ToItemListPipe
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,9 @@ import { ItemsListComponent } from './components/items-list/items-list.component
     TooltipModule,
     ToolsListComponent,
     OutputToolListComponent,
-    ListActionsFilterPipe,
+    ListActionsFilterPipe,    
+    ItemsListComponent,
+    ToItemListPipe,
   ]
 })
 export class SharedModule { }

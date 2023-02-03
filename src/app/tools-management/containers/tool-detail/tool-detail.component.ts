@@ -13,6 +13,7 @@ export class ToolDetailComponent {
   qrCodeElementType = NgxQrcodeElementTypes.IMG;
   qrCodeErrorCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   tool?: Tool;
+  updatingTool: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,5 +28,17 @@ export class ToolDetailComponent {
 
     this.httpService.get<Tool>(`Tools/${toolId}`)
       .subscribe(response => this.tool = response);
+  }
+
+  setUpdatingTool(value: boolean) {
+    this.updatingTool = value;
+  }
+
+  onToolUpdated(tool: Tool) {
+    this.httpService.put<Tool>('Tools', tool)
+      .subscribe(response => {
+        this.tool = response;
+        this.updatingTool = false;
+      });
   }
 }

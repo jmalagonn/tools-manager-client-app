@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ListActions } from 'src/app/Core/enums/List-actions.enum';
+import { ItemList } from 'src/app/Core/models/Item-list.model';
 
 @Component({
   selector: 'app-items-list',
@@ -6,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent {
-  
+  @Input() items?: ItemList[];  
+  @Input() actions?: ListActions[];
 }

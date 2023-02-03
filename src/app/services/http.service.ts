@@ -18,4 +18,8 @@ export class HttpService {
   post<T>(path: string, body: object): Observable<T> {
     return this.httpClient.post<T>(this.api_url + path, body);
   }
+
+  put<T>(path: string, body: object): Observable<T> {
+    return this.httpClient.put<T>(this.api_url + path, body);
+  }
 }
