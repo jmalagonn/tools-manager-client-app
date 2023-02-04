@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -10,8 +11,6 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./tool-detail.component.scss']
 })
 export class ToolDetailComponent {
-  qrCodeElementType = NgxQrcodeElementTypes.IMG;
-  qrCodeErrorCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   tool?: Tool;
   updatingTool: boolean = false;
 

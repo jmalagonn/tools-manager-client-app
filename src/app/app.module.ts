@@ -10,6 +10,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule,    
+    ToastrModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

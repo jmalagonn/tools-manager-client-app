@@ -2,16 +2,7 @@
     <h4 class="text-center mt-3">{{ tool.toolName }}</h4>
     <div class="row mt-3">
         <div class="col-sm-4">
-            <h6 class="text-center">Código QR</h6>
-            <div class="qr-card">
-                <ngx-qrcode 
-                    [elementType]="qrCodeElementType" 
-                    [value]="tool.toolGuid" 
-                    [errorCorrectionLevel]="qrCodeErrorCorrectionLevel"
-                    class="text-center">
-                </ngx-qrcode>
-                <p class="text-center">{{ tool.toolGuid | lastCharacters }}</p>
-            </div>
+            <app-qr-info [tool]="tool"></app-qr-info>            
         </div>
         <div class="col-sm-8">
             <h6 class="text-center">Información general</h6>
