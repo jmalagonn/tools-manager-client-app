@@ -30,7 +30,7 @@ export class QrInfoComponent {
     const blobImg = await htmlToImage.toBlob(node, {backgroundColor: "white"});    
     
     copy 
-      ? navigator.clipboard.write([new ClipboardItem({'image/png': blobImg!})])
+      ? await navigator.clipboard.write([new ClipboardItem({'image/png': blobImg!})])
       : this.saveQrInfo(blobImg!);
 
     nodeTitle.innerHTML = "Código QR";
