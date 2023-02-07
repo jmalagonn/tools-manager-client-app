@@ -28,7 +28,7 @@ export class AppConstants {
             icon: faUserPen,
             path: 'profile'
         },
-    ]
+    ];
 }
 
 export class QRConstants {

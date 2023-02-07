@@ -1,0 +1,13 @@
+<div class="container" *ngIf="customer">
+    <div class="row mt-3">
+        <h4 class="text-center">{{ customer.customerName }}</h4>
+        <div class="text-center mt-3">
+            <button class="btn btn-outline-primary" (click)="onOpenAddBranchModal()">Agregar nueva sucursal</button>
+        </div>
+        <div class="col mt-3">
+            <app-items-list 
+                [items]="customer.branches | toItemList:'branch'"
+                (rowClickedEvent)="goToBranch($event)"></app-items-list>
+        </div>
+    </div>
+</div>

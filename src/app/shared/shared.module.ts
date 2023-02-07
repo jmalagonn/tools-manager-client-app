@@ -27,7 +27,7 @@ import { ToItemListPipe } from './pipes/to-item-list.pipe';
     OutputToolListComponent,
     ListActionsFilterPipe,
     ItemsListComponent,
-    ToItemListPipe
+    ToItemListPipe,
   ],
   imports: [
     CommonModule,

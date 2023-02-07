@@ -1,5 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Branch } from 'src/app/Core/models/Branch.model';
 import { Customer } from 'src/app/Core/models/Customer.model';
+import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 
 @Pipe({
@@ -13,6 +15,10 @@ export class ToItemListPipe implements PipeTransform {
     switch (arg) {
       case "customer":
         return value.map((x: Customer) => ({ id: x.customerId, name:  x.customerName}));
+      case "branch":
+        return value.map((x: Branch) => ({ id: x.branchId, name:  x.branchName}));
+      case "equipment":
+        return value.map((x: Equipment) => ({ id: x.equipmentId, name:  x.equipmentName}));
     }
 
     return new Array();

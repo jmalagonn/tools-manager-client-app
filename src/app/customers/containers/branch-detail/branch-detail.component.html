@@ -1,0 +1,20 @@
+<div class="container" *ngIf="branch">
+    <div class="row mt-3">
+        <h4 class="text-center">{{ branch.branchName }}</h4>
+        <div class="col-lg-6 mt-3">
+            <h5 class="text-center">Equipos</h5>
+            <div class="text-center mt-3">
+                <button class="btn btn-outline-primary" (click)="onOpenAddEquipmentModal()">Agregar nuevo equipo</button>
+            </div>
+            <app-items-list 
+                [items]="branch.equipment | toItemList:'equipment'"></app-items-list>
+        </div>
+        <div class="col-lg-6 mt-3">            
+            <h5 class="text-center">Órdenes de trabajo</h5>
+            <div class="text-center mt-3">
+                <button class="btn btn-outline-primary" (click)="onOpenAddEquipmentModal()">Agregar nueva OT</button>
+            </div>
+            <app-work-orders-table [items]="branch.workOrders"></app-work-orders-table>
+        </div>
+    </div>
+</div>

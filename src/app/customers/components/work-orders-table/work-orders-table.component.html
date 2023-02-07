@@ -5,22 +5,24 @@
                 Id
             </th>
             <th>
-                Nombre
+                Fecha de creación
+            </th>
+            <th>
+                Estado
             </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of items" role="button" (click)="onRowClicked(item)">
             <td>
-                {{ item.id }}
+                {{ item.workOrderId }}
             </td>
             <td>
-                {{ item.name }}
             </td>
         </tr>
     </tbody>
 </table>
 
-<p *ngIf="items && !items.length" class="text-center">
+<p *ngIf="items && !items.length" class="text-center mt-3">
     No se encontraron elementos
 </p>
