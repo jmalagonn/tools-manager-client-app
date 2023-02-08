@@ -12,6 +12,7 @@ import { AddEquipmentModalComponent } from './components/add-equipment-modal/add
 import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
 import { AddWorkOrderModalComponent } from './components/add-work-order-modal/add-work-order-modal.component';
 import { AddWorkOrderFormComponent } from './components/add-work-order-form/add-work-order-form.component';
+import { WorkItemsListComponent } from './components/work-items-list/work-items-list.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AddWorkOrderFormComponent } from './components/add-work-order-form/add-
     AddEquipmentModalComponent,
     WorkOrdersTableComponent,
     AddWorkOrderModalComponent,
-    AddWorkOrderFormComponent
+    AddWorkOrderFormComponent,
+    WorkItemsListComponent
   ],
   imports: [
     CommonModule,

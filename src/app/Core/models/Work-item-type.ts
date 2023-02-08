@@ -1,4 +1,4 @@
 export interface WorkItemType {
-    workItemId: number;
-    workItemName: string;
+    workItemTypeId: number;
+    workItemTypeName: string;
 }

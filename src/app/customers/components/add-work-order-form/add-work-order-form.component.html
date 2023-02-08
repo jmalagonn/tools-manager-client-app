@@ -9,37 +9,52 @@
             </div>
         </form>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-sm btn-outline-primary">
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="setAddingItem(true)">
                 <fa-icon [icon]="faPlus" class="me-1"></fa-icon>
                 Añadir ítem
             </button>
         </div>
     </div>
 </div>
-<div class="row mt-3" *ngIf="branch">
+<div class="row mt-3" *ngIf="branch && addingItem">
     <div class="col">
-        <app-dropdown [label]="'Seleccionar equipo'" [options]="branch.equipment | toDropdownItem:'equipmentId':'equipmentName'"></app-dropdown>
+        <app-dropdown 
+            [label]="'Seleccionar equipo'" 
+            [options]="branch.equipment | toDropdownItem:'equipmentId':'equipmentName'"
+            (onSelectOptionEvent)="onSelectItem($event, 2)"></app-dropdown>
     </div>
     <div class="col">
         <app-dropdown 
             *ngIf="workItemTypes"
             [label]="'Tipo de trabajo'" 
-            [options]="workItemTypes | toDropdownItem:'workItemTypeId':'workItemTypeName'"></app-dropdown>
+            [options]="workItemTypes | toDropdownItem:'workItemTypeId':'workItemTypeName'"
+            (onSelectOptionEvent)="onSelectItem($event, 1)"></app-dropdown>
     </div>
     <div class="col-12 mt-2">
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Descripción del trabajo" id="wi-description"></textarea>
-            <label for="wi-description">Descripción del trabajo</label>
-        </div>
+        <form *ngIf="workItemForm" [formGroup]="workItemForm">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Descripción del trabajo" id="workItemDescription" formControlName="workItemDescription"></textarea>
+                <label for="workItemDescription">Descripción del trabajo</label>
+            </div>
+        </form>
     </div>
     <div class="d-flex justify-content-center mt-2">
-        <button type="button" class="btn btn-sm btn-outline-primary me-2">
+        <button 
+            type="button" 
+            class="btn btn-sm btn-outline-primary me-2" 
+            (click)="onSaveWorkItem()"
+            [disabled]="workItemForm!.invalid">
             <fa-icon [icon]="faSave" class="me-1"></fa-icon>
             Guardar
         </button>            
-        <button type="button" class="btn btn-sm btn-outline-danger">
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="setAddingItem(false)">
             <fa-icon [icon]="faTrash" class="me-1"></fa-icon>
             Cancelar
         </button>
+    </div>
+</div>
+<div class="row mt-3" *ngIf="tempWorkItems.length">
+    <div class="col">
+        <app-work-items-list [workItems]="tempWorkItems"></app-work-items-list>
     </div>
 </div>
