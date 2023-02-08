@@ -5,7 +5,7 @@ import { WorkOrder } from "./Work-order.model";
 export interface Branch {
     branchId?: number;
     branchName: string;
-    customer?: Customer;
+    customerName?: string;
     customerId?: number;
     equipment?: Equipment[];
     workOrders?: WorkOrder[];

@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Nueva Orden de trabajo</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <app-add-work-order-form [branch]="branch"></app-add-work-order-form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary">Guardar OT</button>
+    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+</div>

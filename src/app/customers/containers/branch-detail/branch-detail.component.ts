@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddEquipmentModalComponent } from '../../components/add-equipment-modal/add-equipment-modal.component';
+import { AddWorkOrderModalComponent } from '../../components/add-work-order-modal/add-work-order-modal.component';
 
 @Component({
   selector: 'app-branch-detail',
@@ -17,8 +18,7 @@ export class BranchDetailComponent implements OnInit {
   constructor (
     private route: ActivatedRoute,
     private httpService: HttpService,    
-    private modalService: BsModalService,
-    private router: Router) {}
+    private modalService: BsModalService) {}
 
   ngOnInit(): void {
     this.getBranch();
@@ -39,5 +39,15 @@ export class BranchDetailComponent implements OnInit {
     };
 
     this.modalRef = this.modalService.show(AddEquipmentModalComponent, initialState);
+  }
+
+  onOpenAddWorkOrder() {
+    const initialState: ModalOptions<AddWorkOrderModalComponent> = {
+      initialState: {
+        branch: this.branch!
+      }
+    };
+
+    this.modalRef = this.modalService.show(AddWorkOrderModalComponent, initialState);
   }
 }

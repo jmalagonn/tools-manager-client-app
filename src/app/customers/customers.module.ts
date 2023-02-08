@@ -10,6 +10,8 @@ import { AddBranchModalComponent } from './components/add-branch-modal/add-branc
 import { BranchDetailComponent } from './containers/branch-detail/branch-detail.component';
 import { AddEquipmentModalComponent } from './components/add-equipment-modal/add-equipment-modal.component';
 import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
+import { AddWorkOrderModalComponent } from './components/add-work-order-modal/add-work-order-modal.component';
+import { AddWorkOrderFormComponent } from './components/add-work-order-form/add-work-order-form.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { WorkOrdersTableComponent } from './components/work-orders-table/work-or
     AddBranchModalComponent,
     BranchDetailComponent,
     AddEquipmentModalComponent,
-    WorkOrdersTableComponent
+    WorkOrdersTableComponent,
+    AddWorkOrderModalComponent,
+    AddWorkOrderFormComponent
   ],
   imports: [
     CommonModule,
