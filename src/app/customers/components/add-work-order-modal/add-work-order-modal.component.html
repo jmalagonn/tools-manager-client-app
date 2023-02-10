@@ -5,9 +5,11 @@
     </button>
 </div>
 <div class="modal-body">
-    <app-add-work-order-form [branch]="branch"></app-add-work-order-form>
+    <app-add-work-order-form 
+        [branch]="branch"
+        (woEvent)="onSaveWO($event)"></app-add-work-order-form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary">Guardar OT</button>
+    <button type="button" class="btn btn-outline-primary" (click)="addWorkOrderForm.emitWOInfo()">Guardar OT</button>
     <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
 </div>

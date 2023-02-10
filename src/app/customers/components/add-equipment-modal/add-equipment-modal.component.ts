@@ -32,7 +32,7 @@ export class AddEquipmentModalComponent implements OnInit {
     const body = {
       equipmentName: this.addEquipmentForm!.controls["equipmentName"].value,
       branchId: this.branchId
-    }
+    };
 
     this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
       this.bsModalRef.hide();

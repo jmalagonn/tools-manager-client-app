@@ -2,14 +2,14 @@
     <div class="col">
         <p class="mb-1"><b>Cliente:</b> {{ branch.customerName }}</p>
         <p><b>Sucursal:</b> {{ branch.branchName }}</p>
-        <form class="mb-3">
+        <form class="mb-3" [formGroup]="workOrderForm!">
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Descripción general" id="wo-general-description"></textarea>
-                <label for="wo-general-description">Descripción general</label>
+                <textarea class="form-control" placeholder="Descripción general" id="workOrderDescription" formControlName="workOrderDescription"></textarea>
+                <label for="workOrderDescription">Descripción general</label>
             </div>
         </form>
         <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-sm btn-outline-primary" (click)="setAddingItem(true)">
+            <button type="button" class="btn btn-sm btn-outline-primary" (click)="setAddingItem(true)" [disabled]="addingItem">
                 <fa-icon [icon]="faPlus" class="me-1"></fa-icon>
                 Añadir ítem
             </button>
@@ -21,14 +21,14 @@
         <app-dropdown 
             [label]="'Seleccionar equipo'" 
             [options]="branch.equipment | toDropdownItem:'equipmentId':'equipmentName'"
-            (onSelectOptionEvent)="onSelectItem($event, 2)"></app-dropdown>
+            (onSelectOptionEvent)="onSelectItem($event, 1)"></app-dropdown>
     </div>
     <div class="col">
         <app-dropdown 
             *ngIf="workItemTypes"
             [label]="'Tipo de trabajo'" 
             [options]="workItemTypes | toDropdownItem:'workItemTypeId':'workItemTypeName'"
-            (onSelectOptionEvent)="onSelectItem($event, 1)"></app-dropdown>
+            (onSelectOptionEvent)="onSelectItem($event, 2)"></app-dropdown>
     </div>
     <div class="col-12 mt-2">
         <form *ngIf="workItemForm" [formGroup]="workItemForm">

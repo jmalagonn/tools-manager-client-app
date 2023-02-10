@@ -45,7 +45,8 @@ export class BranchDetailComponent implements OnInit {
     const initialState: ModalOptions<AddWorkOrderModalComponent> = {
       initialState: {
         branch: this.branch!
-      }
+      },
+      class: "modal-lg"
     };
 
     this.modalRef = this.modalService.show(AddWorkOrderModalComponent, initialState);
