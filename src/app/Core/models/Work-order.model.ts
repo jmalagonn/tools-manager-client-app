@@ -8,4 +8,5 @@ export interface WorkOrder {
     branchId: number;
     branchName: string;
     workItems: WorkItem[];
+    createdOn?: Date;
 }

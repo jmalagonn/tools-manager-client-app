@@ -43,6 +43,6 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   goToBranch(item: ItemList) {
-    this.router.navigateByUrl(`customers/${this.customer.customerId}/${item.id}`);
+    this.router.navigateByUrl(`customers/customer/${this.customer.customerId}/branch/${item.id}`);
   }
 }

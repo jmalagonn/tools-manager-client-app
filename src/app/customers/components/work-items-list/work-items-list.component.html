@@ -1,27 +1,21 @@
 <table class="table table-hover" *ngIf="workItems && workItems.length">
     <thead>
         <tr>
-            <th>
-                Equipo
-            </th>
-            <th>
-                Tipo de mantenimiento
-            </th>
-            <th>
-                Descripción
+            <th *ngFor="let col of columns">
+                {{ col }}
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of workItems" role="button">
-            <td>
+        <tr *ngFor="let item of workItems" role="button" (click)="onRowClicked(item)">
+            <td *ngIf="item.equipment">
                 {{ item.equipment.equipmentName }}
             </td>
             <td>
                 {{ item.workItemType.workItemTypeName }}
             </td>
             <td>
-                {{ item.workItemDescription }}
+                {{ item.workItemDescription ? item.workItemDescription : "No se agregó descripción." }}
             </td>
         </tr>
     </tbody>

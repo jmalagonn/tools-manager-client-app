@@ -35,3 +35,12 @@ export class QRConstants {
     public static readonly QRElementType = NgxQrcodeElementTypes.IMG;
     public static readonly QRCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
 }
+
+export class RouteConstants {
+    public static readonly workItemPath = 'customers/work-item';
+    public static readonly workOrderPath = 'customers/work-order';
+}
+
+export class ApiConstants {
+    public static readonly workOrderApi = "WorkOrder";
+}

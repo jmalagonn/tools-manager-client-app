@@ -34,6 +34,6 @@ export class CustomersComponent implements OnInit {
   }
 
   goToBranch(item: ItemList) {    
-    this.router.navigateByUrl(`customers/${item.id}`);
+    this.router.navigateByUrl(`customers/customer/${item.id}`);
   }
 }

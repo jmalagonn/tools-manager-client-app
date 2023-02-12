@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { BranchDetailComponent } from './containers/branch-detail/branch-detail.component';
 import { CustomerDetailComponent } from './containers/customer-detail/customer-detail.component';
 import { CustomersComponent } from './containers/customers/customers.component';
+import { EquipmentComponent } from './containers/equipment/equipment.component';
+import { WorkItemComponent } from './containers/work-item/work-item.component';
+import { WorkOrderComponent } from './containers/work-order/work-order.component';
 
 const routes: Routes = [
   {
@@ -10,12 +13,29 @@ const routes: Routes = [
     component: CustomersComponent
   },
   {
-    path: ':id',
-    component: CustomerDetailComponent
+    path: 'customer',
+    children: [
+      {
+        path: ':id',
+        component: CustomerDetailComponent,
+      },
+      {
+        path: ':customerId/branch/:branchId',
+        component: BranchDetailComponent
+      }
+    ]
   },
   {
-    path: ':customerId/:branchId',
-    component: BranchDetailComponent
+    path: 'work-order/:id',
+    component: WorkOrderComponent,
+  },
+  {
+    path: 'equipment/:id',
+    component: EquipmentComponent,
+  },
+  {
+    path: 'work-item/:id',
+    component: WorkItemComponent,
   }
 ];
 

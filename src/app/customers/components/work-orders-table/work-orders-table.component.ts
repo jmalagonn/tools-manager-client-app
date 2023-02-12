@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
 
 @Component({
@@ -9,5 +10,9 @@ import { WorkOrder } from 'src/app/Core/models/Work-order.model';
 export class WorkOrdersTableComponent {
   @Input() items?: WorkOrder[];
 
-  onRowClicked(item: WorkOrder) {};
+  constructor (private router: Router) {}
+
+  onRowClicked(item: WorkOrder) {
+    this.router.navigateByUrl(`customers/work-order/${item.workOrderId}`);
+  };
 }

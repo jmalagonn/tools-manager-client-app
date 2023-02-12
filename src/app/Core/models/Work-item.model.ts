@@ -7,4 +7,5 @@ export interface WorkItem {
     workItemDescription?: string;
     workItemType: WorkItemType;
     equipment: Equipment;
+    workOrderId?: number;
 }

@@ -11,6 +11,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './Core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
