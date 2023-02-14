@@ -39,6 +39,9 @@ export class QRConstants {
 export class RouteConstants {
     public static readonly workItemPath = 'customers/work-item';
     public static readonly workOrderPath = 'customers/work-order';
+    public static readonly equipmentPath = 'customers/equipment';
+    public static readonly customersPath = 'customers/customer';
+    public static readonly branchPath = 'branch';
 }
 
 export class ApiConstants {

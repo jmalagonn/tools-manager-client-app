@@ -39,6 +39,6 @@ export class EquipmentComponent {
   }
 
   navigateToWo(item: WorkItem) {
-    this.router.navigateByUrl(`customers/work-order/${item.workOrderId}`);
+    this.router.navigateByUrl(`customers/work-item/${item.workItemId}`);
   }
 }

@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center"  *ngIf="!addingItem">
+    <button class="btn btn-sm btn-outline-primary" (click)="setAddingItem(true)">Agregar nuevo trabajo</button>
+</div>
+<form *ngIf="addingItem && itemForm" [formGroup]="itemForm">
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" formControlName="description"></textarea>
+        <label for="floatingTextarea">Descripción del trabajo realizado</label>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+        <button type="button" class="btn btn-sm btn-outline-primary me-2" (click)="onSaveWorkItem()" [disabled]="!itemForm.valid">
+            <fa-icon [icon]="faSave" class="me-1"></fa-icon>
+            Guardar
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger" (click)="setAddingItem(false)">
+            <fa-icon [icon]="faTrash" class="me-1"></fa-icon>
+            Cancelar
+        </button>
+    </div>
+</form>
