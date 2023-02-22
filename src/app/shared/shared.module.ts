@@ -16,6 +16,12 @@ import { OutputToolListComponent } from './components/output-tool-list/output-to
 import { ListActionsFilterPipe } from './pipes/list-actions-filter.pipe';
 import { ItemsListComponent } from './components/items-list/items-list.component';
 import { ToItemListPipe } from './pipes/to-item-list.pipe';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { UploadFilesModalComponent } from './components/upload-files-modal/upload-files-modal.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
+import { AppFilesPipe } from './pipes/app-files.pipe';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,9 +34,12 @@ import { ToItemListPipe } from './pipes/to-item-list.pipe';
     ListActionsFilterPipe,
     ItemsListComponent,
     ToItemListPipe,
+    UploadFilesModalComponent,
+    ImageCarouselComponent,
+    AppFilesPipe,
   ],
   imports: [
-    CommonModule,
+    CommonModule,    
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
@@ -39,6 +48,9 @@ import { ToItemListPipe } from './pipes/to-item-list.pipe';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     RouterModule,
+    NgxDropzoneModule,
+    CarouselModule.forRoot(),
+    NgbCarouselModule,
   ],
   exports: [
     FontAwesomeModule,
@@ -57,6 +69,11 @@ import { ToItemListPipe } from './pipes/to-item-list.pipe';
     ListActionsFilterPipe,    
     ItemsListComponent,
     ToItemListPipe,
+    UploadFilesModalComponent,
+    CarouselModule,
+    ImageCarouselComponent,
+    AppFilesPipe,
+    NgbCarouselModule,
   ]
 })
 export class SharedModule { }

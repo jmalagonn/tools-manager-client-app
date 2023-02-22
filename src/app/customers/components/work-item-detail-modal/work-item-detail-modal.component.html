@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Trabajo: {{ activityLog!.workItemActivityLogId }}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row g-2">
+        <div class="col-12">
+            <p><b>Descripción:</b> {{ activityLog!.description }}</p>
+        </div>
+        <div class="col-12">
+            <h5>Archivos:</h5>
+            <app-image-carousel 
+                [images]="activityLog!.files | appFilesPipe"
+                [config]="sliderConfig"></app-image-carousel>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+</div>

@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Cargar imágenes</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+	<ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
+		<ngx-dropzone-label>Haga click o arrastre hasta aquí para añadir archivos</ngx-dropzone-label>
+		<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+			<ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+		</ngx-dropzone-preview>
+	</ngx-dropzone>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="onSave()">Guardar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+</div>

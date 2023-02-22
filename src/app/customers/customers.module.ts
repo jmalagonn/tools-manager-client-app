@@ -17,6 +17,7 @@ import { WorkOrderComponent } from './containers/work-order/work-order.component
 import { EquipmentComponent } from './containers/equipment/equipment.component';
 import { WorkItemComponent } from './containers/work-item/work-item.component';
 import { NewWorkItemActivityLogComponent } from './components/new-work-item-activity-log/new-work-item-activity-log.component';
+import { WorkItemDetailModalComponent } from './components/work-item-detail-modal/work-item-detail-modal.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { NewWorkItemActivityLogComponent } from './components/new-work-item-acti
     WorkOrderComponent,
     EquipmentComponent,
     WorkItemComponent,
-    NewWorkItemActivityLogComponent
+    NewWorkItemActivityLogComponent,
+    WorkItemDetailModalComponent
   ],
   imports: [
     CommonModule,

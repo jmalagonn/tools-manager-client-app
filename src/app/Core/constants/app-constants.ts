@@ -29,6 +29,7 @@ export class AppConstants {
             path: 'profile'
         },
     ];
+    public static readonly itemsListDefault = ['Id', 'Nombre'];
 }
 
 export class QRConstants {
@@ -46,4 +47,6 @@ export class RouteConstants {
 
 export class ApiConstants {
     public static readonly workOrderApi = "WorkOrder";
+    public static readonly workItemApi = "WorkItem";
+    public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
 }

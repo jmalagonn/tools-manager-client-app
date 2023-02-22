@@ -1,11 +1,8 @@
 <table class="table table-hover" *ngIf="items && items.length">
     <thead>
-        <tr>
-            <th>
-                Id
-            </th>
-            <th>
-                Nombre
+        <tr>            
+            <th *ngFor="let item of appConstants.itemsListDefault">
+                {{ item }}
             </th>
         </tr>
     </thead>

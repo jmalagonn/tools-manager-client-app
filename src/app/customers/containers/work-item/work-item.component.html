@@ -27,5 +27,8 @@
     <div class="row mt-3">
         <h5 class="text-center">Trabajos realizados</h5>
         <app-new-work-item-activity-log [workItemId]="workItem.workItemId"></app-new-work-item-activity-log>
+        <app-items-list 
+            [items]="workItem.workItemActivityLogs | toItemList:'workItemActivityLog'"
+            (rowClickedEvent)="showWorkActivityLogDetail($event)"></app-items-list>
     </div>
 </div>

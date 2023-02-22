@@ -3,6 +3,7 @@ import { Branch } from 'src/app/Core/models/Branch.model';
 import { Customer } from 'src/app/Core/models/Customer.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
+import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
 
 @Pipe({
   name: 'toItemList'
@@ -19,6 +20,8 @@ export class ToItemListPipe implements PipeTransform {
         return value.map((x: Branch) => ({ id: x.branchId, name:  x.branchName}));
       case "equipment":
         return value.map((x: Equipment) => ({ id: x.equipmentId, name:  x.equipmentName}));
+      case "workItemActivityLog":
+        return value.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId, name: x.description }));
     }
 
     return new Array();

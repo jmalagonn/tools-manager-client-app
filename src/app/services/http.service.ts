@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -22,4 +22,8 @@ export class HttpService {
   put<T>(path: string, body: object): Observable<T> {
     return this.httpClient.put<T>(this.api_url + path, body);
   }
+
+  postWithOptions<T>(path: string, body: object, headers: any): Observable<HttpEvent<T>> {
+    return this.httpClient.post<T>(this.api_url + path, body, headers);
+  } 
 }
