@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -12,6 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class EquipmentComponent {
   equipment?: Equipment;
   workItems?: WorkItem[];
+  routeConstants = RouteConstants;
 
   constructor (
     private httpService: HttpService,

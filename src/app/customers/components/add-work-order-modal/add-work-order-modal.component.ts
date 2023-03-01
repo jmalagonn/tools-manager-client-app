@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, Input, ViewChild } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
@@ -12,12 +12,12 @@ import { AddWorkOrderFormComponent } from '../add-work-order-form/add-work-order
   styleUrls: ['./add-work-order-modal.component.scss']
 })
 export class AddWorkOrderModalComponent {
-  branch?: Branch;
+  @Input() branch?: Branch;
 
   @ViewChild(AddWorkOrderFormComponent) addWorkOrderForm!: AddWorkOrderFormComponent;
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private httpService: HttpService
   ) {}
@@ -36,7 +36,7 @@ export class AddWorkOrderModalComponent {
     };
 
     this.httpService.post<WorkOrder>('WorkOrder', body).subscribe(
-      response => { console.log(response) 
-    });
+      workOrder => this.activeModal.close(workOrder)
+    );
   } 
 }

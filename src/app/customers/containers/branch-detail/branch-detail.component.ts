@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
@@ -14,12 +15,12 @@ import { AddWorkOrderModalComponent } from '../../components/add-work-order-moda
 })
 export class BranchDetailComponent implements OnInit {
   branch?: Branch;
-  modalRef?: BsModalRef;
+  modalRef?: NgbModalRef;
 
   constructor (
     private route: ActivatedRoute,
     private httpService: HttpService,    
-    private modalService: BsModalService,
+    private modalService: NgbModal,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -34,24 +35,15 @@ export class BranchDetailComponent implements OnInit {
   }
 
   onOpenAddEquipmentModal() {
-    const initialState: ModalOptions<AddEquipmentModalComponent> = {
-      initialState: {
-        branchId: this.branch!.branchId!
-      }
-    };
-
-    this.modalRef = this.modalService.show(AddEquipmentModalComponent, initialState);
+    this.modalRef = this.modalService.open(AddEquipmentModalComponent);
+    this.modalRef.componentInstance.branch = this.branch!;
+    this.modalRef.closed.subscribe(result => result && this.getBranch());
   }
 
   onOpenAddWorkOrder() {
-    const initialState: ModalOptions<AddWorkOrderModalComponent> = {
-      initialState: {
-        branch: this.branch!
-      },
-      class: "modal-lg"
-    };
-
-    this.modalRef = this.modalService.show(AddWorkOrderModalComponent, initialState);
+    this.modalRef = this.modalService.open(AddWorkOrderModalComponent, { size: 'lg' });
+    this.modalRef.componentInstance.branch = this.branch!;
+    this.modalRef.closed.subscribe(result => result && this.getBranch());
   }
 
   navigateToEquipment(equipment: ItemList) {

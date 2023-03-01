@@ -1,0 +1,21 @@
+.added-file {
+    display: inline-flex;
+    padding: .2rem .5rem;
+    border-radius: .2rem;
+    background-color: rgba(200, 200, 200, .7);
+    align-items: center;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
+
+    span {
+        margin-right: .5rem;
+        max-width: 8rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}

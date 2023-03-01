@@ -9,17 +9,21 @@ import { ItemList } from 'src/app/Core/models/Item-list.model';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent {
-  appConstants = AppConstants;
-
   @Input() items?: ItemList[];  
   @Input() actions?: ListActions[];
-  @Input() headers?: string[];
+  @Input() headers: string[] = AppConstants.itemsListDefault;
 
   @Output() rowClickedEvent = new EventEmitter<ItemList>();
+  @Output() actionButtonClickedEvent = new EventEmitter<object>();
 
   constructor() {}
 
-  onRowClicked(item: ItemList) {
+  onRowClicked(e: MouseEvent, item: ItemList) {
+    if ((e.composedPath() as HTMLElement[]).some(x => x.tagName === "svg")) return;    
     this.rowClickedEvent.emit(item);
+  }
+
+  actionButtonClicked(action: ListActions, item: ItemList) {
+    this.actionButtonClickedEvent.emit({action, item});
   }
 }

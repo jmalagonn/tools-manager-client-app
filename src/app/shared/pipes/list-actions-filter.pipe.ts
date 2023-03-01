@@ -5,7 +5,6 @@ import { ListActions } from 'src/app/Core/enums/List-actions.enum';
   name: 'listActionsFilter'
 })
 export class ListActionsFilterPipe implements PipeTransform {
-
   transform(listActions: ListActions[], action: ListActions): boolean {
     return listActions && listActions.includes(action);
   }

@@ -47,4 +47,8 @@ export class WorkItemComponent {
 
     this.modalRef = this.modalService.show(WorkItemDetailModalComponent, initialState);
   }
+
+  activityLogCreated() {    
+    this.getWorkItem();
+  }
 }

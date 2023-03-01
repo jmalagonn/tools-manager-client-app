@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -7,9 +8,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./upload-files-modal.component.scss']
 })
 export class UploadFilesModalComponent {
-  files: File[] = [];
+  @Input() files: File[] = [];
 
-  constructor (public bsModalRef: BsModalRef) {}
+  constructor (public activeModal: NgbActiveModal) {}
 
   onSelect(event: any) {
     this.files!.push(...event.addedFiles);
@@ -17,10 +18,5 @@ export class UploadFilesModalComponent {
 
   onRemove(event: File) {
     this.files.splice(this.files.indexOf(event), 1);
-  }
-
-  onSave() {
-    this.bsModalRef.hide();
-    this.bsModalRef.onHidden.emit(this.files);
   }
 }

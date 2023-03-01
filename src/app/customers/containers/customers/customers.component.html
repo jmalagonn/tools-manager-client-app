@@ -5,7 +5,11 @@
     </div>
     <div class="row mt-3">
         <div class="col">
-            <app-items-list [items]="customers | toItemList:'customer'" (rowClickedEvent)="goToBranch($event)"></app-items-list>
+            <app-items-list 
+                [items]="customers | toItemList:'customer'" 
+                [actions]="[listActions.edit]"
+                (actionButtonClickedEvent)="actionButtonClicked($event)"
+                (rowClickedEvent)="goToBranch($event)"></app-items-list>
         </div>
     </div>
 </div>

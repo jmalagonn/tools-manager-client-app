@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Branch } from 'src/app/Core/models/Branch.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,12 +12,13 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class AddEquipmentModalComponent implements OnInit {
   addEquipmentForm?: FormGroup;
-  branchId?: number;
+
+  @Input() branch?: Branch;
 
   constructor(
-    public bsModalRef: BsModalRef,    
-    public fb: FormBuilder,    
-    public httpService: HttpService) {}
+    public activeModal: NgbActiveModal,    
+    private fb: FormBuilder,    
+    private httpService: HttpService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -31,12 +33,11 @@ export class AddEquipmentModalComponent implements OnInit {
   onSubmit() {
     const body = {
       equipmentName: this.addEquipmentForm!.controls["equipmentName"].value,
-      branchId: this.branchId
+      branchId: this.branch!.branchId
     };
 
     this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
-      this.bsModalRef.hide();
-      this.bsModalRef.onHide.emit(equipment);
+      this.activeModal.close(equipment);
     });
   }
 }

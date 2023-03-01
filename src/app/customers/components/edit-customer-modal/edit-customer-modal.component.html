@@ -1,0 +1,18 @@
+<ng-container *ngIf="editForm">
+    <div class="modal-header">
+        <h4 class="modal-title">Editar cliente</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editForm" (ngSubmit)="editForm.dirty && editForm.valid && onSubmit()">
+            <div class="mb-3">
+                <label for="cutomerName" class="form-label">Nombre</label>
+                <input type="text" class="form-control" formControlName="customerName">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button (click)="onSubmit()" class="btn btn-outline-primary" [disabled]="!editForm.dirty && editForm.valid">Guardar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+    </div>
+</ng-container>

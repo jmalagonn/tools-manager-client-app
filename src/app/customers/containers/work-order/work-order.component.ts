@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants, AppConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -12,6 +12,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class WorkOrderComponent implements OnInit {
   workOrder?: WorkOrder;
+  routeConstants = RouteConstants;
 
   constructor (
     private httpService: HttpService,

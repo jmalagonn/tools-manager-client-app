@@ -1,10 +1,12 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faImage, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { faClose, faImage, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { HttpService } from 'src/app/services/http.service';
+import { ModalImageComponent } from 'src/app/shared/components/modal-image/modal-image.component';
 import { UploadFilesModalComponent } from 'src/app/shared/components/upload-files-modal/upload-files-modal.component';
 
 @Component({
@@ -16,16 +18,20 @@ export class NewWorkItemActivityLogComponent {
   faSave = faSave;
   faTrash = faTrash;
   faImage = faImage;
+  faClose = faClose;
   addingItem = false;
-  itemForm?: FormGroup;
-  modalRef?: BsModalRef;
+  itemForm?: FormGroup<NewWorkItemActivityLogForm>;
+  modalRef?: NgbModalRef;
 
   @Input() workItemId?: number;
+
+  @Output() workItemActivityLogCreatedEvent = new EventEmitter<void>(); 
 
   constructor(
     private fb: FormBuilder,
     private httpService: HttpService,
-    private modalService: BsModalService) {}
+    private modalService: NgbModal,
+    private sanitazer: DomSanitizer) {}
 
   onSaveWorkItem() {}
 
@@ -43,38 +49,51 @@ export class NewWorkItemActivityLogComponent {
   }
 
   onSubmit() {
-    const files = this.itemForm!.controls["files"].value;
+    const files: File[] = this.itemForm!.controls["files"].value!;
     const data = new FormData();    
     const headers = new HttpHeaders({
       "Content-Type": "multipart/form-data"
     });
 
     data.append('workItemId', this.workItemId!.toString());
-    data.append('description', this.itemForm!.controls["description"].value);
+    data.append('description', this.itemForm!.controls["description"].value!);
 
     files.map((file: File) => {
       data.append('recievedFiles', file);
     });
 
     this.httpService.postWithOptions(`${ApiConstants.workItemActivityLogApi}`, data, headers)
-      .subscribe();
+      .subscribe(() => {
+        this.workItemActivityLogCreatedEvent.emit();
+        this.setAddingItem(false);
+      });
   }
 
   onAddImage() {
-    const initialState: ModalOptions<UploadFilesModalComponent> = {
-      initialState: {
-        files: this.itemForm!.controls["files"].value
-      }
-    };
+    this.modalRef = this.modalService.open(UploadFilesModalComponent, { size: 'lg' });
+    this.modalRef.componentInstance.files = this.itemForm!.controls["files"].value!;
+    this.modalRef.closed.subscribe((files: File[]) => {
+      if(!files || !files.length) return;
 
-    this.modalRef = this.modalService.show(UploadFilesModalComponent, initialState);
+      this.itemForm!.patchValue({files});
+    });
+  }
 
-    if (this.modalRef!.onHide) {
-      this.modalRef.onHidden.subscribe((files: File[]) => {
-        if(!files || !files.length) return;
+  removeFile(file: File) {
+    this.itemForm!.patchValue({
+      files: this.itemForm!.value.files.filter((x: File) => x != file)
+    });
+  }
 
-        this.itemForm!.patchValue({files});
-      });
-    }
+  showAddedImage(file: File) {
+    this.modalRef = this.modalService.open(ModalImageComponent);
+    this.modalRef.componentInstance.fileUrl = this.sanitazer
+      .bypassSecurityTrustUrl(URL.createObjectURL(new Blob([file], { type: file.type })));
   }
 }
+
+interface NewWorkItemActivityLogForm {
+  description: FormControl<string | null>,
+  workItemId: FormControl<number | null | undefined>,
+  files: FormControl<any>,
+};
