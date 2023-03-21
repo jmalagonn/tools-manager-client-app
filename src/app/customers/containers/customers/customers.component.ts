@@ -60,6 +60,8 @@ export class CustomersComponent implements OnInit {
   }
 
   updateCustomers(customer: Customer) {
+    if(!customer) return;
+
     const index = this.customers!.findIndex(x => x.customerId == customer.customerId);
     this.customers?.splice(index, 1, customer);
 
