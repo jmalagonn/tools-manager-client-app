@@ -23,14 +23,14 @@ export class LoginFormComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      id: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
 
   onSubmit() {
     const body = {
-      email: this.loginForm?.controls["email"].value,
+      id: this.loginForm?.controls["id"].value,
       password: this.loginForm?.controls["password"].value,
     }
 
