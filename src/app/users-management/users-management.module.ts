@@ -7,6 +7,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { UsersManagementDetailComponent } from './containers/users-management-detail/users-management-detail.component';
+import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
+import { UserDetailEditComponent } from './components/user-detail-edit/user-detail-edit.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { UsersManagementDetailComponent } from './containers/users-management-de
     UsersManagementComponent,
     UsersListComponent,
     AddUserModalComponent,
-    UsersManagementDetailComponent
+    UsersManagementDetailComponent,
+    UserDetailViewComponent,
+    UserDetailEditComponent
   ],
   imports: [
     CommonModule,

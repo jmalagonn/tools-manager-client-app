@@ -1,18 +1,15 @@
 <div class="container" *ngIf="user">
     <h2 class="text-center mt-3">Detalle de usuario</h2>
-    <div class="row mt-3 g-3">
-        <div class="col-12">
-            <p><b>Nombre: </b> {{ user.name }}</p>
-        </div>
-        <div class="col">
-            <p><b>Roles:</b></p>
-            <ul>
-                <li *ngFor="let role of user.userRoles">
-                    {{ role.displayName }}
-                </li>
-            </ul>
-        </div>
+    <div class="d-flex justify-content-center" *ngIf="!isEditing">
+        <button type="button" class="btn btn-outline-primary" (click)="setIsEditing(true)">Editar usuario</button>
     </div>
+    <app-user-detail-view [user]="user" *ngIf="!isEditing"></app-user-detail-view>
+    <app-user-detail-edit
+        *ngIf="isEditing" 
+        [user]="user" 
+        [userRoles]="userRoles"
+        (cancelEditEvent)="setIsEditing(false)"
+        (userUpdatedEvent)="userUpdated()"></app-user-detail-edit>    
     <div class="row mt-3">
         <h4 class="text-center mb-3">Salidas de herramienta</h4>
         <output-tool-list [outputsTool]="user.outputsTool"></output-tool-list>
