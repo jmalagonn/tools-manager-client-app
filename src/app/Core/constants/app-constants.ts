@@ -58,6 +58,7 @@ export class ApiConstants {
     public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
     public static readonly customersApi = "Customers";
     public static readonly userApi = "Users";
+    public static readonly addUserApi = "Users/addUser";
     public static readonly userRolesApi = "UserRole";
     public static readonly userEmployeeApi = "Users/employee"
 }

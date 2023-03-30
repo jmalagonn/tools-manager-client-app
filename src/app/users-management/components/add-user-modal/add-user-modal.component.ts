@@ -1,8 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { take } from 'rxjs';
+import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { Account } from 'src/app/Core/models/Account.model';
 import { UserRole } from 'src/app/Core/models/User-role.model';
 import { User } from 'src/app/Core/models/User.model';
+import { AccountService } from 'src/app/services/account.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -12,6 +16,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class AddUserModalComponent {
   addUserForm?: FormGroup;
+  user?: Account;
 
   @Input() userRoles?: UserRole[];
 
@@ -20,8 +25,11 @@ export class AddUserModalComponent {
   constructor(
     public activeModal: NgbActiveModal,
     public fb: FormBuilder,
-    public httpService: HttpService
-  ) {}
+    private httpService: HttpService,
+    private accoutService: AccountService,
+  ) {
+    this.accoutService.currentAccount$.pipe(take(1)).subscribe(user => this.user = user!);
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -30,7 +38,7 @@ export class AddUserModalComponent {
   initForm() {
     this.addUserForm = this.fb.group({
       name: ['', Validators.required],
-      email: [''],
+      email: [null],
       idCard: ['', Validators.required],
       userRoles: [null, this.rolesLengthValidator]
     });
@@ -38,13 +46,14 @@ export class AddUserModalComponent {
 
   onSubmit() {
     const body = {
-      name: this.addUserForm!.controls["name"].value,
+      company: this.user!.company,
       email: this.addUserForm!.controls["email"].value,
-      idCard: this.addUserForm!.controls["idCard"].value,
+      idCard: parseInt(this.addUserForm!.controls["idCard"].value),
+      name: this.addUserForm!.controls["name"].value,
       userRoles: this.addUserForm!.controls["userRoles"].value.map((x: number) => ({userRoleId: x})),
     };
     
-    this.httpService.post<User>('Users/addEmployee', body).subscribe(User => {
+    this.httpService.post<User>(ApiConstants.addUserApi, body).subscribe(User => {
       this.activeModal.close(true);
     });
   }
