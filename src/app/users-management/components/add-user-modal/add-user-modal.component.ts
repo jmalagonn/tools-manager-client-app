@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserRole } from 'src/app/Core/models/User-role.model';
 import { User } from 'src/app/Core/models/User.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -12,10 +13,12 @@ import { HttpService } from 'src/app/services/http.service';
 export class AddUserModalComponent {
   addUserForm?: FormGroup;
 
+  @Input() userRoles?: UserRole[];
+
   @Output() UserAddedEvent = new EventEmitter<User>();
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public activeModal: NgbActiveModal,
     public fb: FormBuilder,
     public httpService: HttpService
   ) {}
@@ -26,18 +29,44 @@ export class AddUserModalComponent {
 
   initForm() {
     this.addUserForm = this.fb.group({
-      name: ['', Validators.required]
+      name: ['', Validators.required],
+      email: [''],
+      idCard: ['', Validators.required],
+      userRoles: [null, this.rolesLengthValidator]
     });
   }
 
   onSubmit() {
     const body = {
-      name: this.addUserForm?.controls["name"].value
+      name: this.addUserForm!.controls["name"].value,
+      email: this.addUserForm!.controls["email"].value,
+      idCard: this.addUserForm!.controls["idCard"].value,
+      userRoles: this.addUserForm!.controls["userRoles"].value.map((x: number) => ({userRoleId: x})),
     };
-
+    
     this.httpService.post<User>('Users/addEmployee', body).subscribe(User => {
-      this.bsModalRef.hide();
-      this.bsModalRef.onHide.emit(User);
+      this.activeModal.close(true);
     });
+  }
+
+  setUserRoleValue(e: any) {
+    const index = this.userRoles!.findIndex(x => x.userRoleId == e.target.value);
+    this.userRoles![index].isActive = e.target.checked;
+
+    this.filterUserRoleFormValues();
+  }
+
+  filterUserRoleFormValues(): void {
+    this.addUserForm?.patchValue({
+      userRoles: this.userRoles!.filter(x => x.isActive).map(x => x.userRoleId)
+    });
+  }
+
+  rolesLengthValidator(control: FormControl) {
+    if(!control.value || !control.value.length) {
+      return { invalidCustomValue: true };
+    }
+
+    return null;
   }
 }

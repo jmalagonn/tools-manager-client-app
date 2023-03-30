@@ -1,18 +1,46 @@
 <div class="modal-header">
     <h4 class="modal-title pull-left">Agregar Nuevo Usuario</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="activeModal.close(false)">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <form *ngIf="addUserForm" [formGroup]="addUserForm" (ngSubmit)="addUserForm.valid && onSubmit()">
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="userName" formControlName="name">
-        </div>
-        <button class="btn btn-outline-primary" [disabled]="!addUserForm.valid">Enviar</button>
+        <div class="row g-2">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="col-md-6">
+                <label for="idCard" class="form-label">Identificación</label>
+                <input type="text" class="form-control" formControlName="idCard">
+            </div>
+            <div class="col-12">
+                <p>Roles</p>
+                <ul class="list-unstyled">
+                    <li *ngFor="let role of userRoles">
+                        <div class="form-check">
+                            <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            [value]="role.userRoleId" 
+                            [id]="'userRoles-' + role.userRoleId"
+                            (change)="setUserRoleValue($event)">
+                            <label class="form-check-label" [attr.for]="'userRoles-' + role.userRoleId">
+                                {{ role.displayName }}
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>        
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+    <button type="button" class="btn btn-outline-danger" (click)="activeModal.dismiss()">Cancelar</button>
+    <button class="btn btn-outline-primary" [disabled]="!addUserForm!.valid" (click)="onSubmit()">Enviar</button>
 </div>
