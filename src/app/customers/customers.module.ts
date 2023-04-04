@@ -19,6 +19,8 @@ import { WorkItemComponent } from './containers/work-item/work-item.component';
 import { NewWorkItemActivityLogComponent } from './components/new-work-item-activity-log/new-work-item-activity-log.component';
 import { WorkItemDetailModalComponent } from './components/work-item-detail-modal/work-item-detail-modal.component';
 import { EditCustomerModalComponent } from './components/edit-customer-modal/edit-customer-modal.component';
+import { AddEquipmentParameterComponent } from './components/add-equipment-parameter/add-equipment-parameter.component';
+import { AddNewEquipmentParameterComponent } from './components/add-new-equipment-parameter/add-new-equipment-parameter.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { EditCustomerModalComponent } from './components/edit-customer-modal/edi
     WorkItemComponent,
     NewWorkItemActivityLogComponent,
     WorkItemDetailModalComponent,
-    EditCustomerModalComponent
+    EditCustomerModalComponent,
+    AddEquipmentParameterComponent,
+    AddNewEquipmentParameterComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,10 @@
+.action-buttons {
+    display: flex;
+    justify-content: end;
+    padding-top: calc(70px - 35px);
+
+    &--button {
+        width: 2rem;
+        height: 2rem;
+    }
+}

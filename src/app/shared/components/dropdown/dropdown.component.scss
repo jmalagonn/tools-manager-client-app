@@ -3,3 +3,18 @@
         background: rgba(200,200,200,.1);
     }
 }
+
+.app-dropdown {
+    &--button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #ced4da;
+        width: 100%;
+    }
+
+    &--menu {
+        max-height: 200px;
+        overflow: auto;
+    }
+}

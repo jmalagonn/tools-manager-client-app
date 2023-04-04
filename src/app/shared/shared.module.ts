@@ -21,9 +21,10 @@ import { UploadFilesModalComponent } from './components/upload-files-modal/uploa
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ImageCarouselComponent } from './components/image-carousel/image-carousel.component';
 import { AppFilesPipe } from './pipes/app-files.pipe';
-import { NgbCarouselModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalImageComponent } from './components/modal-image/modal-image.component';
 import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
+import { DropdownInputComponent } from './components/dropdown-input/dropdown-input.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
     AppFilesPipe,
     ModalImageComponent,
     ListActionIconPipe,
+    DropdownInputComponent,
   ],
   imports: [
     CommonModule,    
@@ -56,6 +58,7 @@ import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
     CarouselModule.forRoot(),
     NgbCarouselModule,
     NgbModalModule,
+    NgbDropdownModule,
   ],
   exports: [
     FontAwesomeModule,
@@ -82,6 +85,7 @@ import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
     NgbModalModule,
     ModalImageComponent,
     ListActionIconPipe,
+    DropdownInputComponent,
   ]
 })
 export class SharedModule { }

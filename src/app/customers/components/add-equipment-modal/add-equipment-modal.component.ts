@@ -12,6 +12,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class AddEquipmentModalComponent implements OnInit {
   addEquipmentForm?: FormGroup;
+  addNewParameter: boolean = false;
 
   @Input() branch?: Branch;
 
@@ -39,5 +40,9 @@ export class AddEquipmentModalComponent implements OnInit {
     this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
       this.activeModal.close(equipment);
     });
+  }  
+
+  setAddNewParameter(value: boolean) {
+    this.addNewParameter = value;
   }
 }

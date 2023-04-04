@@ -35,7 +35,7 @@ export class BranchDetailComponent implements OnInit {
   }
 
   onOpenAddEquipmentModal() {
-    this.modalRef = this.modalService.open(AddEquipmentModalComponent);
+    this.modalRef = this.modalService.open(AddEquipmentModalComponent, { size: 'lg' });
     this.modalRef.componentInstance.branch = this.branch!;
     this.modalRef.closed.subscribe(result => result && this.getBranch());
   }

@@ -1,0 +1,33 @@
+<app-dropdown-input
+    *ngIf="selectingParameter"
+    [label]="'Añadir parámetro'"
+    [buttonText]="'Seleccionar parámetro'"
+    [options]="equipmentParameters | toItemList:'equipmentParameter'"
+    [showAddNewItemButton]="true"
+    [showAddNewItemButtonText]="'Añadir nuevo parámetro'"
+    (selectItemEvent)="onSelectItem($event)"
+    (addNewItemEvent)="setAddingNewParameter(true)"></app-dropdown-input>
+
+<app-add-new-equipment-parameter
+    *ngIf="addingNewParameter"></app-add-new-equipment-parameter>
+
+<div *ngIf="!selectingParameter && !addingNewParameter">
+    <p>Añadir parámetro</p>
+    <div class="row g-1">
+        <div class="col-6">
+            {{ selectedItem!.name + ' | ' + selectedItem!.unitOfMeasurementSymbol }}
+        </div>
+        <div class="col-4">
+            <input class="form-control form-control-sm" type="number" placeholder="Valor">
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <button class="btn btn-sm btn-outline-success action-button me-2">
+                <fa-icon [icon]="faCheck"></fa-icon>
+            </button>
+            <button class="btn btn-sm btn-outline-danger action-button"
+                (click)="cancelAddParameterEvent.emit()">
+                <fa-icon [icon]="faX"></fa-icon>     
+            </button>
+        </div>
+    </div>
+</div>

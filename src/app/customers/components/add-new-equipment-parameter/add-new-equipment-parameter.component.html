@@ -1,0 +1,25 @@
+<form>
+    <div class="row g-2">
+        <div class="col-lg-4">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control">
+        </div>
+        <div class="col-lg-4">
+            <label class="form-label">Magnitud</label>
+            <app-dropdown [options]="measurementUnits! | toDropdownItem:'measurementUnits'"></app-dropdown>
+        </div>
+        <div class="col-lg-2">
+            <label class="form-label">Valor</label>
+            <input type="number" class="form-control">
+        </div>
+        <div class="col-lg-2 action-buttons">
+            <button class="btn btn-sm btn-outline-success action-buttons--button me-2">
+                <fa-icon [icon]="faCheck"></fa-icon>
+            </button>
+            <button class="btn btn-sm btn-outline-danger action-buttons--button"
+                (click)="cancelAddNewParameterEvent.emit()">
+                <fa-icon [icon]="faX"></fa-icon>     
+            </button>
+        </div>
+    </div>
+</form>

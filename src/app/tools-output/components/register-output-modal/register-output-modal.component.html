@@ -15,7 +15,7 @@
                 <app-dropdown 
                     class="d-block" 
                     [label]="'Responsable'" 
-                    [options]="employees | toDropdownItem:'userId':'name'"
+                    [options]="employees | toDropdownItem"
                     (onSelectOptionEvent)="onSelectResponsible($event)"></app-dropdown>
             </div>
         </div>

@@ -9,7 +9,7 @@ import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 export class DropdownComponent {
   selectedOption?: DropdownItem;
 
-  @Input() label?: string;
+  @Input() label?: string = "Seleccionar";
   @Input() options?: DropdownItem[];
   
   @Output() onSelectOptionEvent = new EventEmitter<DropdownItem>(); 

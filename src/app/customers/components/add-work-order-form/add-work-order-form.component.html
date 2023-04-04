@@ -20,14 +20,14 @@
     <div class="col">
         <app-dropdown 
             [label]="'Seleccionar equipo'" 
-            [options]="branch.equipment | toDropdownItem:'equipmentId':'equipmentName'"
+            [options]="branch.equipment! | toDropdownItem:'equipment'"
             (onSelectOptionEvent)="onSelectItem($event, 1)"></app-dropdown>
     </div>
     <div class="col">
         <app-dropdown 
             *ngIf="workItemTypes"
             [label]="'Tipo de trabajo'" 
-            [options]="workItemTypes | toDropdownItem:'workItemTypeId':'workItemTypeName'"
+            [options]="workItemTypes! | toDropdownItem"
             (onSelectOptionEvent)="onSelectItem($event, 2)"></app-dropdown>
     </div>
     <div class="col-12 mt-2">
