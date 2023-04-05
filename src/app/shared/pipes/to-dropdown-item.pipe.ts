@@ -27,19 +27,18 @@ export class ToDropdownItemPipe implements PipeTransform {
       case "workItemActivityLog":
         return values.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId!, description: x.description }));
       case "equipmentParameter":
-        return values.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, description: `${x.name} | Magnitud: ${x.unitOfMeasurementSymbol}` }));
+        return values.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, description: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
       case "measurementUnits":
-        return values.map((x: MeasurementUnit) => ({ id: x.unitOfMeasurementId, description: `${x.unitOfMeasurementName} (${x.symbol})` }));
+        return values.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, description: `${x.displayName} (${x.symbol})` }));
       default:
         const { idPropName, descriptionPropName } = this.findProperties(values[0]);
-        console.log(idPropName);
-        return values.map((x: any) => ({ id: x.idPropName, description: x.descriptionPropName }));
+        return values.map((x: any) => ({ id: x[idPropName], description: x[descriptionPropName] }));
     }
   }
 
   private findProperties(obj: any) {    
-    debugger;
-    let idPropName, descriptionPropName;
+    let idPropName: string = "";
+    let descriptionPropName: string = "";
 
     for(let prop in obj){
       if (prop.includes('Id'))

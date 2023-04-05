@@ -28,9 +28,9 @@ export class ToItemListPipe implements PipeTransform {
       case "workItemActivityLog":
         return value.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId, name: x.description }));
       case "equipmentParameter":
-        return value.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, name: `${x.name} | Magnitud: ${x.unitOfMeasurementSymbol}` }));
+        return value.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
       case "measurementUnits":
-        return value.map((x: MeasurementUnit) => ({ id: x.unitOfMeasurementId, name: `${x.unitOfMeasurementName} (${x.symbol})` }));
+        return value.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, name: `${x.displayName} (${x.symbol})` }));
       default:
         return new Array();
     }

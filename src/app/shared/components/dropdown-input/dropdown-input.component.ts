@@ -25,11 +25,11 @@ export class DropdownInputComponent implements OnChanges {
       this.filteredOptions = this.options;
   }
  
-  filterParameters(e: any) {
-    if (!e.target.value || e.target.value.length < 2) return;
-
-    console.log(this.filteredOptions);
-
+  filterParameters(e: any): void {
+    if (!e.target.value || e.target.value.length < 2) {
+      this.filteredOptions = this.options;
+      return;
+    }     
     this.filteredOptions = this.options?.filter(x => x.name.toLocaleLowerCase().includes(e.target.value.toLocaleLowerCase()));
   }
 

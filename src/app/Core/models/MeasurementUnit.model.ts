@@ -1,7 +1,8 @@
 export interface MeasurementUnit {
-    unitOfMeasurementId: number
-    unitOfMeasurementName: string
-    magnitude: string
-    symbol: string
+    measurementUnitId: number,
+    measurementUnitName: string,
+    displayName: string,
+    magnitude: string,
+    symbol: string,
     measurementSystem: string
 }

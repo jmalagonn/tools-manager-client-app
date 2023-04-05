@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ToastrService } from 'ngx-toastr';
+import { ApiConstants, ErrorConstants } from 'src/app/Core/constants/app-constants';
 import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -17,10 +18,14 @@ export class AddEquipmentParameterComponent implements OnInit {
   faCheck = faCheck;
   faX = faX;
   addingNewParameter: boolean = false;
+  parameterValue?: number;
 
   @Output() cancelAddParameterEvent = new EventEmitter<void>();
+  @Output() addParameterEvent = new EventEmitter<EquipmentParameter>();
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private toastrService: ToastrService) {}
 
   ngOnInit(): void {
     this.getEquipmentParameters();
@@ -43,5 +48,19 @@ export class AddEquipmentParameterComponent implements OnInit {
   setAddingNewParameter(value: boolean) {
     this.setSelectingParameter(false);
     this.addingNewParameter = value;
+  }
+
+  addEquipmentParameter() {
+    if (this.parameterValue == undefined) {
+      this.toastrService.error(ErrorConstants.equipmentParameterWrongValue);
+      return;
+    }
+
+    const parameter: EquipmentParameter = {
+      ...this.selectedItem!,
+      parameterValue: this.parameterValue
+    };
+
+    this.addParameterEvent.emit(parameter);
   }
 }

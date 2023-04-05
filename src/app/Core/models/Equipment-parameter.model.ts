@@ -1,7 +1,7 @@
 export interface EquipmentParameter {
     equipmentParameterId: number;
     name: string;
-    unitOfMeasurementId: number;
-    unitOfMeasurementSymbol: string;
+    measurementUnitId: number;
+    measurementUnitSymbol: string;
     parameterValue?: number;
 }

@@ -1,6 +1,6 @@
 <div class="dropdown-intput">
     <label [attr.for]="'dropdown-input-' + componentId" class="form-label">{{ label! }}</label>
-    <button class="form-control" (click)="toggleShowDropdownList()">
+    <button class="form-control" (click)="toggleShowDropdownList()" type="button">
         {{ buttonText! }}
     </button>
     <div class="dropdown-input--options" *ngIf="showDropdownList">

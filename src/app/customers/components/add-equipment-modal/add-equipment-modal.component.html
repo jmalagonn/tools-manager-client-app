@@ -18,19 +18,24 @@
         </div>
         <div class="row mt-2">
             <h6>Parámetros técnicos</h6>
-            <div *ngIf="!addNewParameter">
-                <p>Aún no se ha agregado ningún parámetro.</p>
-                <div class="d-flex justify-content-center">
-                    <button 
-                        class="btn btn-sm btn-outline-primary" 
-                        (click)="setAddNewParameter(true)">
-                        Agregar nuevo parámetro
-                    </button>
-                </div>
+            <ul *ngIf="equipmentParameters.length" class="list-group list-group-flush">
+                <li *ngFor="let parameter of equipmentParameters" class="list-group-item">
+                    <p>{{ parameter.name }}: {{ parameter.parameterValue }} {{ parameter.measurementUnitSymbol }}</p>
+                </li>
+            </ul>
+            <p *ngIf="!equipmentParameters.length">Aún no se ha agregado ningún parámetro.</p>
+            <div class="d-flex justify-content-center" *ngIf="!addNewParameter">
+                <button 
+                    class="btn btn-sm btn-outline-primary" 
+                    type="button"
+                    (click)="setAddNewParameter(true)">
+                    Agregar nuevo parámetro
+                </button>
             </div>
             <app-add-equipment-parameter 
                 *ngIf="addNewParameter"
-                (cancelAddParameterEvent)="setAddNewParameter(false)"></app-add-equipment-parameter>
+                (cancelAddParameterEvent)="setAddNewParameter(false)"
+                (addParameterEvent)="onAddEquipmentParameter($event)"></app-add-equipment-parameter>
         </div>        
     </form>
 </div>

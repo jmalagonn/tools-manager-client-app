@@ -64,3 +64,7 @@ export class ApiConstants {
     public static readonly equipmentParametersApi = "Equipment/parameters";
     public static readonly measurementUnitsApi = "MeasurementUnits";
 }
+
+export class ErrorConstants {
+    public static readonly equipmentParameterWrongValue = "No se ha ingresado un valor válido para el parámetro";
+}

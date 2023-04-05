@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Branch } from 'src/app/Core/models/Branch.model';
+import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,6 +14,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class AddEquipmentModalComponent implements OnInit {
   addEquipmentForm?: FormGroup;
   addNewParameter: boolean = false;
+  equipmentParameters: EquipmentParameter[] = [];
 
   @Input() branch?: Branch;
 
@@ -45,4 +47,18 @@ export class AddEquipmentModalComponent implements OnInit {
   setAddNewParameter(value: boolean) {
     this.addNewParameter = value;
   }
+
+  onAddEquipmentParameter(parameter: EquipmentParameter, isNewParameter: boolean = false): void {
+    this.setAddNewParameter(false);
+
+    return isNewParameter 
+      ? this.addNewEquipmentParameter(parameter) 
+      : this.addEquipmentParameter(parameter); 
+  }
+
+  addEquipmentParameter(parameter: EquipmentParameter) {
+    this.equipmentParameters.push(parameter);
+  }
+
+  addNewEquipmentParameter(parameter: EquipmentParameter) {}
 }
