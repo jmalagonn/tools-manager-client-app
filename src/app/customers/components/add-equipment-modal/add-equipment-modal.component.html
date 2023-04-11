@@ -13,16 +13,19 @@
             </div>
             <div class="col-12">
                 <label class="form-label" for="equipmentDescription">Descripción del equipo</label>
-                <textarea class="form-control" id="equipmentDescription"></textarea>
+                <textarea class="form-control" id="equipmentDescription" formControlName="equipmentDescription"></textarea>
             </div>
         </div>
-        <div class="row mt-2">
+        <div class="row g-2 mt-2">
             <h6>Parámetros técnicos</h6>
-            <ul *ngIf="equipmentParameters.length" class="list-group list-group-flush">
-                <li *ngFor="let parameter of equipmentParameters" class="list-group-item">
-                    <p>{{ parameter.name }}: {{ parameter.parameterValue }} {{ parameter.measurementUnitSymbol }}</p>
-                </li>
-            </ul>
+            <div class="technical-params d-flex" *ngIf="equipmentParameters.length">
+                <p 
+                    *ngFor="let parameter of equipmentParameters; let last = last" 
+                    class="technical-params--param"
+                    [ngClass]="{'last-child': last}">
+                    {{ parameter.name }}: {{ parameter.parameterValue }} {{ parameter.measurementUnitSymbol }}<span>,</span>
+                </p>
+            </div>
             <p *ngIf="!equipmentParameters.length">Aún no se ha agregado ningún parámetro.</p>
             <div class="d-flex justify-content-center" *ngIf="!addNewParameter">
                 <button 

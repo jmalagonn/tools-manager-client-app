@@ -6,11 +6,14 @@
     [showAddNewItemButton]="true"
     [showAddNewItemButtonText]="'Añadir nuevo parámetro'"
     (selectItemEvent)="onSelectItem($event)"
-    (addNewItemEvent)="setAddingNewParameter(true)"></app-dropdown-input>
+    (addNewItemEvent)="setAddingNewParameter(true)">
+</app-dropdown-input>
 
 <app-add-new-equipment-parameter
     *ngIf="addingNewParameter"
-    (cancelAddNewParameterEvent)="cancelAddParameterEvent.emit()"></app-add-new-equipment-parameter>
+    (cancelAddNewParameterEvent)="cancelAddParameterEvent.emit()"
+    (addNewEquipmentParameterEvent)="addParameterEvent.emit($event)">
+</app-add-new-equipment-parameter>
 
 <div *ngIf="!selectingParameter && !addingNewParameter && selectedItem">
     <p>Añadir parámetro</p>

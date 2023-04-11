@@ -1,0 +1,14 @@
+.technical-params {
+    &--param {
+        margin-right: .5rem;
+        
+        &.last-child {
+            margin-right: none;
+            
+            span {
+                display: none;
+            }
+        }
+    }
+}
+

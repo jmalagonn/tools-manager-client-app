@@ -1,3 +1,5 @@
+import { EquipmentParameter } from "./Equipment-parameter.model";
+
 export interface Equipment {
     equipmentId: number;
     equipmentName: string;
@@ -6,4 +8,5 @@ export interface Equipment {
     customerName?: string;
     branchId?: number;
     branchName?: string;
+    equipmentParameters: EquipmentParameter[]; 
 }
