@@ -61,8 +61,11 @@ export class ApiConstants {
     public static readonly addUserApi = "Users/addUser";
     public static readonly userRolesApi = "UserRole";
     public static readonly userEmployeeApi = "Users/employee";
+    public static readonly userEmployeesApi = "Users/employees";
+    public static readonly equipmentApi = "Equipment";
     public static readonly equipmentParametersApi = "Equipment/parameters";
     public static readonly measurementUnitsApi = "MeasurementUnits";
+    public static readonly workItemTypesApi = "WorkItem/workItemTypes";
 }
 
 export class ErrorConstants {

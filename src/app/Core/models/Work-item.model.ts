@@ -1,13 +1,16 @@
 import { Equipment } from "./Equipment.model";
 import { WorkItemActivityLog } from "./Work-item-activity-log.model";
-import { WorkItemType } from "./Work-item-type";
 
 export interface WorkItem {
+    assignedUserId: number;
+    assignedUserName?: string;
+    closedOn?: Date | string;
     createdOn?: Date | string;
-    workItemId?: number;
-    workItemDescription?: string;
-    workItemType: WorkItemType;
     equipment: Equipment;
-    workOrderId?: number;
+    workItemId?: number;
+    workItemDescription: string;
+    workItemTypeId: number;
+    workItemTypeName?: string;
+    workOrderId: number;
     workItemActivityLogs?: WorkItemActivityLog[];
 }

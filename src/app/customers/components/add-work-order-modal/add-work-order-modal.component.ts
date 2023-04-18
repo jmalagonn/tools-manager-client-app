@@ -28,7 +28,7 @@ export class AddWorkOrderModalComponent {
       return;
     };
 
-    const body = {
+    const body: WorkOrder = {
       workOrderDescription: wo.workOrderDescription,
       customerId: wo.customerId,
       branchId: wo.branchId,

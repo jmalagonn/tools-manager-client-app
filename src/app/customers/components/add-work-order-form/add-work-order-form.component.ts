@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faPlus, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
+import { Employee } from 'src/app/Core/models/Employee.model';
 import { WorkItemType } from 'src/app/Core/models/Work-item-type';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
@@ -22,6 +24,7 @@ export class AddWorkOrderFormComponent implements OnInit {
   workItemForm?: FormGroup;
   workOrderForm?: FormGroup;
   tempWorkItems: WorkItem[] = [];
+  employees?: Employee[];
 
   @Input() branch?: Branch;
 
@@ -34,11 +37,18 @@ export class AddWorkOrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.initWorkOrderForm();
     this.getWorkItemTypes();
+    this.getEmployees();
   }
 
   getWorkItemTypes() {
-    this.httpService.get<WorkItemType[]>('WorkItem/workItemTypes').subscribe(
+    this.httpService.get<WorkItemType[]>(ApiConstants.workItemTypesApi).subscribe(
       workItemTypes => this.workItemTypes = workItemTypes
+    );
+  }
+
+  getEmployees() {
+    this.httpService.get<Employee[]>(ApiConstants.userEmployeesApi).subscribe(
+      employees => this.employees = employees
     );
   }
 
@@ -50,9 +60,10 @@ export class AddWorkOrderFormComponent implements OnInit {
 
   initWorkItemForm() {
     this.workItemForm = this.fb.group({
-      equipmentId: [null, Validators.required],
-      workItemDescription: [''],
-      workItemTypeId: [null, Validators.required]
+      assignedUserId:       [null, Validators.required],
+      equipmentId:          [null, Validators.required],
+      workItemDescription:  ['', Validators.required],
+      workItemTypeId:       [null, Validators.required],
     })
   }
 
@@ -62,18 +73,30 @@ export class AddWorkOrderFormComponent implements OnInit {
   }
 
   onSelectItem(item: DropdownItem, element: number) {
-    element == 1
-      ? this.workItemForm?.patchValue({ equipmentId: item.id })
-      : this.workItemForm?.patchValue({ workItemTypeId: item.id });
+    switch (element) {
+      case 1:
+        this.workItemForm!.patchValue({ equipmentId: item.id })
+        break;
+      case 2:
+        this.workItemForm!.patchValue({ workItemTypeId: item.id })
+        break;
+      case 3:
+        this.workItemForm!.patchValue({ assignedUserId: item.id })
+        break;
+    }
   }
 
   onSaveWorkItem() {    
     this.tempWorkItems.push({
+      assignedUserId: this.workItemForm!.controls["assignedUserId"].value,
+      assignedUserName: this.employees!.find(x => x.userId == this.workItemForm!.controls["assignedUserId"].value)!.name,
       createdOn: new Date().toISOString(),
       equipment: this.branch!.equipment!.find(x => x.equipmentId == this.workItemForm!.controls["equipmentId"].value)!,
       workItemDescription: this.workItemForm!.controls["workItemDescription"].value,
-      workItemId: Date.now(),
-      workItemType: this.workItemTypes!.find(x => x.workItemTypeId == this.workItemForm!.controls["workItemTypeId"].value)!,
+      workItemId: 0,
+      workItemTypeId: this.workItemForm!.controls["workItemTypeId"].value,
+      workItemTypeName: this.workItemTypes!.find(x => x.workItemTypeId == this.workItemForm!.controls["workItemTypeId"].value)?.workItemTypeName,
+      workOrderId: 0,
     });
 
     this.setAddingItem(false);
@@ -88,9 +111,13 @@ export class AddWorkOrderFormComponent implements OnInit {
       branchId: this.branch!.branchId!,
       branchName: this.branch!.branchName!,
       workItems: this.tempWorkItems.map(x => ({
+        assignedUserId: x.assignedUserId,
+        createdOn: x.createdOn,
         equipment: x.equipment,
         workItemDescription: x.workItemDescription,
-        workItemType: x.workItemType,
+        workItemId: x.workItemId,
+        workItemTypeId: x.workItemTypeId,
+        workOrderId: x.workOrderId
       }))
     };
 

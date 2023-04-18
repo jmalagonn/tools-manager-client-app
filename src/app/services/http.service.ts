@@ -23,7 +23,7 @@ export class HttpService {
     return this.httpClient.put<T>(this.api_url + path, body);
   }
 
-  postWithOptions<T>(path: string, body: object, headers: any): Observable<HttpEvent<T>> {
-    return this.httpClient.post<T>(this.api_url + path, body, headers);
+  postWithOptions<T>(path: string, body: object, options: any): Observable<HttpEvent<T>> {
+    return this.httpClient.post<T>(this.api_url + path, body, options);
   } 
 }

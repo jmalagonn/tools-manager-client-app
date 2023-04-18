@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ListActions } from 'src/app/Core/enums/List-actions.enum';
 import { OutputTool } from 'src/app/Core/models/Output-tool.model';
-import { ReturnToolsWithNews } from 'src/app/Core/models/Returm-tool-with-news.model';
+import { ReturnToolsWithNews } from 'src/app/Core/models/Return-tool-with-news.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { ReturnToolsComponent } from '../../components/return-tools/return-tools.component';

@@ -1,12 +1,12 @@
 import { WorkItem } from "./Work-item.model";
 
 export interface WorkOrder {
-    workOrderId: number;
+    workOrderId?: number;
     workOrderDescription?: string;
     customerId: number;
-    customerName: string;
+    customerName?: string;
     branchId: number;
-    branchName: string;
+    branchName?: string;
     workItems: WorkItem[];
     createdOn?: Date;
 }

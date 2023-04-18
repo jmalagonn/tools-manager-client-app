@@ -1,19 +1,26 @@
 <div class="container" *ngIf="workItem">
-    <h4 class="mt-3 text-center">Ítem de trabajo: {{ workItem.workItemId }}</h4>
+    <h4 class="mt-3 text-center">Ítem de trabajo: {{ workItem!.workItemId }}</h4>
     <div class="row mt-3 g-3">
         <div class="col-sm-6">
-            <p class="mb-0"><b>Orden de trabajo: </b>  <a [routerLink]="'/' + routeConstants.workOrderPath + '/' + workItem.workOrderId">{{ workItem.workOrderId }}</a></p>
+            <p class="mb-0"><b>Orden de trabajo: </b><a [routerLink]="'/' + routeConstants.workOrderPath + '/' + workItem!.workOrderId">{{ workItem!.workOrderId }}</a></p>
         </div>
         <div class="col-sm-6">
-            <p class="mb-0"><b>Equipo: </b>  <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.equipmentId">{{ workItem.equipment.equipmentName }}</a></p>
+            <p class="mb-0"><b>Equipo: </b><a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.equipmentId">{{ workItem!.equipment.equipmentName }}</a></p>
         </div>
         <div class="col-sm-6">
-            <p class="mb-0"><b>Cliente: </b> <a [routerLink]="'/' + routeConstants.customersPath + '/' + workItem.equipment.customerId">{{ workItem.equipment.customerName }}</a></p>
+            <p class="mb-0"><b>Cliente: </b><a [routerLink]="'/' + routeConstants.customersPath + '/' + workItem.equipment.customerId">{{ workItem!.equipment.customerName }}</a></p>
         </div>
         <div class="col-sm-6">
             <p class="mb-0"><b>Sucursal: </b>  
                 <a [routerLink]="'/' + routeConstants.customersPath + '/' + workItem.equipment.customerId + '/' + routeConstants.branchPath + '/' + workItem.equipment.branchId">
-                    {{ workItem.equipment.branchName }}
+                    {{ workItem!.equipment.branchName }}
+                </a>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <p class="mb-0"><b>Asignado a: </b>
+                <a [routerLink]="'/' + routeConstants.usersManagement + '/' + workItem.assignedUserId">
+                    {{ workItem.assignedUserName }}
                 </a>
             </p>
         </div>

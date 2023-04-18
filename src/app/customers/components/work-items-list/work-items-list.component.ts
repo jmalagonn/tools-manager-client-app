@@ -8,7 +8,7 @@ import { WorkItem } from 'src/app/Core/models/Work-item.model';
 })
 export class WorkItemsListComponent {
   @Input() workItems?: WorkItem[];
-  @Input() columns: string[] = ['Equipo', 'Tipo de mantenimiento', 'Descripción'];
+  @Input() columns: string[] = ['Equipo', 'Tipo de mantenimiento', 'Asignado a', 'Descripción'];
 
   @Output() rowClickedEvent = new EventEmitter<WorkItem>();
 
