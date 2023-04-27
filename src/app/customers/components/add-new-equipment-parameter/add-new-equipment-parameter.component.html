@@ -1,20 +1,21 @@
 <form *ngIf="equipmentParameterForm" [formGroup]="equipmentParameterForm">
     <div class="row g-2">
-        <div class="col-lg-4">
+        <h5>Nuevo parámetro</h5>
+        <div class="col-md-4">
             <label class="form-label">Nombre</label>
             <input type="text" class="form-control" formControlName="equipmentParameterName">
         </div>
-        <div class="col-lg-4">
+        <div class="col-md-4">
             <label class="form-label">Magnitud</label>
             <app-dropdown 
                 [options]="measurementUnits! | toDropdownItem:'measurementUnits'"
                 (onSelectOptionEvent)="setMeasurementUnitValue($event)"></app-dropdown>
         </div>
-        <div class="col-lg-2">
+        <div class="col-md-2">
             <label class="form-label">Valor</label>
             <input type="number" class="form-control" formControlName="parameterValue">
         </div>
-        <div class="col-lg-2 action-buttons">
+        <div class="col-md-2 action-buttons">
             <button 
                 class="btn btn-sm btn-outline-success action-buttons--button me-2"
                 type="button"

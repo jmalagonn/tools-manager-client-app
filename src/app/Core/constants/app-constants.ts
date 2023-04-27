@@ -36,6 +36,8 @@ export class AppConstants {
         },
     ];
     public static readonly itemsListDefault = ['Id', 'Nombre'];
+    public static readonly noEquipmentParametersFound = "No se han configurado parámetros para el equipo.";
+    public static readonly appName = "Nombre";
 }
 
 export class QRConstants {
@@ -70,4 +72,5 @@ export class ApiConstants {
 
 export class ErrorConstants {
     public static readonly equipmentParameterWrongValue = "No se ha ingresado un valor válido para el parámetro";
+    public static readonly parameterAlreadyExists = "El parámetro para el equipo ya existe."
 }

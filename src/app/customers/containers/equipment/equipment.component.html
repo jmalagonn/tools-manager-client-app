@@ -1,26 +1,20 @@
 <div class="container" *ngIf="equipment">
-    <h4 class="mt-3 text-center">{{ equipment.equipmentName }}</h4>
+    <h2 class="mt-3 text-center">{{ equipment.equipmentName }}</h2>
     <div class="row mt-3">
-        <div class="col">
-            <p><b>Cliente: </b> <a [routerLink]="'/' + routeConstants.customersPath + '/' + equipment.customerId">{{ equipment.customerName }}</a></p>
-            <p><b>Sucursal: </b> 
-                <a [routerLink]="'/' + routeConstants.customersPath + '/' + equipment.customerId + '/' + routeConstants.branchPath + '/' + equipment.branchId">
-                    {{ equipment.branchName }}
-                </a>                
-            </p>
-            <p><b>Descripción: </b> {{ equipment.equipmentDescription ? equipment.equipmentDescription : "No se ingresó descripción del equipo." }}</p>
-            <div class="row g-2" *ngIf="equipment.equipmentParameters.length">
-                <P class="mb-1"><b>Parámetros del equipo:</b></P>
-                <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let param of equipment.equipmentParameters">
-                    <p class="m-0">
-                        {{ param.name }}: {{ param.parameterValue + ' ' + param.measurementUnitSymbol }}
-                    </p>
-                </div>
+        <ng-container *ngIf="!editingEquipment">
+            <app-equipment-info [equipment]="equipment"></app-equipment-info>
+            <div class="d-flex justify-content-center mt-3">
+                <button class="btn btn-outline-primary" (click)="setEditingEquipment(true)">Editar equipo</button>
             </div>
-        </div>
+        </ng-container>
+        <app-edit-equipment 
+            *ngIf="editingEquipment" 
+            [equipment]="equipment" 
+            (cancelEvent)="setEditingEquipment(false)"
+            (equipmentUpdatedEvent)="onEquipmentUpdated()"></app-edit-equipment>
     </div>
     <div class="row mt-3">
-        <h5 class="text-center">Ítems asociados</h5>
+        <h3 class="text-center">Ítems asociados</h3>
         <app-work-items-list 
             [workItems]="workItems" [columns]="['Tipo de mantenimiento', 'Descripción']"
             (rowClickedEvent)="navigateToWo($event)"></app-work-items-list>

@@ -1,0 +1,17 @@
+<div class="col" *ngIf="equipment">
+    <p><b>Cliente: </b> <a [routerLink]="'/' + routeConstants.customersPath + '/' + equipment.customerId">{{ equipment.customerName }}</a></p>
+    <p><b>Sucursal: </b> 
+        <a [routerLink]="'/' + routeConstants.customersPath + '/' + equipment.customerId + '/' + routeConstants.branchPath + '/' + equipment.branchId">
+            {{ equipment.branchName }}
+        </a>                
+    </p>
+    <p><b>Descripción: </b> {{ equipment.equipmentDescription ? equipment.equipmentDescription : "No se ingresó descripción del equipo." }}</p>
+    <div class="row g-2" *ngIf="equipment.equipmentParameters.length">
+        <h4 class="mb-1">Parámetros del equipo:</h4>
+        <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let param of equipment.equipmentParameters">
+            <p class="m-0">
+                {{ param.name }}: {{ param.parameterValue + ' ' + param.measurementUnitSymbol }}
+            </p>
+        </div>
+    </div>
+</div>

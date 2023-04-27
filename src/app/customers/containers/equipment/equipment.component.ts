@@ -13,6 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 export class EquipmentComponent {
   equipment?: Equipment;
   workItems?: WorkItem[];
+  editingEquipment = false;
   routeConstants = RouteConstants;
 
   constructor (
@@ -42,5 +43,14 @@ export class EquipmentComponent {
 
   navigateToWo(item: WorkItem) {
     this.router.navigateByUrl(`customers/work-item/${item.workItemId}`);
+  }
+
+  setEditingEquipment(value: boolean) {
+    this.editingEquipment = value;
+  }
+
+  onEquipmentUpdated() {
+    this.setEditingEquipment(false);
+    this.getEquipment();
   }
 }

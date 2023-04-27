@@ -22,6 +22,8 @@ import { EditCustomerModalComponent } from './components/edit-customer-modal/edi
 import { AddEquipmentParameterComponent } from './components/add-equipment-parameter/add-equipment-parameter.component';
 import { AddNewEquipmentParameterComponent } from './components/add-new-equipment-parameter/add-new-equipment-parameter.component';
 import { AddWorkItemModalComponent } from './components/add-work-item-modal/add-work-item-modal.component';
+import { EditEquipmentComponent } from './components/edit-equipment/edit-equipment.component';
+import { EquipmentInfoComponent } from './components/equipment-info/equipment-info.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { AddWorkItemModalComponent } from './components/add-work-item-modal/add-
     EditCustomerModalComponent,
     AddEquipmentParameterComponent,
     AddNewEquipmentParameterComponent,
-    AddWorkItemModalComponent
+    AddWorkItemModalComponent,
+    EditEquipmentComponent,
+    EquipmentInfoComponent
   ],
   imports: [
     CommonModule,

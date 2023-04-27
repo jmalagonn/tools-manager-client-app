@@ -1,0 +1,55 @@
+<form [formGroup]="equipmentForm!">
+    <div class="row">
+        <div class="col-sm-6">
+            <label for="equipmentName" class="form-label">{{ appConstants.appName }}</label>
+            <input type="text" class="form-control" id="equipmentName" formControlName="equipmentName">
+        </div>
+        <div class="col-12 mt-3">
+            <div class="form-floating">
+                <textarea class="form-control" id="equipmentDescription" formControlName="equipmentDescription"></textarea>
+                <label for="equipmentDescription">Descripción</label>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 g-2">
+        <h4 class="mb-3">Parámetros del equipo</h4>
+        <p *ngIf="!equipment!.equipmentParameters.length">{{ appConstants.noEquipmentParametersFound }}</p>
+        <div *ngFor="let parameter of equipment!.equipmentParameters" class="col-sm-6">
+            <div class="parameter-card d-flex align-items-center">
+                <p class="parameter-card--name m-0">{{ parameter.name }}: </p>
+                <input 
+                    type="number" 
+                    class="form-control form-control-sm parameter-card--value" 
+                    [value]="parameter.parameterValue"
+                    (change)="equipmentParameterChanged($event, parameter.equipmentParameterId)">
+                <p class="parameter-card--symbol m-0">{{ parameter.measurementUnitSymbol }}</p>
+                <div class="parameter-card--icon">
+                    <fa-icon 
+                        role="button"
+                        [icon]="faTrash"
+                        (click)="deleteParameter(parameter.name)">
+                    </fa-icon>
+                </div>
+            </div>
+        </div>
+        <app-add-equipment-parameter 
+            *ngIf="addingNewEquipmentParameter"
+            (cancelAddParameterEvent)="setAddingNewEquipmentParameter(false)"
+            (addParameterEvent)="addNewParameter($event)">
+        </app-add-equipment-parameter>
+        <div class="d-flex justify-content-center mt-3" *ngIf="!addingNewEquipmentParameter">
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="setAddingNewEquipmentParameter(true)">
+                Añadir nuevo parámetro
+            </button>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <button type="button" class="btn btn-outline-danger" (click)="cancelEvent.emit()">Cancelar</button>
+        <button 
+            type="submit" 
+            class="ms-2 btn btn-outline-primary" 
+            [disabled]="!equipmentForm!.valid || !equipmentForm!.dirty"
+            (click)="onSubmit()">Guardar</button>
+    </div>
+</form>
+
