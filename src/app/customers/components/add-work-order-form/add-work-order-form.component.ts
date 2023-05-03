@@ -8,6 +8,7 @@ import { Employee } from 'src/app/Core/models/Employee.model';
 import { WorkItemType } from 'src/app/Core/models/Work-item-type';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
+import { WorkState } from 'src/app/Core/models/Work-state.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -103,6 +104,11 @@ export class AddWorkOrderFormComponent implements OnInit {
   }
 
   emitWOInfo() {
+    const workState: WorkState = {
+      workStateId: 1,
+      workStateName: "Open"
+    };
+
     const workOrder: WorkOrder = {
       workOrderId: Date.now(),
       workOrderDescription: this.workOrderForm?.controls["workOrderDescription"].value,
@@ -117,8 +123,10 @@ export class AddWorkOrderFormComponent implements OnInit {
         workItemDescription: x.workItemDescription,
         workItemId: x.workItemId,
         workItemTypeId: x.workItemTypeId,
-        workOrderId: x.workOrderId
-      }))
+        workOrderId: x.workOrderId,
+        workState
+      })),
+      workState
     };
 
     this.woEvent.emit(workOrder);

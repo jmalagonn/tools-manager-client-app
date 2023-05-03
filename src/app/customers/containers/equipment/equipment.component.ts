@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
@@ -19,7 +19,6 @@ export class EquipmentComponent {
   constructor (
     private httpService: HttpService,
     private route: ActivatedRoute,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +38,6 @@ export class EquipmentComponent {
   getWorkItems() {
     this.httpService.get<WorkItem[]>(`WorkItem/equipment?equipmentId=${this.equipment!.equipmentId}`)
       .subscribe(workItems => this.workItems = workItems);
-  }
-
-  navigateToWo(item: WorkItem) {
-    this.router.navigateByUrl(`customers/work-item/${item.workItemId}`);
   }
 
   setEditingEquipment(value: boolean) {

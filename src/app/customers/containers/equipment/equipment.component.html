@@ -16,7 +16,7 @@
     <div class="row mt-3">
         <h3 class="text-center">Ítems asociados</h3>
         <app-work-items-list 
-            [workItems]="workItems" [columns]="['Tipo de mantenimiento', 'Descripción']"
-            (rowClickedEvent)="navigateToWo($event)"></app-work-items-list>
+            [workItems]="workItems" [columns]="['Id', 'OT', 'Asignado a', 'Estado', 'Descripción']">
+        </app-work-items-list>
     </div>
 </div>

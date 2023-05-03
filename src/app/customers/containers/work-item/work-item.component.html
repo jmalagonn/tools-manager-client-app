@@ -5,7 +5,7 @@
             <p class="mb-0"><b>Orden de trabajo: </b><a [routerLink]="'/' + routeConstants.workOrderPath + '/' + workItem!.workOrderId">{{ workItem!.workOrderId }}</a></p>
         </div>
         <div class="col-sm-6">
-            <p class="mb-0"><b>Equipo: </b><a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.equipmentId">{{ workItem!.equipment.equipmentName }}</a></p>
+            <p class="mb-0"><b>Fecha de creación: </b> {{ workItem.createdOn | date }}</p>
         </div>
         <div class="col-sm-6">
             <p class="mb-0"><b>Cliente: </b><a [routerLink]="'/' + routeConstants.customersPath + '/' + workItem.equipment.customerId">{{ workItem!.equipment.customerName }}</a></p>
@@ -25,7 +25,13 @@
             </p>
         </div>
         <div class="col-sm-6">
-            <p class="mb-0"><b>Fecha de creación: </b> {{ workItem.createdOn | date }}</p>
+            <p class="mb-0"><b>Tipo de trabajo: </b> {{ workItem.workItemTypeName }}</p>
+        </div>
+        <div class="col-sm-6">
+            <p class="mb-0"><b>Equipo: </b><a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.equipmentId">{{ workItem!.equipment.equipmentName }}</a></p>
+        </div>
+        <div class="col-sm-6">
+            <p class="mb-0"><b>Estado: </b> {{ workItem.workState! | workState }}</p>
         </div>
         <div class="col-12">
             <p class="mb-0"><b>Descripción: </b> {{ workItem.workItemDescription ? workItem.workItemDescription : "No se ingresó descripción de la OT." }}</p>

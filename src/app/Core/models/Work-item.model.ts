@@ -1,5 +1,6 @@
 import { Equipment } from "./Equipment.model";
 import { WorkItemActivityLog } from "./Work-item-activity-log.model";
+import { WorkState } from "./Work-state.model";
 
 export interface WorkItem {
     assignedUserId: number;
@@ -13,4 +14,5 @@ export interface WorkItem {
     workItemTypeName?: string;
     workOrderId: number;
     workItemActivityLogs?: WorkItemActivityLog[];
+    workState?: WorkState;
 }

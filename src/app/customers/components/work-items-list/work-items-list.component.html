@@ -7,17 +7,31 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of workItems" role="button" (click)="onRowClicked(item)">
-            <td *ngIf="item.equipment">
-                {{ item.equipment.equipmentName }}
+        <tr *ngFor="let item of workItems">
+            <td *ngIf="columns | contains:'Id'">
+                <a [routerLink]="'/' + routeConstants.workItemPath + '/' + item.workItemId">
+                    {{ item.workItemId }}
+                </a>
             </td>
-            <td>
-                {{ item.workItemTypeName }}
+            <td *ngIf="columns | contains:'OT'">
+                <a [routerLink]="'/' + routeConstants.workOrderPath + '/' + item.workOrderId">
+                    {{ item.workOrderId }}
+                </a>
             </td>
-            <td>
-                {{ item.assignedUserName }}
+            <td *ngIf="columns | contains:'Equipo'">
+                <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + item.equipment.equipmentId">
+                    {{ item.equipment.equipmentName }}
+                </a>
             </td>
-            <td>
+            <td *ngIf="columns | contains:'Asignado a'">
+                <a [routerLink]="'/' + routeConstants.usersManagement + '/' + item.assignedUserId">
+                    {{ item.assignedUserName }}
+                </a>
+            </td>
+            <td *ngIf="columns | contains:'Estado'">
+                {{ item.workState! | workState }}
+            </td>
+            <td *ngIf="columns | contains:'Descripción'">
                 {{ item.workItemDescription ? item.workItemDescription : "No se agregó descripción." }}
             </td>
         </tr>

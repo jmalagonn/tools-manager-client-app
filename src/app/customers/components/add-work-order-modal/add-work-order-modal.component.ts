@@ -33,6 +33,7 @@ export class AddWorkOrderModalComponent {
       customerId: wo.customerId,
       branchId: wo.branchId,
       workItems: wo.workItems,
+      workState: wo.workState
     };
 
     this.httpService.post<WorkOrder>('WorkOrder', body).subscribe(

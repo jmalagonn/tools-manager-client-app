@@ -25,6 +25,8 @@ import { NgbCarouselModule, NgbDropdownModule, NgbModalModule } from '@ng-bootst
 import { ModalImageComponent } from './components/modal-image/modal-image.component';
 import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
 import { DropdownInputComponent } from './components/dropdown-input/dropdown-input.component';
+import { WorkStatePipe } from './pipes/work-state.pipe';
+import { ContainsPipe } from './pipes/contains.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { DropdownInputComponent } from './components/dropdown-input/dropdown-inp
     ModalImageComponent,
     ListActionIconPipe,
     DropdownInputComponent,
+    WorkStatePipe,
+    ContainsPipe,
   ],
   imports: [
     CommonModule,    
@@ -86,6 +90,8 @@ import { DropdownInputComponent } from './components/dropdown-input/dropdown-inp
     ModalImageComponent,
     ListActionIconPipe,
     DropdownInputComponent,
+    WorkStatePipe,
+    ContainsPipe,
   ]
 })
 export class SharedModule { }

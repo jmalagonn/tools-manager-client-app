@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 
 @Component({
@@ -7,12 +8,8 @@ import { WorkItem } from 'src/app/Core/models/Work-item.model';
   styleUrls: ['./work-items-list.component.scss']
 })
 export class WorkItemsListComponent {
+  routeConstants = RouteConstants;
+  
   @Input() workItems?: WorkItem[];
-  @Input() columns: string[] = ['Equipo', 'Tipo de mantenimiento', 'Asignado a', 'Descripción'];
-
-  @Output() rowClickedEvent = new EventEmitter<WorkItem>();
-
-  onRowClicked(item: WorkItem) {
-    this.rowClickedEvent.emit(item);
-  }
+  @Input() columns: string[] = ['Id', 'OT', 'Equipo', 'Asignado a', 'Estado'];
 }
