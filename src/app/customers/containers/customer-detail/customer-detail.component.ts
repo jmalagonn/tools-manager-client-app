@@ -5,6 +5,7 @@ import { Customer } from 'src/app/Core/models/Customer.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddBranchModalComponent } from '../../components/add-branch-modal/add-branch-modal.component';
+import { ApiConstants } from 'src/app/Core/constants/app-constants';
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,6 +15,7 @@ import { AddBranchModalComponent } from '../../components/add-branch-modal/add-b
 export class CustomerDetailComponent implements OnInit {
   modalRef?: BsModalRef;
   customer!: Customer;
+  editingCustomer = false;
 
   constructor(    
     private route: ActivatedRoute,
@@ -44,5 +46,17 @@ export class CustomerDetailComponent implements OnInit {
 
   goToBranch(item: ItemList) {
     this.router.navigateByUrl(`customers/customer/${this.customer.customerId}/branch/${item.id}`);
+  }
+
+  setEditingCustomer(value: boolean) {
+    this.editingCustomer = value;
+  }
+
+  onUpdateCustomer(customer: Customer) {
+    this.httpService.put<Customer>(`${ApiConstants.customersApi}/${customer.customerId}`, customer)
+      .subscribe(() => {
+        this.getCustomer();
+        this.setEditingCustomer(false);
+      });
   }
 }

@@ -55,19 +55,20 @@ export class RouteConstants {
 }
 
 export class ApiConstants {
-    public static readonly workOrderApi = "WorkOrder";
-    public static readonly workItemApi = "WorkItem";
-    public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
-    public static readonly customersApi = "Customers";
-    public static readonly userApi = "Users";
     public static readonly addUserApi = "Users/addUser";
-    public static readonly userRolesApi = "UserRole";
-    public static readonly userEmployeeApi = "Users/employee";
-    public static readonly userEmployeesApi = "Users/employees";
+    public static readonly branchesApi = "Branches";
+    public static readonly customersApi = "Customers";
     public static readonly equipmentApi = "Equipment";
     public static readonly equipmentParametersApi = "Equipment/parameters";
     public static readonly measurementUnitsApi = "MeasurementUnits";
+    public static readonly userApi = "Users";
+    public static readonly userEmployeeApi = "Users/employee";
+    public static readonly userEmployeesApi = "Users/employees";
+    public static readonly userRolesApi = "UserRole";
+    public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
+    public static readonly workItemApi = "WorkItem";
     public static readonly workItemTypesApi = "WorkItem/workItemTypes";
+    public static readonly workOrderApi = "WorkOrder";
 }
 
 export class ErrorConstants {

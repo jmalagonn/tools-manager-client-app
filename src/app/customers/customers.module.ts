@@ -18,12 +18,13 @@ import { EquipmentComponent } from './containers/equipment/equipment.component';
 import { WorkItemComponent } from './containers/work-item/work-item.component';
 import { NewWorkItemActivityLogComponent } from './components/new-work-item-activity-log/new-work-item-activity-log.component';
 import { WorkItemDetailModalComponent } from './components/work-item-detail-modal/work-item-detail-modal.component';
-import { EditCustomerModalComponent } from './components/edit-customer-modal/edit-customer-modal.component';
+import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
 import { AddEquipmentParameterComponent } from './components/add-equipment-parameter/add-equipment-parameter.component';
 import { AddNewEquipmentParameterComponent } from './components/add-new-equipment-parameter/add-new-equipment-parameter.component';
 import { AddWorkItemModalComponent } from './components/add-work-item-modal/add-work-item-modal.component';
 import { EditEquipmentComponent } from './components/edit-equipment/edit-equipment.component';
 import { EquipmentInfoComponent } from './components/equipment-info/equipment-info.component';
+import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
 
 
 @NgModule({
@@ -43,12 +44,13 @@ import { EquipmentInfoComponent } from './components/equipment-info/equipment-in
     WorkItemComponent,
     NewWorkItemActivityLogComponent,
     WorkItemDetailModalComponent,
-    EditCustomerModalComponent,
+    EditCustomerComponent,
     AddEquipmentParameterComponent,
     AddNewEquipmentParameterComponent,
     AddWorkItemModalComponent,
     EditEquipmentComponent,
-    EquipmentInfoComponent
+    EquipmentInfoComponent,
+    EditBranchComponent
   ],
   imports: [
     CommonModule,

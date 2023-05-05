@@ -27,6 +27,7 @@ import { ListActionIconPipe } from './pipes/list-action-icon.pipe';
 import { DropdownInputComponent } from './components/dropdown-input/dropdown-input.component';
 import { WorkStatePipe } from './pipes/work-state.pipe';
 import { ContainsPipe } from './pipes/contains.pipe';
+import { EditModelComponent } from './components/edit-model/edit-model.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ContainsPipe } from './pipes/contains.pipe';
     DropdownInputComponent,
     WorkStatePipe,
     ContainsPipe,
+    EditModelComponent,
   ],
   imports: [
     CommonModule,    
@@ -92,6 +94,7 @@ import { ContainsPipe } from './pipes/contains.pipe';
     DropdownInputComponent,
     WorkStatePipe,
     ContainsPipe,
+    EditModelComponent,
   ]
 })
 export class SharedModule { }

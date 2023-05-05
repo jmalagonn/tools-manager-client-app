@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ListActions } from 'src/app/Core/enums/List-actions.enum';
 import { Customer } from 'src/app/Core/models/Customer.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddCustomerModalComponent } from '../../components/add-customer-modal/add-customer-modal.component';
-import { EditCustomerModalComponent } from '../../components/edit-customer-modal/edit-customer-modal.component';
 
 @Component({
   selector: 'app-customers',
@@ -40,23 +38,6 @@ export class CustomersComponent implements OnInit {
 
   goToBranch(item: ItemList) {    
     this.router.navigateByUrl(`customers/customer/${item.id}`);
-  }
-
-  openEditCustomerModal(item: ItemList) {
-    this.modalRef = this.modalService.open(EditCustomerModalComponent);
-    this.modalRef.componentInstance.customerId = item.id;
-
-    this.modalRef.closed.subscribe((customer: Customer) => {
-      this.updateCustomers(customer);
-    })
-  }
-
-  actionButtonClicked(response: any) {
-    switch (response.action) {
-      case ListActions.edit:
-        this.openEditCustomerModal(response.item);
-        break;
-    }
   }
 
   updateCustomers(customer: Customer) {

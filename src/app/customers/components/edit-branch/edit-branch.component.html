@@ -1,0 +1,14 @@
+<form [formGroup]="editBranchForm!" (ngSubmit)="editBranchForm!.valid && onSubmit()">
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <label for="branchName" class="form-label">Nombre de la sucursal</label>
+            <input type="text" class="form-control" id="branchName" [placeholder]="branch!.branchName" formControlName="branchName">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-primary me-2" [disabled]="!editBranchForm!.dirty">Guardar</button>
+            <button type="button" class="btn btn-outline-danger" (click)="cancelEditingBranchEvent.emit()">Cancelar</button>
+        </div>
+    </div>
+</form>

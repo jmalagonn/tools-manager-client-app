@@ -7,6 +7,8 @@ import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddEquipmentModalComponent } from '../../components/add-equipment-modal/add-equipment-modal.component';
 import { AddWorkOrderModalComponent } from '../../components/add-work-order-modal/add-work-order-modal.component';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { ApiConstants } from 'src/app/Core/constants/app-constants';
 
 @Component({
   selector: 'app-branch-detail',
@@ -16,6 +18,8 @@ import { AddWorkOrderModalComponent } from '../../components/add-work-order-moda
 export class BranchDetailComponent implements OnInit {
   branch?: Branch;
   modalRef?: NgbModalRef;
+  faEdit = faEdit;
+  editingBranch = false;
 
   constructor (
     private route: ActivatedRoute,
@@ -48,5 +52,17 @@ export class BranchDetailComponent implements OnInit {
 
   navigateToEquipment(equipment: ItemList) {
     this.router.navigateByUrl(`customers/equipment/${equipment.id}`);
+  }
+
+  setEditingBranch(value: boolean) {
+    this.editingBranch = value;
+  }
+
+  onUpdateBranch(updatedBranch: Branch) {
+    this.httpService.put<Branch>(`${ApiConstants.branchesApi}/${updatedBranch.branchId}`, updatedBranch)
+      .subscribe(() => {
+        this.getBranch();
+        this.setEditingBranch(false);
+      });
   }
 }
