@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { UserRole } from 'src/app/Core/models/User-role.model';
 import { User } from 'src/app/Core/models/User.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -15,6 +16,7 @@ export class UsersManagementDetailComponent implements OnInit {
   userRoles?: UserRole[];
   isEditing: boolean = false;
   routeConstants = RouteConstants;
+  userRolesEnum = UserRoles;
 
   constructor(
     private route: ActivatedRoute,

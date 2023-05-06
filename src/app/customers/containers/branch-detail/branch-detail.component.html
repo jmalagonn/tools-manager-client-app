@@ -1,30 +1,29 @@
 <div class="container" *ngIf="branch">
     <div class="row mt-3">
-        <h4 
-            *ngIf="!editingBranch"
-            class="text-center d-flex justify-content-center align-items-center">
+        <h1 *ngIf="!editingBranch" class="text-center d-flex justify-content-center align-items-center">
             {{ branch.branchName }}
-            <app-edit-model (click)="setEditingBranch(true)"></app-edit-model>
-        </h4>
-        <app-edit-branch
-            *ngIf="editingBranch" 
-            [branch]="branch"
-            (cancelEditingBranchEvent)="setEditingBranch(false)"
+            <app-edit-model (click)="setEditingBranch(true)"
+                *ngIf="userRoles.CustomersAdmin | userRoles"></app-edit-model>
+        </h1>
+        <app-edit-branch *ngIf="editingBranch" [branch]="branch" (cancelEditingBranchEvent)="setEditingBranch(false)"
             (updateBranchEvent)="onUpdateBranch($event)">
         </app-edit-branch>
         <div class="col-lg-6 mt-3">
             <h5 class="text-center">Equipos</h5>
             <div class="text-center mt-3">
-                <button class="btn btn-outline-primary" (click)="onOpenAddEquipmentModal()">Agregar nuevo
-                    equipo</button>
+                <button *ngIf="userRoles.CustomersAdmin | userRoles" class="btn btn-outline-primary"
+                    (click)="onOpenAddEquipmentModal()">
+                    Agregar nuevo equipo
+                </button>
             </div>
             <app-items-list [items]="branch.equipment | toItemList:'equipment'"
-                (rowClickedEvent)="navigateToEquipment($event)"></app-items-list>
+                (rowClickedEvent)="navigateToEquipment($event)">
+            </app-items-list>
         </div>
         <div class="col-lg-6 mt-3">
             <h5 class="text-center">Órdenes de trabajo</h5>
             <div class="text-center mt-3">
-                <button class="btn btn-outline-primary" (click)="onOpenAddWorkOrder()">Agregar nueva OT</button>
+                <button *ngIf="userRoles.CustomersAdmin | userRoles" class="btn btn-outline-primary" (click)="onOpenAddWorkOrder()">Agregar nueva OT</button>
             </div>
             <app-work-orders-table [items]="branch.workOrders"></app-work-orders-table>
         </div>

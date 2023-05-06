@@ -6,6 +6,7 @@ import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { WorkOrder } from 'src/app/Core/models/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddWorkItemModalComponent } from '../../components/add-work-item-modal/add-work-item-modal.component';
+import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 
 @Component({
   selector: 'app-work-order',
@@ -16,6 +17,7 @@ export class WorkOrderComponent implements OnInit {
   workOrder?: WorkOrder;
   routeConstants = RouteConstants;
   modalRef?: NgbModalRef;
+  userRoles = UserRoles;
 
   constructor (
     private httpService: HttpService,

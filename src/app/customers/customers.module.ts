@@ -25,6 +25,7 @@ import { AddWorkItemModalComponent } from './components/add-work-item-modal/add-
 import { EditEquipmentComponent } from './components/edit-equipment/edit-equipment.component';
 import { EquipmentInfoComponent } from './components/equipment-info/equipment-info.component';
 import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
+import { CoreModule } from '../Core/core.module';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { EditBranchComponent } from './components/edit-branch/edit-branch.compon
   imports: [
     CommonModule,
     CustomersRoutingModule,
-    SharedModule
+    SharedModule,
+    CoreModule,
   ]
 })
 export class CustomersModule { }

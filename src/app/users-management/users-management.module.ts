@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UsersManagementDetailComponent } from './containers/users-management-detail/users-management-detail.component';
 import { UserDetailViewComponent } from './components/user-detail-view/user-detail-view.component';
 import { UserDetailEditComponent } from './components/user-detail-edit/user-detail-edit.component';
+import { CoreModule } from '../Core/core.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { UserDetailEditComponent } from './components/user-detail-edit/user-deta
     CommonModule,
     UsersManagementRoutingModule,
     SharedModule,
+    CoreModule,
   ]
 })
 export class UsersManagementModule { }

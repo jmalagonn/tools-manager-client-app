@@ -1,6 +1,6 @@
 <div class="container" *ngIf="user">
     <h2 class="text-center mt-3">Detalle de usuario</h2>
-    <div class="d-flex justify-content-center" *ngIf="!isEditing">
+    <div class="d-flex justify-content-center" *ngIf="(userRolesEnum.UsersAdmin | userRoles) && !isEditing">
         <button type="button" class="btn btn-outline-primary" (click)="setIsEditing(true)">Editar usuario</button>
     </div>
     <app-user-detail-view [user]="user" *ngIf="!isEditing"></app-user-detail-view>

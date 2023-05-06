@@ -9,6 +9,7 @@ import { AddEquipmentModalComponent } from '../../components/add-equipment-modal
 import { AddWorkOrderModalComponent } from '../../components/add-work-order-modal/add-work-order-modal.component';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 
 @Component({
   selector: 'app-branch-detail',
@@ -20,6 +21,7 @@ export class BranchDetailComponent implements OnInit {
   modalRef?: NgbModalRef;
   faEdit = faEdit;
   editingBranch = false;
+  userRoles = UserRoles;
 
   constructor (
     private route: ActivatedRoute,

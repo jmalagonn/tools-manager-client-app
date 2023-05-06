@@ -8,8 +8,11 @@
                     </a>
                 </li>
             </ul>
-            <div>
-                <button class="btn btn-outline-primary btn-sm" (click)="onLogout()">Cerrar sesión</button>
+            <div class="d-flex align-items-center">
+                <p class="mb-0 me-2">{{ user!.name }}</p>
+                <button class="btn btn-outline-primary btn-sm" (click)="onLogout()">
+                    <fa-icon [icon]="rightFromBracket"></fa-icon>
+                </button>
             </div>
         </div>
     </div>

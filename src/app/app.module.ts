@@ -12,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './Core/interceptors/error.interceptor';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ErrorInterceptor } from './Core/interceptors/error.interceptor';
     HttpClientModule,
     NgxSpinnerModule,    
     ToastrModule.forRoot(),
+    FontAwesomeModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

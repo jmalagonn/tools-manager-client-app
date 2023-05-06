@@ -6,6 +6,10 @@ import { Customer } from 'src/app/Core/models/Customer.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddCustomerModalComponent } from '../../components/add-customer-modal/add-customer-modal.component';
+import { AccountService } from 'src/app/services/account.service';
+import { Account } from 'src/app/Core/models/Account.model';
+import { take } from 'rxjs';
+import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 
 @Component({
   selector: 'app-customers',
@@ -16,11 +20,12 @@ export class CustomersComponent implements OnInit {
   modalRef?: NgbModalRef;
   customers?: Customer[];
   listActions = ListActions;
+  userRoles = UserRoles;
 
   constructor(
     private modalService: NgbModal,
     private httpService: HttpService,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit(): void {
     this.getCustomers();

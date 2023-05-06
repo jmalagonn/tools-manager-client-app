@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Customer } from 'src/app/Core/models/Customer.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddBranchModalComponent } from '../../components/add-branch-modal/add-branch-modal.component';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-customer-detail',
@@ -13,14 +14,15 @@ import { ApiConstants } from 'src/app/Core/constants/app-constants';
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
-  modalRef?: BsModalRef;
+  modalRef?: NgbModalRef;
   customer!: Customer;
   editingCustomer = false;
+  userRoles = UserRoles;
 
   constructor(    
     private route: ActivatedRoute,
     private httpService: HttpService,    
-    private modalService: BsModalService,
+    private modalService: NgbModal,
     private router: Router) {}
 
   ngOnInit(): void {
@@ -35,13 +37,9 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   onOpenAddBranchModal() {
-    const initialState: ModalOptions<AddBranchModalComponent> = {
-      initialState: {
-        customerId: this.customer.customerId!
-      }
-    };
-
-    this.modalRef = this.modalService.show(AddBranchModalComponent, initialState);
+    this.modalRef = this.modalService.open(AddBranchModalComponent);
+    this.modalRef!.componentInstance.customer = this.customer!;
+    this.modalRef.closed.subscribe((response) => response && this.getCustomer());
   }
 
   goToBranch(item: ItemList) {

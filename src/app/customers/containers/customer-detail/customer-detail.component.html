@@ -1,15 +1,15 @@
 <div class="container" *ngIf="customer">
     <div class="row mt-3">
-        <h4 class="text-center d-flex justify-content-center align-items-center" *ngIf="!editingCustomer">
+        <h1 class="text-center d-flex justify-content-center align-items-center" *ngIf="!editingCustomer">
             {{ customer.customerName }}
-            <app-edit-model (click)="setEditingCustomer(true)"></app-edit-model>
-        </h4>
+            <app-edit-model (click)="setEditingCustomer(true)" *ngIf="userRoles.CustomersAdmin | userRoles"></app-edit-model>
+        </h1>
         <app-edit-customer 
             *ngIf="editingCustomer" 
             [customer]="customer"
             (cancelEditingEvent)="setEditingCustomer(false)"
             (updateEvent)="onUpdateCustomer($event)"></app-edit-customer>
-        <div class="text-center mt-3">
+        <div class="text-center mt-3" *ngIf="userRoles.CustomersAdmin | userRoles">
             <button class="btn btn-outline-primary" (click)="onOpenAddBranchModal()">Agregar nueva sucursal</button>
         </div>
         <div class="col mt-3">

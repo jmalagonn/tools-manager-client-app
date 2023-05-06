@@ -3,7 +3,7 @@
     <div class="row mt-3">
         <ng-container *ngIf="!editingEquipment">
             <app-equipment-info [equipment]="equipment"></app-equipment-info>
-            <div class="d-flex justify-content-center mt-3">
+            <div class="d-flex justify-content-center mt-3" *ngIf="userRoles.CustomersAdmin | userRoles">
                 <button class="btn btn-outline-primary" (click)="setEditingEquipment(true)">Editar equipo</button>
             </div>
         </ng-container>
@@ -13,7 +13,7 @@
             (cancelEvent)="setEditingEquipment(false)"
             (equipmentUpdatedEvent)="onEquipmentUpdated()"></app-edit-equipment>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3" *ngIf="workItems && workItems.length">
         <h3 class="text-center">Ítems asociados</h3>
         <app-work-items-list 
             [workItems]="workItems" [columns]="['Id', 'OT', 'Asignado a', 'Estado', 'Descripción']">
