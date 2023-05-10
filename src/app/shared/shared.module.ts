@@ -28,6 +28,7 @@ import { DropdownInputComponent } from './components/dropdown-input/dropdown-inp
 import { WorkStatePipe } from './pipes/work-state.pipe';
 import { ContainsPipe } from './pipes/contains.pipe';
 import { EditModelComponent } from './components/edit-model/edit-model.component';
+import { SectionTitleComponent } from './components/section-title/section-title.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { EditModelComponent } from './components/edit-model/edit-model.component
     WorkStatePipe,
     ContainsPipe,
     EditModelComponent,
+    SectionTitleComponent,
   ],
   imports: [
     CommonModule,    
@@ -95,6 +97,7 @@ import { EditModelComponent } from './components/edit-model/edit-model.component
     WorkStatePipe,
     ContainsPipe,
     EditModelComponent,
+    SectionTitleComponent,
   ]
 })
 export class SharedModule { }

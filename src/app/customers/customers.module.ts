@@ -26,6 +26,8 @@ import { EditEquipmentComponent } from './components/edit-equipment/edit-equipme
 import { EquipmentInfoComponent } from './components/equipment-info/equipment-info.component';
 import { EditBranchComponent } from './components/edit-branch/edit-branch.component';
 import { CoreModule } from '../Core/core.module';
+import { WorkItemGeneralInfoComponent } from './components/work-item-general-info/work-item-general-info.component';
+import { WorkItemEditComponent } from './components/work-item-edit/work-item-edit.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { CoreModule } from '../Core/core.module';
     AddWorkItemModalComponent,
     EditEquipmentComponent,
     EquipmentInfoComponent,
-    EditBranchComponent
+    EditBranchComponent,
+    WorkItemGeneralInfoComponent,
+    WorkItemEditComponent
   ],
   imports: [
     CommonModule,
