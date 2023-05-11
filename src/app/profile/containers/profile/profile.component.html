@@ -1,0 +1,17 @@
+<div class="container mt-3">
+    <h1 class="d-flex justify-content-center align-items-center">
+        <span>Perfil</span>
+        <app-edit-model
+            *ngIf="!editingProfile" 
+            class="d-inline-flex"
+            (click)="setEditingProfile(true)"></app-edit-model>
+    </h1>
+    <app-user-info [user]="user!" *ngIf="!editingProfile; else editingUserProfile"></app-user-info>
+    <ng-template #editingUserProfile>
+        <app-edit-user-info 
+            [user]="user!"
+            (cancelEditEvent)="setEditingProfile(false)"
+            (updatedUserEvent)="onUpdateUser()">
+        </app-edit-user-info>
+    </ng-template>
+</div>

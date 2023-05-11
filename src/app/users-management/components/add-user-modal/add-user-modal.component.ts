@@ -46,7 +46,7 @@ export class AddUserModalComponent {
 
   onSubmit() {
     const body = {
-      company: this.user!.company,
+      companyId: this.user!.companyId,
       email: this.addUserForm!.controls["email"].value,
       idCard: parseInt(this.addUserForm!.controls["idCard"].value),
       name: this.addUserForm!.controls["name"].value,

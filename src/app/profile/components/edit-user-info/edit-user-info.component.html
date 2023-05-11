@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" *ngIf="userForm" (ngSubmit)="onSubmit()">
+    <div class="row g-2">
+        <div class="col-lg-4 col-sm-6">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <label for="idCard" class="form-label">No. de identificación</label>
+            <input type="number" class="form-control" id="idCard" formControlName="idCard">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="address" formControlName="address">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone">
+        </div>
+    </div>
+    <div class="action-buttons d-flex justify-content-center mt-3">
+        <button type="button" class="btn btn-outline-danger me-2" (click)="cancelEditEvent.emit()">Cancelar</button>
+        <button 
+            type="submit" 
+            class="btn btn-outline-primary"
+            [disabled]="!userForm.dirty && userForm.valid">Guardar</button>
+    </div>
+</form>
