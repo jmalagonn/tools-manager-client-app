@@ -1,20 +1,26 @@
 <div class="container" *ngIf="equipment">
-    <h2 class="mt-3 text-center">{{ equipment.equipmentName }}</h2>
+    <app-section-title
+        [title]="equipment.equipmentName"
+        [editableSection]="!editingEquipment"
+        (editButtonClickedEvent)="setEditingEquipment(true)">
+    </app-section-title>
     <div class="row mt-3">
-        <ng-container *ngIf="!editingEquipment">
+        <ng-container *ngIf="!editingEquipment; else editEquipmentSection">
             <app-equipment-info [equipment]="equipment"></app-equipment-info>
             <div class="d-flex justify-content-center mt-3" *ngIf="userRoles.CustomersAdmin | userRoles">
                 <button class="btn btn-outline-primary" (click)="setEditingEquipment(true)">Editar equipo</button>
             </div>
         </ng-container>
-        <app-edit-equipment 
-            *ngIf="editingEquipment" 
-            [equipment]="equipment" 
-            (cancelEvent)="setEditingEquipment(false)"
-            (equipmentUpdatedEvent)="onEquipmentUpdated()"></app-edit-equipment>
+        <ng-template #editEquipmentSection>
+            <app-edit-equipment 
+                [equipment]="equipment" 
+                (cancelEvent)="setEditingEquipment(false)"
+                (equipmentUpdatedEvent)="onEquipmentUpdated()">
+            </app-edit-equipment>
+        </ng-template>
     </div>
     <div class="row mt-3" *ngIf="workItems && workItems.length">
-        <h3 class="text-center">Ítems asociados</h3>
+        <h2 class="text-center">Ítems asociados</h2>
         <app-work-items-list 
             [workItems]="workItems" [columns]="['Id', 'OT', 'Asignado a', 'Estado', 'Descripción']">
         </app-work-items-list>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-section-title',
@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class SectionTitleComponent {
   @Input() title?: string;
   @Input() editableSection?: boolean;
+
+  @Output() editButtonClickedEvent = new EventEmitter<void>();
 }
