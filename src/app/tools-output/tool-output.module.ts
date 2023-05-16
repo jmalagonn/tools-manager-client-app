@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ToolsOutputRoutingModule } from './tools-output-routing.module';
-import { ToolsOutputComponent } from './containers/tools-output/tools-output.component';
+import { ToolsOutputRoutingModule } from './tool-output-routing.module';
+import { ToolOutputComponent } from './containers/tool-output/tool-output.component';
 import { RegisterOutputModalComponent } from './components/register-output-modal/register-output-modal.component';
 import { SharedModule } from '../shared/shared.module';
 import { AvailableToolsListComponent } from './components/available-tools-list/available-tools-list.component';
@@ -15,7 +15,7 @@ import { ReturnToolsComponent } from './components/return-tools/return-tools.com
 
 @NgModule({
   declarations: [
-    ToolsOutputComponent,
+    ToolOutputComponent,
     RegisterOutputModalComponent,
     AvailableToolsListComponent,
     SelectedToolsListComponent,
@@ -30,4 +30,4 @@ import { ReturnToolsComponent } from './components/return-tools/return-tools.com
     SharedModule
   ]
 })
-export class ToolsOutputModule { }
+export class ToolOutputModule { }

@@ -23,10 +23,10 @@
                     <td>{{ outputTool.outputDateTime | date:'dd/MM/YYYY' }}</td>
                     <td>{{ outputTool.responsible.name }}</td>
                     <td>
-                        {{ outputTool.outputToolState | outputToolState }}
+                        {{ outputTool.toolOutputState | outputToolState }}
                     </td>
                     <td>
-                        <a [routerLink]="[outputTool.outputToolId]">
+                        <a [routerLink]="[outputTool.toolOutputId]">
                             <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
                         </a>
                     </td>

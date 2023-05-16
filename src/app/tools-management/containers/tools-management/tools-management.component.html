@@ -1,8 +1,17 @@
 <div class="container">
-    <h2 class="text-center mt-3">Administración de equipos y herramienta</h2>
-    <div class="text-center mt-3">
-        <button class="btn btn-outline-primary" (click)="onOpenAddToolModal()">Agregar herramienta</button>
-    </div>
-    <h4 class="text-center mt-3">Inventario de herramienta</h4>
-    <app-tools-list [tools]="tools"></app-tools-list>
+    <h1 class="text-center mt-3">Administración de equipos y herramienta</h1>
+    <section>
+        <h2 class="text-center mt-3">Inventario</h2>
+        <app-tools-list [tools]="tools"></app-tools-list>
+        <div class="text-center">
+            <button class="btn btn-outline-primary" (click)="onOpenAddToolModal()">Agregar nuevo elemento</button>
+        </div>
+    </section>
+    <section class="mt-5">
+        <h2 class="text-center">Salidas</h2>
+        <app-tools-list [tools]="tools"></app-tools-list>
+        <div class="text-center">
+            <button class="btn btn-outline-primary" (click)="onOpenAddToolModal()">Agregar nueva salida</button>
+        </div>
+    </section>
 </div>

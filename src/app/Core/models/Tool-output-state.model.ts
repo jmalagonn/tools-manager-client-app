@@ -1,4 +1,4 @@
-export interface OutputToolState {
+export interface ToolOutputState {
     outputToolStateId: number;
     outputToolStateName: string;
 }

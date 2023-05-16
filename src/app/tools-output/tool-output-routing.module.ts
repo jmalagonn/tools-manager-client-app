@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ToolsOutputDetailComponent } from './containers/tools-output-detail/tools-output-detail.component';
-import { ToolsOutputComponent } from './containers/tools-output/tools-output.component';
+import { ToolOutputComponent } from './containers/tool-output/tool-output.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ToolsOutputComponent
+    component: ToolOutputComponent
   },
   {
     path: ':id',

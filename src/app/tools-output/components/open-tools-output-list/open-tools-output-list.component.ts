@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { OutputTool } from 'src/app/Core/models/Output-tool.model';
+import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -10,5 +10,5 @@ import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 export class OpenToolsOutputListComponent {
   faCircleInfo = faCircleInfo;
 
-  @Input() outputTools?: OutputTool[]; 
+  @Input() outputTools?: ToolOutput[]; 
 }

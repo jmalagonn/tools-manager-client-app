@@ -18,14 +18,14 @@
                 {{ outputTool.outputDateTime | date }}
             </td>
             <td>
-                {{ outputTool.outputToolState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
+                {{ outputTool.toolOutputState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
             </td>
             <td>
                 <button *ngIf="actions" class="action-button">
                     <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
                 </button>
 
-                <a [routerLink]="['/tools-output', outputTool.outputToolId]">
+                <a [routerLink]="['/tools-output', outputTool.toolOutputId]">
                     <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
                 </a>
             </td>

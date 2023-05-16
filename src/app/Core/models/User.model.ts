@@ -1,5 +1,5 @@
 import { Company } from "./Company.model";
-import { OutputTool } from "./Output-tool.model";
+import { ToolOutput } from "./Tool-output.model";
 import { UserRole } from "./User-role.model";
 import { WorkItem } from "./Work-item.model";
 
@@ -13,5 +13,5 @@ export interface User {
     phone?: string;
     userId: number;
     userRoles: UserRole[];
-    outputsTool?: OutputTool[];
+    outputsTool?: ToolOutput[];
 }

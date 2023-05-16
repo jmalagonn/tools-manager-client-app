@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToolsOutputComponent } from './tools-output.component';
+import { ToolOutputComponent } from './tool-output.component';
 
-describe('ToolsOutputComponent', () => {
-  let component: ToolsOutputComponent;
-  let fixture: ComponentFixture<ToolsOutputComponent>;
+describe('ToolOutputComponent', () => {
+  let component: ToolOutputComponent;
+  let fixture: ComponentFixture<ToolOutputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolsOutputComponent ]
+      declarations: [ ToolOutputComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ToolsOutputComponent);
+    fixture = TestBed.createComponent(ToolOutputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

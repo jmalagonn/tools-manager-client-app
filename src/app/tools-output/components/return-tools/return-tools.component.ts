@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { faCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { OutputTool } from 'src/app/Core/models/Output-tool.model';
+import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 
 @Component({
   selector: 'app-return-tools',
@@ -9,7 +9,7 @@ import { OutputTool } from 'src/app/Core/models/Output-tool.model';
   styleUrls: ['./return-tools.component.scss']
 })
 export class ReturnToolsComponent {
-  outputTool?: OutputTool;
+  outputTool?: ToolOutput;
   faCheck = faCheck;
   faTriangleExclamation = faTriangleExclamation;
 

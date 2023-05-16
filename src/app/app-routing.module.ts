@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'tools-output',
-        loadChildren: () => import('./tools-output/tools-output.module').then(m => m.ToolsOutputModule)
+        loadChildren: () => import('./tools-output/tool-output.module').then(m => m.ToolOutputModule)
       },
       {
         path: 'customers',
