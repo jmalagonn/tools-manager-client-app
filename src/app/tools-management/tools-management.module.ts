@@ -9,6 +9,7 @@ import { ToolsListComponent } from './components/tools-list/tools-list.component
 import { ToolDetailComponent } from './containers/tool-detail/tool-detail.component';
 import { EditToolFormComponent } from './components/edit-tool-form/edit-tool-form.component';
 import { QrInfoComponent } from './components/qr-info/qr-info.component';
+import { AddNewToolComponent } from './containers/add-new-tool/add-new-tool.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { QrInfoComponent } from './components/qr-info/qr-info.component';
     ToolsListComponent,
     ToolDetailComponent,
     EditToolFormComponent,
-    QrInfoComponent
+    QrInfoComponent,
+    AddNewToolComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,24 @@
+<form>
+    <div class="row">        
+        <h2 class="text-center">Nuevo parámetero</h2>
+        <div class="col">
+            <label for="parameterName" class="form-label">Nombre del parámetro</label>
+            <input type="text" class="form-control" id="parameterName" formControlName="parameterName">
+        </div>
+        <div class="col">
+            <app-dropdown [options]="[]" [label]="'Unidad de medida'"></app-dropdown>
+        </div>
+        <div class="col">
+            <label for="parameterValue" class="form-label">Valor</label>
+            <input type="text" class="form-control" id="parameterValue" formControlName="parameterValue">
+        </div>
+        <div class="col action-buttons">
+            <button type="button" class="btn btn-outline-success me-2">
+                <fa-icon [icon]="faCheck"></fa-icon>
+            </button>
+            <button type="button" class="btn btn-outline-danger">
+                <fa-icon [icon]="faX"></fa-icon>
+            </button>
+        </div>
+    </div>
+</form>

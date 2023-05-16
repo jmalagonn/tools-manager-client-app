@@ -1,0 +1,25 @@
+<form>
+    <div class="row">
+        <h2 class="text-center">Configurar parámetero</h2>
+        <div class="col">
+            <p>Nombre del parámetro</p>
+            <p>Nombre del parámetro</p>
+        </div>
+        <div class="col">
+            <p>Unidad de medida</p>
+            <p>Nombre del parámetro</p>
+        </div>
+        <div class="col">
+            <label for="parameterValue" class="form-label">Valor</label>
+            <input type="text" class="form-control" id="parameterValue" formControlName="parameterValue">
+        </div>
+        <div class="col action-buttons">
+            <button type="button" class="btn btn-outline-success me-2">
+                <fa-icon [icon]="faCheck"></fa-icon>
+            </button>
+            <button type="button" class="btn btn-outline-danger">
+                <fa-icon [icon]="faX"></fa-icon>
+            </button>
+        </div>
+    </div>
+</form>

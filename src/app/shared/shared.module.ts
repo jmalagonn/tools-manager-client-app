@@ -29,6 +29,8 @@ import { WorkStatePipe } from './pipes/work-state.pipe';
 import { ContainsPipe } from './pipes/contains.pipe';
 import { EditModelComponent } from './components/edit-model/edit-model.component';
 import { SectionTitleComponent } from './components/section-title/section-title.component';
+import { AddNewParameterComponent } from './components/add-new-parameter/add-new-parameter.component';
+import { SetParameterComponent } from './components/set-parameter/set-parameter.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { SectionTitleComponent } from './components/section-title/section-title.
     ContainsPipe,
     EditModelComponent,
     SectionTitleComponent,
+    AddNewParameterComponent,
+    SetParameterComponent,
   ],
   imports: [
     CommonModule,    
@@ -98,6 +102,8 @@ import { SectionTitleComponent } from './components/section-title/section-title.
     ContainsPipe,
     EditModelComponent,
     SectionTitleComponent,
+    AddNewParameterComponent,
+    SetParameterComponent,
   ]
 })
 export class SharedModule { }

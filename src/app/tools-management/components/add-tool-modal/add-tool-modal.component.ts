@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -15,7 +15,7 @@ export class AddToolModalComponent implements OnInit {
   @Output() toolAddedEvent = new EventEmitter<Tool>();
 
   constructor(
-    public bsModalRef: BsModalRef,
+    public activeModal: NgbActiveModal,
     public fb: FormBuilder,
     public httpService: HttpService
   ) {}
@@ -35,10 +35,8 @@ export class AddToolModalComponent implements OnInit {
       toolName: this.addToolForm?.controls["toolName"].value
     };
 
-    this.httpService.post<Tool>('Tools', body).subscribe(tool => {
-      this.bsModalRef.hide();
-      this.bsModalRef.onHide.emit(tool);
-    });
+    this.httpService.post<Tool>('Tools', body)
+      .subscribe(() => this.activeModal.close(true));
   }
 }
 

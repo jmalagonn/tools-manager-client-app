@@ -1,6 +1,7 @@
 <div class="app-dropdown" ngbDropdown>
+    <label *ngIf="label" class="form-label">{{ label }}</label>
     <button ngbDropdownToggle type="button" class="btn app-dropdown--button" aria-controls="dropdown-basic">
-        {{ selectedOption ? selectedOption.description : label }} <span class="caret"></span>
+        {{ selectedOption ? selectedOption.description : buttonText }} <span class="caret"></span>
     </button>
     <ul ngbDropdownMenu class="app-dropdown--menu" role="menu">
         <li class="dp-item" *ngFor="let option of options" ngbDropdownItem (click)="onSelectOption(option)">

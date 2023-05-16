@@ -4,6 +4,7 @@ import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddToolModalComponent } from '../../components/add-tool-modal/add-tool-modal.component';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-tools-management',
@@ -11,12 +12,12 @@ import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
   styleUrls: ['./tools-management.component.scss']
 })
 export class ToolsManagementComponent implements OnInit {
-  modalRef?: BsModalRef;
+  modalRef?: NgbModalRef;
   tools?: Tool[];
   toolOutputs?: ToolOutput[];
 
   constructor(
-    private modalService: BsModalService,
+    private modalService: NgbModal,
     private httpService: HttpService) {}
 
   ngOnInit(): void {
@@ -25,15 +26,10 @@ export class ToolsManagementComponent implements OnInit {
   }
 
   onOpenAddToolModal() {
-    this.modalRef = this.modalService.show(AddToolModalComponent);
-
-    if (this.modalRef?.onHide) {
-      this.modalRef.onHide.subscribe((tool: Tool) => {
-        if(!tool.toolGuid) return;
-
-        this.getToolsList();
-      });
-    }
+    this.modalRef = this.modalService.open(AddToolModalComponent);
+    this.modalRef.closed.subscribe(response => {
+      response && this.getToolsList();
+    });    
   }
 
   getToolsList(): void {
