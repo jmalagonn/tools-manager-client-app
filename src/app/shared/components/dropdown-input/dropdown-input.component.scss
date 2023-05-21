@@ -3,6 +3,8 @@
         padding: .2rem;
         border: 1px solid #ced4da;
         border-radius: .375rem;
+        max-height: 200px;
+        overflow: auto;
 
         ul {
             margin-top: .25rem;

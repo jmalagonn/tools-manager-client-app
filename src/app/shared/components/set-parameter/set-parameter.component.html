@@ -1,23 +1,23 @@
-<form>
+<form [formGroup]="setParameterForm!">
     <div class="row">
         <h2 class="text-center">Configurar parámetero</h2>
-        <div class="col">
-            <p>Nombre del parámetro</p>
-            <p>Nombre del parámetro</p>
+        <div class="col-lg-3 col-md-5">
+            <label class="form-label">Nombre del parámetro</label>
+            <input type="text" class="form-control" [value]="toolParameter!.name" disabled>
         </div>
-        <div class="col">
-            <p>Unidad de medida</p>
-            <p>Nombre del parámetro</p>
+        <div class="col-md-3">
+            <label class="form-label">Unidad de medida</label>
+            <input type="text" class="form-control" [value]="toolParameter!.measurementUnitSymbol" disabled>
         </div>
-        <div class="col">
+        <div class="col-lg-3 col-md-2">
             <label for="parameterValue" class="form-label">Valor</label>
             <input type="text" class="form-control" id="parameterValue" formControlName="parameterValue">
         </div>
-        <div class="col action-buttons">
-            <button type="button" class="btn btn-outline-success me-2">
+        <div class="col-lg-3 col-md-2 action-buttons">
+            <button type="button" class="btn btn-outline-success me-2" (click)="setParameterValue()" [disabled]="!setParameterForm!.valid">
                 <fa-icon [icon]="faCheck"></fa-icon>
             </button>
-            <button type="button" class="btn btn-outline-danger">
+            <button type="button" class="btn btn-outline-danger" (click)="cancelEvent.emit()">
                 <fa-icon [icon]="faX"></fa-icon>
             </button>
         </div>

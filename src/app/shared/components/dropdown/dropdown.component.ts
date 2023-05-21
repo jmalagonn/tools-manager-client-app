@@ -16,7 +16,7 @@ export class DropdownComponent {
   @Output() onSelectOptionEvent = new EventEmitter<DropdownItem>(); 
 
   onSelectOption(option: DropdownItem) {
-    this.label = option.description;
+    this.buttonText = option.description;
     this.onSelectOptionEvent.emit(option);
   }
 }

@@ -69,6 +69,8 @@ export class ApiConstants {
     public static readonly workItemApi = "WorkItem";
     public static readonly workItemTypesApi = "WorkItem/workItemTypes";
     public static readonly workOrderApi = "WorkOrder";
+    public static readonly toolsApi = "Tools";
+    public static readonly toolParametersApi = "Tools/parameters";
 }
 
 export class ErrorConstants {

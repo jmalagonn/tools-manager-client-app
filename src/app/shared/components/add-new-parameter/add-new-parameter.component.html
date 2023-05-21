@@ -1,22 +1,26 @@
-<form>
+<form [formGroup]="addParameterForm!">
     <div class="row">        
         <h2 class="text-center">Nuevo parámetero</h2>
-        <div class="col">
+        <div class="col-lg-3 col-md-5">
             <label for="parameterName" class="form-label">Nombre del parámetro</label>
             <input type="text" class="form-control" id="parameterName" formControlName="parameterName">
         </div>
-        <div class="col">
-            <app-dropdown [options]="[]" [label]="'Unidad de medida'"></app-dropdown>
+        <div class="col-md-3" *ngIf="measurementUnits">
+            <app-dropdown 
+                [options]="measurementUnits | toDropdownItem:'measurementUnits'" 
+                [label]="'Unidad de medida'"
+                (onSelectOptionEvent)="onSelectOption($event)">
+            </app-dropdown>
         </div>
-        <div class="col">
+        <div class="col-lg-3 col-md-2">
             <label for="parameterValue" class="form-label">Valor</label>
             <input type="text" class="form-control" id="parameterValue" formControlName="parameterValue">
         </div>
-        <div class="col action-buttons">
-            <button type="button" class="btn btn-outline-success me-2">
+        <div class="col-lg-3 col-md-2 action-buttons">
+            <button type="button" class="btn btn-outline-success me-2" [disabled]="!addParameterForm!.valid" (click)="addNewParameter()">
                 <fa-icon [icon]="faCheck"></fa-icon>
             </button>
-            <button type="button" class="btn btn-outline-danger">
+            <button type="button" class="btn btn-outline-danger" (click)="cancelEvent.emit()">
                 <fa-icon [icon]="faX"></fa-icon>
             </button>
         </div>

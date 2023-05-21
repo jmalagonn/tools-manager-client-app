@@ -1,3 +1,4 @@
+import { ToolParameter } from "./ToolParameter.model";
 import { ToolState } from "./ToolState.model";
 
 export interface Tool {
@@ -6,4 +7,5 @@ export interface Tool {
     toolGuid: string;
     toolState: ToolState;
     returnDateTime?: Date;
+    toolParameters?: ToolParameter[];
 }
