@@ -13,12 +13,14 @@ import { LoadingInterceptor } from './Core/interceptors/loading.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './Core/interceptors/error.interceptor';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './layout/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MainLayoutComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { AddToolModalComponent } from '../../components/add-tool-modal/add-tool-modal.component';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 
 @Component({
   selector: 'app-tools-management',
@@ -15,6 +16,7 @@ export class ToolsManagementComponent implements OnInit {
   modalRef?: NgbModalRef;
   tools?: Tool[];
   toolOutputs?: ToolOutput[];
+  routeConstants = RouteConstants;
 
   constructor(
     private modalService: NgbModal,

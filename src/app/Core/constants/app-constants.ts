@@ -52,6 +52,8 @@ export class RouteConstants {
     public static readonly customersPath = 'customers/customer';
     public static readonly branchPath = 'branch';
     public static readonly usersManagement = 'users-management';
+    public static readonly toolsPath = "tools-management";
+    public static readonly addToolPath = "add-tool";
 }
 
 export class ApiConstants {

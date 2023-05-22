@@ -4,7 +4,7 @@
         <h2 class="text-center mt-3">Inventario</h2>
         <app-tools-list [tools]="tools"></app-tools-list>
         <div class="text-center">
-            <button class="btn btn-outline-primary" (click)="onOpenAddToolModal()">Agregar nuevo elemento</button>
+            <a class="btn btn-outline-primary" [routerLink]="routeConstants.addToolPath">Agregar nuevo elemento</a>
         </div>
     </section>
     <section class="mt-5">

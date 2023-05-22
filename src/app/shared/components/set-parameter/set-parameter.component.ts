@@ -13,17 +13,10 @@ export class SetParameterComponent implements OnInit {
   faX = faX;
   setParameterForm?: FormGroup;
 
-  @Input() toolParameter?: ToolParameter = {
-    id: 1,
-    name: "Temperatura",
-    measurementUnitId: 5,
-    measurementUnitSymbol: "C",
-    parameterId: 1,
-    toolId: 1,
-  };
+  @Input() toolParameter?: ToolParameter;
 
   @Output() cancelEvent = new EventEmitter<void>();
-  @Output() setParameterEvent = new EventEmitter<Partial<ToolParameter>>();
+  @Output() setParameterEvent = new EventEmitter<ToolParameter>();
 
   constructor(private fb: FormBuilder) {}
 
@@ -41,7 +34,10 @@ export class SetParameterComponent implements OnInit {
     if(!this.setParameterForm!.valid) return;
 
     this.setParameterEvent.emit({
-      parameterId: 1,
+      id: this.toolParameter!.id,
+      measurementUnitId: this.toolParameter!.measurementUnitId,
+      measurementUnitSymbol: this.toolParameter!.measurementUnitSymbol,
+      name: this.toolParameter!.name,
       parameterValue: this.setParameterForm!.controls["parameterValue"].value
     })
   }

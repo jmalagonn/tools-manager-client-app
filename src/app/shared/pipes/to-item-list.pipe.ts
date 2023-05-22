@@ -14,7 +14,7 @@ import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.
 })
 export class ToItemListPipe implements PipeTransform {
 
-  transform(value: any, arg: string): ItemList[] {    
+  transform(value: any, arg: string): ItemList[] { 
     if (!value) return new Array();
 
     switch (arg) {

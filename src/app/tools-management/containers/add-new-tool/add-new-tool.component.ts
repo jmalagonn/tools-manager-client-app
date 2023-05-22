@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { Router } from '@angular/router';
+import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
@@ -20,25 +21,11 @@ export class AddNewToolComponent implements OnInit {
   toolParameters?: ToolParameter[];
   tempParameter?: ToolParameter;
 
-  items: ItemList[] = [
-    {
-      id: 1,
-      name: "Test"
-    },
-    {
-      id: 2,
-      name: "Test2"
-    },
-    {
-      id: 3,
-      name: "Test3"
-    }
-  ];
-
   constructor(
     private fb: FormBuilder,
-    private httpService: HttpService
-  ) {}
+    private httpService: HttpService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -56,33 +43,48 @@ export class AddNewToolComponent implements OnInit {
     })
   }
 
-  onAddParameter(parameter: Partial<ToolParameter>) {
-    console.log(parameter);
-    // this.tool = {
-    //   ...this.tool,
-    //   toolParameters: this.addToolParameter(parameter)
-    // };
-
+  onAddParameter(parameter: Partial<ToolParameter>) {    
+    this.addToolParameter(parameter);
     this.setIsAddingAdditionalInfo(false);
   }
 
-  addToolParameter(parameter: ToolParameter) {
-    if(!this.tool || !this.tool.toolParameters) {
+  addToolParameter(parameter: Partial<ToolParameter>) {
+    const newParameter: ToolParameter = {
+      id: parameter.id || undefined,
+      name: parameter.name!,
+      measurementUnitId: parameter.measurementUnitId!,
+      measurementUnitSymbol: parameter.measurementUnitSymbol!,
+      parameterValue: parameter.parameterValue!
+    };
+
+    if (!this.tool || !this.tool.toolParameters) {
       this.tool = {
         ...this.tool,
-        toolParameters: [parameter]
+        toolParameters: [newParameter]
       };
-    }else {
-      this.tool.toolParameters.push(parameter);
-    }
+    } else {
+      this.tool.toolParameters.push(newParameter);
+    };
   }
 
-  onSelectExistingParameter(parameter: ItemList) {
-    // this.tempParameter = {
-    //   name: 
-    // };
+  addNewTool() {
+    if (!this.addNewToolForm!.valid) return;
+    
+    this.tool = {
+      ...this.tool,
+      toolName: this.addNewToolForm!.controls["toolName"].value,
+    };
+
+    this.httpService.post<Tool>(ApiConstants.toolsApi, this.tool)
+      .subscribe(() => this.router.navigateByUrl(`/${RouteConstants.toolsPath}`));
   }
 
+  initAdditionalInformation() {
+    this.setIsAddingAdditionalInfo(true);
+    this.setIsAddingExistingParameter(false);
+    this.setIsAddingNewParameter(false);
+  }
+ 
   setIsAddingAdditionalInfo(value: boolean): void {
     this.isAddingAdditionalInfo = value;
   }
@@ -93,5 +95,10 @@ export class AddNewToolComponent implements OnInit {
 
   setIsAddingNewParameter(value: boolean): void {
     this.isAddingNewParameter = value;
+  }
+
+  setExistingParameter(item: ItemList) {
+    this.tempParameter = this.toolParameters!.find(x => x.id == item.id);
+    this.setIsAddingExistingParameter(true);
   }
 }

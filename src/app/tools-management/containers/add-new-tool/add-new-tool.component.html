@@ -9,24 +9,28 @@
         </div>
         <div class="row mt-3" *ngIf="tool && tool.toolParameters && tool.toolParameters.length">
             <h2 class="text-center">Parámetros añadidos</h2>
-            <div class="col"></div>
+            <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let parameter of tool.toolParameters">
+                <label class="form-label">{{ parameter.name }}</label>
+                <input type="text" class="form-control"
+                    [value]="parameter.parameterValue + ' | ' + parameter.measurementUnitSymbol" disabled />
+            </div>
         </div>
         <div class="text-center mt-3" *ngIf="!isAddingAdditionalInfo; else addingAdditionalInfo">
-            <button class="btn btn-outline-primary" (click)="setIsAddingAdditionalInfo(true)">Agregar información adicional</button>
-            <button class="btn btn-outline-primary ms-2" disabled>Guardar</button>
+            <button class="btn btn-outline-primary" (click)="initAdditionalInformation()">Agregar información
+                adicional</button>
+            <button class="btn btn-outline-primary ms-2" [disabled]="!addNewToolForm!.valid" (click)="addNewTool()">Guardar</button>
         </div>
         <ng-template #addingAdditionalInfo>
             <div class="row mt-3" *ngIf="!isAddingExistingParameter && !isAddingNewParameter">
                 <div class="col d-flex justify-content-center">
-                    <app-dropdown-input 
-                        [buttonText]="'Seleccionar nuevo parámetro'"
-                        [options]="toolParameters | toItemList:'toolParameter'"
-                        [showAddNewItemButton]="true"
-                        (selectItemEvent)="setIsAddingExistingParameter(true)"
+                    <app-dropdown-input [buttonText]="'Seleccionar nuevo parámetro'"
+                        [options]="toolParameters | toItemList:'toolParameter'" [showAddNewItemButton]="true"
+                        (selectItemEvent)="setExistingParameter($event)"
                         (addNewItemEvent)="setIsAddingNewParameter(true)">
                     </app-dropdown-input>
                     <div>
-                        <button class="btn btn-outline-danger ms-2" (click)="setIsAddingAdditionalInfo(false)">Cancelar</button>
+                        <button class="btn btn-outline-danger ms-2"
+                            (click)="setIsAddingAdditionalInfo(false)">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -34,11 +38,11 @@
                 <div class="col">
                     <app-set-parameter 
                         *ngIf="isAddingExistingParameter"
+                        [toolParameter]="tempParameter"
                         (cancelEvent)="this.setIsAddingExistingParameter(false)"
                         (setParameterEvent)="onAddParameter($event)">
                     </app-set-parameter>
-                    <app-add-new-parameter 
-                        *ngIf="isAddingNewParameter"
+                    <app-add-new-parameter *ngIf="isAddingNewParameter"
                         (cancelEvent)="this.setIsAddingNewParameter(false)"
                         (addNewParameterEvent)="onAddParameter($event)">
                     </app-add-new-parameter>
