@@ -10,6 +10,10 @@ import { ToolDetailComponent } from './containers/tool-detail/tool-detail.compon
 import { EditToolFormComponent } from './components/edit-tool-form/edit-tool-form.component';
 import { QrInfoComponent } from './components/qr-info/qr-info.component';
 import { AddNewToolComponent } from './containers/add-new-tool/add-new-tool.component';
+import { AddToolsOutputModalComponent } from './components/add-tools-output-modal/add-tools-output-modal.component';
+import { SelectedToolsListComponent } from './components/selected-tools-list/selected-tools-list.component';
+import { AvailableToolsListComponent } from './components/available-tools-list/available-tools-list.component';
+import { ToolOutputsListComponent } from './components/tool-outputs-list/tool-outputs-list.component';
 
 
 @NgModule({
@@ -20,7 +24,11 @@ import { AddNewToolComponent } from './containers/add-new-tool/add-new-tool.comp
     ToolDetailComponent,
     EditToolFormComponent,
     QrInfoComponent,
-    AddNewToolComponent
+    AddNewToolComponent,
+    AddToolsOutputModalComponent,
+    SelectedToolsListComponent,
+    AvailableToolsListComponent,
+    ToolOutputsListComponent,
   ],
   imports: [
     CommonModule,

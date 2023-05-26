@@ -5,14 +5,14 @@
     </button>
 </div>
 <div class="modal-body">
-    <form *ngIf="addCustomerForm" [formGroup]="addCustomerForm" (ngSubmit)="addCustomerForm.valid && onSubmit()">
+    <form *ngIf="addCustomerForm" [formGroup]="addCustomerForm">
         <div class="mb-3">
             <label for="customerName" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="customerName" formControlName="customerName">
         </div>
-        <button class="btn btn-outline-primary" [disabled]="!addCustomerForm.valid">Guardar</button>
     </form>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cerrar</button>
+    <button class="btn btn-outline-primary" [disabled]="!addCustomerForm!.valid" (click)="onSubmit()">Guardar</button>
 </div>

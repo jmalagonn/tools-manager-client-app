@@ -2,36 +2,5 @@
     <h4 class="mt-4 text-center">Registro de salidas de equipos</h4>
     <div class="col" *ngIf="outputTools">
         <p *ngIf="!outputTools.length" class="text-center">No se encontraron registros de salida de equipos</p>
-        <table class="table mt-4" *ngIf="outputTools.length">
-            <thead>
-                <tr>
-                    <th>
-                        Fecha de salida
-                    </th>
-                    <th>
-                        Responsable
-                    </th>
-                    <th>
-                        Estado
-                    </th>
-                    <th>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let outputTool of outputTools">
-                    <td>{{ outputTool.outputDateTime | date:'dd/MM/YYYY' }}</td>
-                    <td>{{ outputTool.responsible.name }}</td>
-                    <td>
-                        {{ outputTool.toolOutputState | outputToolState }}
-                    </td>
-                    <td>
-                        <a [routerLink]="[outputTool.toolOutputId]">
-                            <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddToolModalComponent } from '../../components/add-tool-modal/add-tool-modal.component';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { RouteConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { AddToolsOutputModalComponent } from '../../components/add-tools-output-modal/add-tools-output-modal.component';
 
 @Component({
   selector: 'app-tools-management',
@@ -40,7 +40,14 @@ export class ToolsManagementComponent implements OnInit {
   }
 
   getToolOutputs(): void {
-    this.httpService.get<ToolOutput[]>('OutputTools')
+    this.httpService.get<ToolOutput[]>(ApiConstants.toolOutputsApi)
       .subscribe(response => this.toolOutputs = response);
+  }
+
+  openAddToolOutputModal(): void {
+    this.modalRef = this.modalService.open(
+      AddToolsOutputModalComponent, 
+      { size: 'lg',  scrollable: true });
+    this.modalRef.closed.subscribe(() => this.getToolOutputs());
   }
 }

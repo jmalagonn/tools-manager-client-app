@@ -1,21 +1,19 @@
 <div class="modal-header">
     <h4 class="modal-title pull-left">Registrar nueva salida</h4>
-    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="activeModal.close()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
 </div>
 <div class="modal-body">
     <form 
         *ngIf="registerOutputForm" 
-        [formGroup]="registerOutputForm" 
-        (ngSubmit)="registerOutputForm.valid && registerOutput()">
+        [formGroup]="registerOutputForm">
         <div class="row" *ngIf="employees">
             <div class="col">
                 <label for="responsible" class="form-label">Responsable</label>
                 <app-dropdown 
-                    class="d-block" 
-                    [label]="'Responsable'" 
-                    [options]="employees | toDropdownItem"
+                    class="d-block"
+                    [options]="employees | toDropdownItem:'user'"
                     (onSelectOptionEvent)="onSelectResponsible($event)"></app-dropdown>
             </div>
         </div>
@@ -35,11 +33,9 @@
                     (selectToolEvent)="onSelectTool($event)"></app-available-tools-list>
             </div>
         </div>
-        <div>
-            <button class="btn btn-outline-primary" [disabled]="!registerOutputForm.valid">Registrar salida</button>
-        </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="bsModalRef.hide()">Cerrar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cerrar</button>
+    <button class="btn btn-outline-primary ms-2" [disabled]="!registerOutputForm!.valid" (click)="registerOutput()">Guardar</button>
 </div>

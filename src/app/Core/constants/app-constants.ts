@@ -73,6 +73,7 @@ export class ApiConstants {
     public static readonly workOrderApi = "WorkOrder";
     public static readonly toolsApi = "Tools";
     public static readonly toolParametersApi = "Tools/parameters";
+    public static readonly toolOutputsApi = "ToolOutputs";
 }
 
 export class ErrorConstants {

@@ -17,25 +17,28 @@
     </div>
 </div>
 <div class="row mt-3 g-2" *ngIf="branch && addingItem">
-    <div class="col-4">
+    <div class="col-md-4">
         <app-dropdown 
             [label]="'Seleccionar equipo'" 
             [options]="branch.equipment! | toDropdownItem:'equipment'"
-            (onSelectOptionEvent)="onSelectItem($event, 1)"></app-dropdown>
+            (onSelectOptionEvent)="onSelectItem($event, 1)">
+        </app-dropdown>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
         <app-dropdown 
             *ngIf="workItemTypes"
             [label]="'Tipo de trabajo'" 
             [options]="workItemTypes! | toDropdownItem"
-            (onSelectOptionEvent)="onSelectItem($event, 2)"></app-dropdown>
+            (onSelectOptionEvent)="onSelectItem($event, 2)">
+        </app-dropdown>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
         <app-dropdown 
             *ngIf="employees"
             [label]="'Asignado a'" 
             [options]="employees! | toDropdownItem:'employee'"
-            (onSelectOptionEvent)="onSelectItem($event, 3)"></app-dropdown>
+            (onSelectOptionEvent)="onSelectItem($event, 3)">
+        </app-dropdown>
     </div>
     <div class="col-12 mt-2">
         <form *ngIf="workItemForm" [formGroup]="workItemForm">
@@ -62,6 +65,9 @@
 </div>
 <div class="row mt-3" *ngIf="tempWorkItems.length">
     <div class="col">
-        <app-work-items-list [workItems]="tempWorkItems"></app-work-items-list>
+        <app-work-items-list
+            [columns]="['Equipo', 'Asignado a']" 
+            [workItems]="tempWorkItems">
+        </app-work-items-list>
     </div>
 </div>

@@ -8,10 +8,10 @@
         </div>
     </section>
     <section class="mt-5">
-        <h2 class="text-center">Salidas</h2>
-        <app-tools-list [tools]="tools"></app-tools-list>
+        <h2 class="text-center">Salidas de herramienta</h2>
+        <app-tool-outputs-list [toolOutputs]="toolOutputs"></app-tool-outputs-list>
         <div class="text-center">
-            <button class="btn btn-outline-primary" (click)="onOpenAddToolModal()">Agregar nueva salida</button>
+            <button class="btn btn-outline-primary" (click)="openAddToolOutputModal()">Agregar nueva elemento</button>
         </div>
     </section>
 </div>

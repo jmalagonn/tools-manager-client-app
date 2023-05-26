@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { User } from 'src/app/Core/models/User.model';
 import { HttpService } from 'src/app/services/http.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiConstants } from 'src/app/Core/constants/app-constants';
 
 @Component({
-  selector: 'app-register-output-modal',
-  templateUrl: './register-output-modal.component.html',
-  styleUrls: ['./register-output-modal.component.scss']
+  selector: 'app-add-tools-output-modal',
+  templateUrl: './add-tools-output-modal.component.html',
+  styleUrls: ['./add-tools-output-modal.component.scss']
 })
-export class RegisterOutputModalComponent implements OnInit {
+export class AddToolsOutputModalComponent implements OnInit {
   employees?: User[];
   availableTools: Tool[] = [];
   selectedTools:Tool[] = [];
@@ -20,7 +21,7 @@ export class RegisterOutputModalComponent implements OnInit {
   responsible?: User;
 
   constructor(
-    public bsModalRef: BsModalRef, 
+    public activeModal: NgbActiveModal, 
     public httpService: HttpService,
     private fb: FormBuilder) { } 
 
@@ -58,11 +59,8 @@ export class RegisterOutputModalComponent implements OnInit {
   }
 
   registerOutput(): void {
-    this.httpService.post<ToolOutput>('OutputTools', this.registerOutputForm?.value)
-      .subscribe(response => {
-        this.bsModalRef.hide();
-        console.log(response)
-      });
+    this.httpService.post<ToolOutput>(ApiConstants.toolOutputsApi, this.registerOutputForm?.value)
+      .subscribe(() => this.activeModal.close(true));
   }
 
   onSelectResponsible(user: DropdownItem): void {

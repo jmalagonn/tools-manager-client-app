@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { HttpService } from 'src/app/services/http.service';
-import { RegisterOutputModalComponent } from '../../components/register-output-modal/register-output-modal.component';
 
 @Component({
   selector: 'app-tool-output',
@@ -23,9 +22,7 @@ export class ToolOutputComponent implements OnInit {
     this.getOutputToolsRegisters();
   }
 
-  onOpenAddToolModal() {
-    this.modalRef = this.modalService.show(RegisterOutputModalComponent);
-  }
+  onOpenAddToolModal() {}
 
   getOutputToolsRegisters(): void {
     this.httpService.get<ToolOutput[]>('OutputTools').subscribe(response => {

@@ -1,0 +1,36 @@
+<div class="row mt-3">
+    <div class="col">
+        <p *ngIf="!toolOutputs || !toolOutputs!.length; else noToolsOutput">No hay salidas de herramienta registradas.
+        </p>
+        <ng-template #noToolsOutput>
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Fecha de salida
+                        </th>
+                        <th>
+                            Responsable
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let toolOutput of toolOutputs">
+                        <td>{{ toolOutput.toolOutputId }}</td>
+                        <td>{{ toolOutput.outputDateTime | date:'dd/MM/YYYY' }}</td>
+                        <td>{{ toolOutput.responsible.name }}</td>
+                        <td>
+                            {{ toolOutput.toolOutputState | outputToolState }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </div>
+</div>
