@@ -4,4 +4,5 @@ export interface ToolParameter {
     measurementUnitId: number;
     measurementUnitSymbol: string;
     parameterValue?: number;
+    toolParameterToolId?: number;
 }

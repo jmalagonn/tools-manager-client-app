@@ -3,14 +3,14 @@
         <tr>
             <th>Id</th>
             <th>Nombre</th>
-            <th>Acciones</th>
+            <th *ngIf="actions">Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let tool of tools">
             <td>{{ tool.toolGuid | lastCharacters }}</td>
             <td>{{ tool.toolName }}</td>
-            <td>
+            <td *ngIf="actions">
                 <button 
                     *ngIf="actions! | listActionsFilter:listActions.info"
                     class="action-button" 

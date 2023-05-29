@@ -7,6 +7,8 @@ import { ReturnToolsWithNews } from 'src/app/Core/models/Return-tool-with-news.m
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { ReturnToolsComponent } from '../../components/return-tools/return-tools.component';
+import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { ItemList } from 'src/app/Core/models/Item-list.model';
 
 @Component({
   selector: 'app-tools-output-detail',
@@ -15,10 +17,11 @@ import { ReturnToolsComponent } from '../../components/return-tools/return-tools
 })
 export class ToolsOutputDetailComponent implements OnInit {
   modalRef?: BsModalRef;
-  outputTool?: ToolOutput;
+  toolOutput?: ToolOutput;
   lentTools?: Tool[];
   availableTools?: Tool[];
   listActions = [ListActions.info, ListActions.check, ListActions.warning];
+  routeConstants = RouteConstants;
 
   constructor(
     private modalService: BsModalService,
@@ -33,43 +36,43 @@ export class ToolsOutputDetailComponent implements OnInit {
   getOutputTool(): void {    
     const outputToolId = this.route.snapshot.paramMap.get('id');
 
-    this.httpService.get<ToolOutput>(`OutputTools/${outputToolId}`)
+    this.httpService.get<ToolOutput>(`${ApiConstants.toolOutputsApi}/${outputToolId}`)
       .subscribe(response => {        
-        this.outputTool = response;
-        this.lentTools = this.outputTool.tools.filter(tool => !tool.returnDateTime);
-        this.availableTools = this.outputTool.tools.filter(tool => tool.returnDateTime);
+        this.toolOutput = response;
+        this.lentTools = this.toolOutput.tools.filter(tool => !tool.returnDateTime);
+        this.availableTools = this.toolOutput.tools.filter(tool => tool.returnDateTime);
       });
   }
 
   openReturnToolsModal() {
     this.modalRef = this.modalService.show(ReturnToolsComponent, {
       initialState: { 
-        outputTool: this.outputTool!
+        outputTool: this.toolOutput!
       }
     });
   }
 
   returnToolsWithNoIssues() {
-    this.httpService.post(`OutputTools/return-tools-with-no-issues/${this.outputTool!.toolOutputId}`, {})
+    this.httpService.post(`${ApiConstants.toolOutputsApi}/return-tools-with-no-issues/${this.toolOutput!.toolOutputId}`, {})
       .subscribe();
   }
 
   returnToolWithIssues(tool: Tool) {
     const body: ReturnToolsWithNews = {
-      outputToolId: this.outputTool!.toolOutputId,
+      outputToolId: this.toolOutput!.toolOutputId,
       toolNewsDto: {
         toolId: tool.toolId
       }
     };
 
-    this.httpService.post("OutputTools/return-tool-with-news", body)
+    this.httpService.post(`${ApiConstants.toolOutputsApi}/return-tool-with-news`, body)
       .subscribe(response => { 
         console.log(response);
       });
   }
 
   returnToolWithNoIssues(tool: Tool) {
-    this.httpService.post(`OutputTools/return-tool-with-no-issues/${this.outputTool!.toolOutputId}/${tool.toolId}`, {})
+    this.httpService.post(`${ApiConstants.toolOutputsApi}/return-tool-with-no-issues/${this.toolOutput!.toolOutputId}/${tool.toolId}`, {})
       .subscribe(response => { 
         console.log(response);
       });
@@ -84,5 +87,12 @@ export class ToolsOutputDetailComponent implements OnInit {
         this.returnToolWithNoIssues(actionEvent.tool);
         break;
     }
+  }
+
+  returnedToolRowClicked(item: ItemList) {
+    const tool = this.availableTools!.find(x => x.toolName.toLowerCase() == item.name.toLowerCase());
+
+    if (tool)
+      this.router.navigateByUrl(`${RouteConstants.toolsPath}/${tool!.toolId}`);
   }
 }

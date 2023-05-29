@@ -3,7 +3,7 @@
         <tr>
             <th>Nombre</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th *ngIf="showActionColumns">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +14,7 @@
             <td>
                 {{ tool.toolState.toolStateName }}
             </td>
-            <td class="text-end">
+            <td class="text-end" *ngIf="showActionColumns">
                 <a [routerLink]="['/tools-management', tool.toolId]" class="d-inline-flex me-2">
                     <fa-icon [icon]="faCircleInfo" class="text-primary" role="button"></fa-icon>
                 </a>

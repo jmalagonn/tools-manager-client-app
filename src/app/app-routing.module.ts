@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './Core/guards/auth.guard';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { RouteConstants } from './Core/constants/app-constants';
 
 const routes: Routes = [
   {
@@ -31,7 +32,7 @@ const routes: Routes = [
         loadChildren: () => import('./users-management/users-management.module').then(m => m.UsersManagementModule)
       },
       {
-        path: 'tools-output',
+        path: RouteConstants.toolOutput,
         loadChildren: () => import('./tools-output/tool-output.module').then(m => m.ToolOutputModule)
       },
       {

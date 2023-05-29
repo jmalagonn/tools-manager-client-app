@@ -58,6 +58,7 @@ export class AddEquipmentParameterComponent implements OnInit {
 
     const parameter: EquipmentParameter = {
       ...this.selectedItem!,
+      equipmentParameterEquipmentId: this.selectedItem!.equipmentParameterEquipmentId || 0,
       parameterValue: this.parameterValue
     };
 

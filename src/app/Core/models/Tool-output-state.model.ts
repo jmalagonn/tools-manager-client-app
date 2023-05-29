@@ -1,4 +1,4 @@
 export interface ToolOutputState {
-    outputToolStateId: number;
-    outputToolStateName: string;
+    toolOutputStateId: number;
+    toolOutputStateName: string;
 }

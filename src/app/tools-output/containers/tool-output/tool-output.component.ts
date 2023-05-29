@@ -27,8 +27,8 @@ export class ToolOutputComponent implements OnInit {
   getOutputToolsRegisters(): void {
     this.httpService.get<ToolOutput[]>('OutputTools').subscribe(response => {
       this.toolOutputsRegisters = response
-      this.openToolOutputs = this.toolOutputsRegisters.filter(toolOutput => toolOutput.toolOutputState.outputToolStateName == "Open");
-      this.closedToolOutputs = this.toolOutputsRegisters.filter(toolOutput => toolOutput.toolOutputState.outputToolStateName != "Open");
+      this.openToolOutputs = this.toolOutputsRegisters.filter(toolOutput => toolOutput.toolOutputState.toolOutputStateName == "Open");
+      this.closedToolOutputs = this.toolOutputsRegisters.filter(toolOutput => toolOutput.toolOutputState.toolOutputStateName != "Open");
     });
   }
 }

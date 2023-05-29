@@ -5,6 +5,7 @@ import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.mode
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
+import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
 import { User } from 'src/app/Core/models/User.model';
 import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
@@ -34,6 +35,8 @@ export class ToItemListPipe implements PipeTransform {
         return value.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, name: `${x.displayName} (${x.symbol})` }));
       case "toolParameter":
         return value.map((x: ToolParameter) => ({ id: x.id, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
+      case "tool":
+        return value.map((x: Tool) => ({ id: x.toolGuid.slice(-6), name: x.toolName }));
       default:
         return new Array();
     }

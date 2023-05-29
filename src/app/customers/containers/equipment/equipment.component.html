@@ -7,9 +7,6 @@
     <div class="row mt-3">
         <ng-container *ngIf="!editingEquipment; else editEquipmentSection">
             <app-equipment-info [equipment]="equipment"></app-equipment-info>
-            <div class="d-flex justify-content-center mt-3" *ngIf="userRoles.CustomersAdmin | userRoles">
-                <button class="btn btn-outline-primary" (click)="setEditingEquipment(true)">Editar equipo</button>
-            </div>
         </ng-container>
         <ng-template #editEquipmentSection>
             <app-edit-equipment 

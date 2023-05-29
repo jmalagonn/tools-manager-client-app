@@ -7,7 +7,7 @@ import { ToolOutputState } from 'src/app/Core/models/Tool-output-state.model';
 export class OutputToolStatePipe implements PipeTransform {
 
   transform(value: ToolOutputState, ...args: unknown[]): string {
-    return value.outputToolStateId == 1
+    return value.toolOutputStateId == 1
       ? "Abierto"
       : "Cerrado";
   }

@@ -22,7 +22,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let toolOutput of toolOutputs">
-                        <td>{{ toolOutput.toolOutputId }}</td>
+                        <td>
+                            <a [routerLink]="'/' + routeConstants.toolOutput + '/' + toolOutput.toolOutputId">
+                                {{ toolOutput.toolOutputId }}
+                            </a>
+                        </td>
                         <td>{{ toolOutput.outputDateTime | date:'dd/MM/YYYY' }}</td>
                         <td>{{ toolOutput.responsible.name }}</td>
                         <td>

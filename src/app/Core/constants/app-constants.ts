@@ -5,12 +5,6 @@ import { UserRoles } from "../enums/User-roles.enum";
 export class AppConstants {
     public static readonly MENU_ITEMS = [
         {
-            title: 'Salida de equipos y herramienta',
-            icon: faToolbox,
-            path: 'tools-output',
-            userRoles: [UserRoles.AppAdmin, UserRoles.CompanyAdmin, UserRoles.ToolsAdmin, UserRoles.ToolsUser]
-        },
-        {
             title: 'Administración de equipos y herramienta',
             icon: faScrewdriverWrench,
             path: 'tools-management',
@@ -54,6 +48,7 @@ export class RouteConstants {
     public static readonly usersManagement = 'users-management';
     public static readonly toolsPath = "tools-management";
     public static readonly addToolPath = "add-tool";
+    public static readonly toolOutput = "tool-output";
 }
 
 export class ApiConstants {

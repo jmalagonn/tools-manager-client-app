@@ -13,4 +13,5 @@ export class ToolsListComponent {
   faCircleCheck = faCircleCheck;
   
   @Input() tools?: Tool[];
+  @Input() showActionColumns = true;
 }

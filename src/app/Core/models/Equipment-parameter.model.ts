@@ -1,4 +1,5 @@
 export interface EquipmentParameter {
+    equipmentParameterEquipmentId: number;
     equipmentParameterId: number;
     name: string;
     measurementUnitId: number;

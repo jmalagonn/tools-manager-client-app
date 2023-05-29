@@ -60,7 +60,7 @@ export class EditEquipmentComponent implements OnInit {
 
   addNewParameter(parameter: EquipmentParameter) {
     if (parameter.equipmentParameterId != 0 &&
-      this.tempEquipmentParameters.find(x => x.equipmentParameterId == parameter.equipmentParameterId)) {
+      this.tempEquipmentParameters.find(x => x.equipmentParameterEquipmentId == parameter.equipmentParameterEquipmentId)) {
       this.toastrService.error(ErrorConstants.parameterAlreadyExists);
       return;
     }

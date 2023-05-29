@@ -1,17 +1,22 @@
-<div class="container" *ngIf="outputTool">
+<div class="container" *ngIf="toolOutput">
     <h2 class="text-center mt-3">Registro de salida de herramienta - Detalle</h2>
     <div class="row mt-3">
         <div class="col">
             <ul class="list-unstyled">
                 <li>
-                    <p><b>Fecha de creación:</b> {{ outputTool.outputDateTime | date:'medium' }}</p>
+                    <p><b>Fecha de creación:</b> {{ toolOutput.outputDateTime | date:'dd/MM/YYYY' }}</p>
                 </li>
                 <li>
-                    <p><b>Responsable:</b> {{ outputTool.responsible.name }}</p>
+                    <p>
+                        <b>Responsable: </b>
+                        <a [routerLink]="'/' + routeConstants.usersManagement + '/' + toolOutput.responsible.userId">{{ toolOutput.responsible.name }}</a>
+                    </p>
                 </li>
                 <li>
-                    <p><b>Estado:</b> 
-                    {{ outputTool.toolOutputState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}</p>
+                    <p>
+                        <b>Estado: </b>
+                        {{ toolOutput.toolOutputState.toolOutputStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
+                    </p>
                 </li>
             </ul>
         </div>
@@ -19,17 +24,21 @@
     <div class="row mt-3">
         <div class="col">
             <h4 class="text-center mt-3">Herramientas prestadas</h4>
-            <tools-list [tools]="lentTools" [actions]="listActions" (actionButtonClickedEvent)="actionButtonClicked($event)"></tools-list>
+            <tools-list [tools]="lentTools" [actions]="listActions"
+                (actionButtonClickedEvent)="actionButtonClicked($event)"></tools-list>
             <div class="text-center" *ngIf="lentTools?.length">
-                <button class="btn btn-outline-primary btn-sm"
-                    (click)="returnToolsWithNoIssues()">Devolver todo sin novedad</button>
+                <button class="btn btn-outline-primary btn-sm" (click)="returnToolsWithNoIssues()">Devolver todo sin
+                    novedad</button>
             </div>
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
             <h4 class="text-center mt-3">Herramientas devueltas</h4>
-            <tools-list [tools]="availableTools"></tools-list>
+            <app-items-list
+                [items]="availableTools | toItemList:'tool'"
+                (rowClickedEvent)="returnedToolRowClicked($event)">                
+            </app-items-list>
         </div>
     </div>
 </div>

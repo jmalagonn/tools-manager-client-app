@@ -48,6 +48,7 @@ export class AddNewEquipmentParameterComponent implements OnInit {
     if(this.equipmentParameterForm!.invalid) return;
 
     this.addNewEquipmentParameterEvent.emit({
+      equipmentParameterEquipmentId: 0,
       equipmentParameterId: 0,
       name: this.equipmentParameterForm!.controls["equipmentParameterName"].value,
       measurementUnitId: this.equipmentParameterForm!.controls["measurementUnit"].value.measurementUnitId,

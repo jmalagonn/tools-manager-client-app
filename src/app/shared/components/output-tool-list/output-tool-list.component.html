@@ -2,12 +2,15 @@
     <thead>
         <tr>
             <th>
+                Id
+            </th>
+            <th>
                 Fecha de salida
             </th>
             <th>
                 Estado
             </th>
-            <th>
+            <th *ngIf="actions">
                 Acciones
             </th>
         </tr>
@@ -15,12 +18,17 @@
     <tbody>
         <tr *ngFor="let outputTool of outputsTool">
             <td>
+                <a [routerLink]="'/' + routeConstants.toolOutput + '/' + outputTool.toolOutputId">
+                    {{ outputTool.toolOutputId }}
+                </a>
+            </td>
+            <td>
                 {{ outputTool.outputDateTime | date }}
             </td>
             <td>
-                {{ outputTool.toolOutputState.outputToolStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
+                {{ outputTool.toolOutputState.toolOutputStateName.toLowerCase() == "open" ? "Abierto" : "Cerrado" }}
             </td>
-            <td>
+            <td *ngIf="actions">
                 <button *ngIf="actions" class="action-button">
                     <fa-icon [icon]="faCircleInfo" class="text-primary"></fa-icon>
                 </button>
