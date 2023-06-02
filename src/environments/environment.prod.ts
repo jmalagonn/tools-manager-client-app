@@ -1,5 +1,5 @@
 export const environment = {
     production: true,    
-    apiUrl: "https://31.170.165.178/api/",
+    apiUrl: "https://management.gmcrefrigeracion.com/api/",
     filesUrl: "",
 };
