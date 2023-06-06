@@ -6,7 +6,7 @@ import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
-import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
+import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { User } from 'src/app/Core/models/User.model';
 import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
 

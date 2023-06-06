@@ -1,5 +1,5 @@
-import { ToolParameter } from "./ToolParameter.model";
-import { ToolState } from "./ToolState.model";
+import { ToolParameter } from "./Tool-parameter.model";
+import { ToolState } from "./Tool-state.model";
 
 export interface Tool {
     toolId: number;

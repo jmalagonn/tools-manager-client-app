@@ -4,7 +4,7 @@ import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
-import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
+import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({

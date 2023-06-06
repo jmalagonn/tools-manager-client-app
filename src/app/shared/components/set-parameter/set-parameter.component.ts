@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
-import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
+import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 
 @Component({
   selector: 'app-set-parameter',

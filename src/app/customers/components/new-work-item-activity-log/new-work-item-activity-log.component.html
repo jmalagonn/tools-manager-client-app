@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center"  *ngIf="!addingItem">
-    <button class="btn btn-sm btn-outline-primary" (click)="setAddingItem(true)">Agregar nuevo trabajo</button>
+<div class="d-flex justify-content-center mb-3"  *ngIf="!addingItem">
+    <button class="btn btn-outline-primary" (click)="setAddingItem(true)">Agregar nuevo trabajo</button>
 </div>
-<form *ngIf="addingItem && itemForm" [formGroup]="itemForm" (ngSubmit)="itemForm!.valid && onSubmit()">
+<form *ngIf="addingItem && itemForm" class="mb-3" [formGroup]="itemForm" (ngSubmit)="itemForm!.valid && onSubmit()">
     <div class="form-floating">
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" formControlName="description"></textarea>
         <label for="floatingTextarea">Descripción del trabajo realizado</label>

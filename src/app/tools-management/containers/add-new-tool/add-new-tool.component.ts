@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
-import { ToolParameter } from 'src/app/Core/models/ToolParameter.model';
+import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({

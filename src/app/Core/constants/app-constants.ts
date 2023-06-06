@@ -5,6 +5,12 @@ import { UserRoles } from "../enums/User-roles.enum";
 export class AppConstants {
     public static readonly MENU_ITEMS = [
         {
+            title: 'Clientes',
+            icon: faBuilding,
+            path: 'customers',
+            userRoles: [UserRoles.AppAdmin, UserRoles.CompanyAdmin, UserRoles.CustomersAdmin, UserRoles.CustomersUser]
+        },
+        {
             title: 'Administración de equipos y herramienta',
             icon: faScrewdriverWrench,
             path: 'tools-management',
@@ -15,12 +21,6 @@ export class AppConstants {
             icon: faUserGroup,
             path: 'users-management',
             userRoles: [UserRoles.AppAdmin, UserRoles.CompanyAdmin, UserRoles.UsersAdmin, UserRoles.UsersUser]
-        },
-        {
-            title: 'Clientes',
-            icon: faBuilding,
-            path: 'customers',
-            userRoles: [UserRoles.AppAdmin, UserRoles.CompanyAdmin, UserRoles.CustomersAdmin, UserRoles.CustomersUser]
         },
         {
             title: 'Editar perfil',
@@ -64,14 +64,17 @@ export class ApiConstants {
     public static readonly userRolesApi = "UserRole";
     public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
     public static readonly workItemApi = "WorkItem";
-    public static readonly workItemTypesApi = "WorkItem/workItemTypes";
+    public static readonly workItemTypesApi = `${this.workItemApi}/workItemTypes`;
     public static readonly workOrderApi = "WorkOrder";
     public static readonly toolsApi = "Tools";
     public static readonly toolParametersApi = "Tools/parameters";
     public static readonly toolOutputsApi = "ToolOutputs";
+    public static readonly workItemStateApi = `${this.workItemApi}/set-work-state`;
+    public static readonly workStateApi = "WorkState";
 }
 
 export class ErrorConstants {
     public static readonly equipmentParameterWrongValue = "No se ha ingresado un valor válido para el parámetro";
-    public static readonly parameterAlreadyExists = "El parámetro para el equipo ya existe."
+    public static readonly parameterAlreadyExists = "El parámetro para el equipo ya existe.";
+    public static readonly atLeastOneActivityLogMusBeAdded = "Debe agregar al menos un trabajo realizado.";
 }
