@@ -6,6 +6,9 @@ import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { HttpService } from 'src/app/services/http.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { UploadFilesModalComponent } from 'src/app/shared/components/upload-files-modal/upload-files-modal.component';
+import { AddTool } from 'src/app/Core/models/Add-tool.model';
 
 @Component({
   selector: 'app-add-new-tool',
@@ -17,14 +20,16 @@ export class AddNewToolComponent implements OnInit {
   isAddingExistingParameter = false;
   isAddingNewParameter = false;
   addNewToolForm?: FormGroup;
-  tool?: Partial<Tool>;
+  tool?: Partial<AddTool>;
   toolParameters?: ToolParameter[];
   tempParameter?: ToolParameter;
+  modalRef?: NgbModalRef;
 
   constructor(
     private fb: FormBuilder,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit(): void {
@@ -72,7 +77,7 @@ export class AddNewToolComponent implements OnInit {
     
     this.tool = {
       ...this.tool,
-      toolName: this.addNewToolForm!.controls["toolName"].value,
+      name: this.addNewToolForm!.controls["toolName"].value,
     };
 
     this.httpService.post<Tool>(ApiConstants.toolsApi, this.tool)
@@ -100,5 +105,9 @@ export class AddNewToolComponent implements OnInit {
   setExistingParameter(item: ItemList) {
     this.tempParameter = this.toolParameters!.find(x => x.id == item.id);
     this.setIsAddingExistingParameter(true);
+  }
+
+  openAddFilesModal() {
+    this.modalRef = this.modalService.open(UploadFilesModalComponent, { size: 'lg' });
   }
 }

@@ -16,7 +16,8 @@
             </div>
         </div>
         <div class="text-center mt-3" *ngIf="!isAddingAdditionalInfo; else addingAdditionalInfo">
-            <button class="btn btn-outline-primary" (click)="initAdditionalInformation()">Agregar información
+            <button class="btn btn-outline-primary" (click)="openAddFilesModal()">Agregar imágenes</button>
+            <button class="btn btn-outline-primary ms-2" (click)="initAdditionalInformation()">Agregar información
                 adicional</button>
             <button class="btn btn-outline-primary ms-2" [disabled]="!addNewToolForm!.valid" (click)="addNewTool()">Guardar</button>
         </div>

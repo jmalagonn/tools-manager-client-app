@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    apiUrl: "https://management.gmcrefrigeracion.com/api/",
+    apiUrl: "https://localhost:7091/api/",
     filesUrl: "https://localhost:7091/"
 };
