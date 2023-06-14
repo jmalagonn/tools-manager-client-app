@@ -44,7 +44,8 @@ export class AddNewToolComponent implements OnInit {
 
   initForm(): void {
     this.addNewToolForm = this.fb.group({
-      toolName: [null, Validators.required]
+      toolName: [null, Validators.required],
+      files: [new Array()]
     })
   }
 
@@ -74,13 +75,15 @@ export class AddNewToolComponent implements OnInit {
 
   addNewTool() {
     if (!this.addNewToolForm!.valid) return;
-    
-    this.tool = {
-      ...this.tool,
-      name: this.addNewToolForm!.controls["toolName"].value,
-    };
 
-    this.httpService.post<Tool>(ApiConstants.toolsApi, this.tool)
+    const files: File[] = this.addNewToolForm!.controls["files"].value!;
+    const data = new FormData();
+
+    data.append("name", this.addNewToolForm!.controls["toolName"].value);
+    data.append("toolParameters", JSON.stringify(this.tool!.toolParameters!));
+    files.map(file => data.append("files", file));
+
+    this.httpService.post<Tool>(ApiConstants.toolsApi, data)
       .subscribe(() => this.router.navigateByUrl(`/${RouteConstants.toolsPath}`));
   }
 
@@ -109,5 +112,11 @@ export class AddNewToolComponent implements OnInit {
 
   openAddFilesModal() {
     this.modalRef = this.modalService.open(UploadFilesModalComponent, { size: 'lg' });
+    this.modalRef!.componentInstance.files = this.addNewToolForm!.controls["files"].value;
+    this.modalRef.closed.subscribe((files: File[]) => {
+      if(!files || !files.length) return;
+
+      this.addNewToolForm!.patchValue({files});
+    });
   }
 }

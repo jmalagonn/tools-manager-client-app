@@ -16,21 +16,18 @@ export class HttpService {
   } 
 
   post<T>(path: string, body: object): Observable<T> {
-    const headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": "true",
-      "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
-      "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    });
-
-    return this.httpClient.post<T>(this.api_url + path, body, { headers });
+    return this.httpClient.post<T>(this.api_url + path, body);
   }
 
   put<T>(path: string, body: object): Observable<T> {
     return this.httpClient.put<T>(this.api_url + path, body);
   }
 
-  postWithOptions<T>(path: string, body: object, options: any): Observable<HttpEvent<T>> {
-    return this.httpClient.post<T>(this.api_url + path, body, options);
+  postFormData<T>(path: string, body: object): Observable<T> {
+    const headers = new HttpHeaders({
+      "Content-Type": "multipart/form-data"
+    });
+
+    return this.httpClient.post<T>(this.api_url + path, body, {headers: headers});
   } 
 }

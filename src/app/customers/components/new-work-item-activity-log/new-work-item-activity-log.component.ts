@@ -50,10 +50,7 @@ export class NewWorkItemActivityLogComponent {
 
   onSubmit() {
     const files: File[] = this.itemForm!.controls["files"].value!;
-    const data = new FormData();    
-    const headers = new HttpHeaders({
-      "Content-Type": "multipart/form-data"
-    });
+    const data = new FormData();
 
     data.append('workItemId', this.workItemId!.toString());
     data.append('description', this.itemForm!.controls["description"].value!);
@@ -62,7 +59,7 @@ export class NewWorkItemActivityLogComponent {
       data.append('recievedFiles', file);
     });
 
-    this.httpService.postWithOptions(`${ApiConstants.workItemActivityLogApi}`, data, headers)
+    this.httpService.post(`${ApiConstants.workItemActivityLogApi}`, data)
       .subscribe(() => {
         this.workItemActivityLogCreatedEvent.emit();
         this.setAddingItem(false);
