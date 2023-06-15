@@ -31,6 +31,7 @@ import { EditModelComponent } from './components/edit-model/edit-model.component
 import { SectionTitleComponent } from './components/section-title/section-title.component';
 import { AddNewParameterComponent } from './components/add-new-parameter/add-new-parameter.component';
 import { SetParameterComponent } from './components/set-parameter/set-parameter.component';
+import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SetParameterComponent } from './components/set-parameter/set-parameter.
     SectionTitleComponent,
     AddNewParameterComponent,
     SetParameterComponent,
+    ImageThumbnailComponent,
   ],
   imports: [
     CommonModule,    
@@ -104,6 +106,7 @@ import { SetParameterComponent } from './components/set-parameter/set-parameter.
     SectionTitleComponent,
     AddNewParameterComponent,
     SetParameterComponent,
+    ImageThumbnailComponent,
   ]
 })
 export class SharedModule { }

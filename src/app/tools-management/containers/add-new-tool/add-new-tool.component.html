@@ -50,5 +50,14 @@
                 </div>
             </div>
         </ng-template>
+        <div class="row">
+            <h2 class="text-center mt-3">Imágenes añadidas</h2>
+            <ngb-carousel *ngIf="addNewToolForm">
+                <ng-template ngbSlide *ngFor="let img of addNewToolForm.controls['files'].value">
+                    <app-image-thumbnail *ngIf="addNewToolForm" [compImage]="img"></app-image-thumbnail>
+                </ng-template>
+            </ngb-carousel>
+            
+        </div>
     </form>
 </section>
