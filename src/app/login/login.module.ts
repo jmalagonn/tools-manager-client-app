@@ -5,6 +5,8 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './containers/login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { JwtInterceptor } from '../Core/interceptors/jwt.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,6 +18,6 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     CommonModule,
     LoginRoutingModule,
     SharedModule,
-  ]
+  ],
 })
 export class LoginModule { }
