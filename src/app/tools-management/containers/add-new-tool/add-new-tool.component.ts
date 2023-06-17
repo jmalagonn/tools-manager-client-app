@@ -110,13 +110,20 @@ export class AddNewToolComponent implements OnInit {
     this.setIsAddingExistingParameter(true);
   }
 
-  openAddFilesModal() {
-    this.modalRef = this.modalService.open(UploadFilesModalComponent, { size: 'lg' });
-    this.modalRef!.componentInstance.files = this.addNewToolForm!.controls["files"].value;
-    this.modalRef.closed.subscribe((files: File[]) => {
-      if(!files || !files.length) return;
+  onSelectFile(event: any) {
+    const tempFiles: File[] = this.addNewToolForm!.controls["files"].value;
+    tempFiles.push(...event.addedFiles);
 
-      this.addNewToolForm!.patchValue({files});
-    });
+    this.addNewToolForm!.patchValue({files: tempFiles});
+  }
+
+  onRemoveFile(file: File) {
+    if (!this.addNewToolForm!.controls["files"].value)
+      return;
+      
+    const tempFiles: File[] = this.addNewToolForm!.controls["files"].value;
+    const resFiles: File[] = tempFiles.filter(x => x.name != file.name);
+
+    this.addNewToolForm!.patchValue({files: resFiles});
   }
 }

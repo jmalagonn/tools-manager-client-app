@@ -1,5 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AppFile } from 'src/app/Core/models/AppFile.model';
 
 @Component({
   selector: 'app-image-thumbnail',
@@ -10,16 +11,20 @@ export class ImageThumbnailComponent implements OnChanges {
   imgSrc?: any;
 
   @Input() compImage?: File;
+  @Input() appFile?: AppFile;
 
   constructor(private sanitizer: DomSanitizer) {}
   
   ngOnChanges(): void {
+    console.log(this.appFile);
     this.generateImageThumbnail();
   }
 
   generateImageThumbnail(): void {
-    if (!this.compImage) return;
+    if (!this.compImage && !this.appFile) return;
 
-    this.imgSrc = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.compImage!));
+    this.imgSrc = !this.appFile 
+     ? this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.compImage!))
+     : this.appFile.url;
   }
 }

@@ -107,6 +107,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     AddNewParameterComponent,
     SetParameterComponent,
     ImageThumbnailComponent,
+    NgxDropzoneModule,
   ]
 })
 export class SharedModule { }

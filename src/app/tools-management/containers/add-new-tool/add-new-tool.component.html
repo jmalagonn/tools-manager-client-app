@@ -16,7 +16,6 @@
             </div>
         </div>
         <div class="text-center mt-3" *ngIf="!isAddingAdditionalInfo; else addingAdditionalInfo">
-            <button class="btn btn-outline-primary" (click)="openAddFilesModal()">Agregar imágenes</button>
             <button class="btn btn-outline-primary ms-2" (click)="initAdditionalInformation()">Agregar información
                 adicional</button>
             <button class="btn btn-outline-primary ms-2" [disabled]="!addNewToolForm!.valid" (click)="addNewTool()">Guardar</button>
@@ -51,13 +50,17 @@
             </div>
         </ng-template>
         <div class="row">
-            <h2 class="text-center mt-3">Imágenes añadidas</h2>
-            <ngb-carousel *ngIf="addNewToolForm">
-                <ng-template ngbSlide *ngFor="let img of addNewToolForm.controls['files'].value">
-                    <app-image-thumbnail *ngIf="addNewToolForm" [compImage]="img"></app-image-thumbnail>
-                </ng-template>
-            </ngb-carousel>
-            
+            <h2 class="text-center mt-3">Añadir imágenes</h2>
+            <ngx-dropzone *ngIf="addNewToolForm" (change)="onSelectFile($event)" [accept]="'image/*'">
+                <ngx-dropzone-label>Haga click o arrastre hasta aquí para añadir archivos</ngx-dropzone-label>
+                <ngx-dropzone-image-preview 
+                    *ngFor="let f of addNewToolForm.controls['files'].value"
+                    [file]="f"
+                    [removable]="true" 
+                    (removed)="onRemoveFile(f)" 
+                    ngProjectAs="ngx-dropzone-preview">
+                </ngx-dropzone-image-preview>
+            </ngx-dropzone>            
         </div>
     </form>
 </section>
