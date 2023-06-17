@@ -18,14 +18,24 @@ export class JwtInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    request = request.clone({
+      setHeaders: {
+        AccessControlAllowOrigin: '*'
+      }
+    })
 
     this.accountService.currentAccount$.pipe(take(1))
       .subscribe(account => this.currentAccount = account!);
 
+      // "Access-Control-Allow-Origin": "*",
+      // "Access-Control-Allow-Credentials": "true",
+      // "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+      // "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+
     if(this.currentAccount) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.currentAccount.token}`
+          Authorization: `Bearer ${this.currentAccount.token}`,
         }
       });
     }
