@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Nueva Orden de trabajo</h4>
+    <h2 class="modal-title pull-left">Nueva Orden de trabajo</h2>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="activeModal.close()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -8,8 +8,19 @@
     <app-add-work-order-form 
         [branch]="branch"
         (woEvent)="onSaveWO($event)"></app-add-work-order-form>
+        <h2 class="text-center mt-3">Añadir imágenes</h2>
+    <ngx-dropzone (change)="onSelectFile($event)" [accept]="'image/*'">
+        <ngx-dropzone-label>Haga click o arrastre hasta aquí para añadir archivos</ngx-dropzone-label>
+        <ngx-dropzone-image-preview 
+            *ngFor="let f of files"
+            [file]="f"
+            [removable]="true" 
+            (removed)="onRemoveFile(f)" 
+            ngProjectAs="ngx-dropzone-preview">
+        </ngx-dropzone-image-preview>
+    </ngx-dropzone>  
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" (click)="addWorkOrderForm.emitWOInfo()">Guardar OT</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Cerrar</button>
+    <button type="button" class="btn btn-outline-primary" (click)="addWorkOrderForm.emitWOInfo()">Guardar</button>
 </div>

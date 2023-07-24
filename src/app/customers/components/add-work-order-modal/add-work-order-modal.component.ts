@@ -12,6 +12,8 @@ import { AddWorkOrderFormComponent } from '../add-work-order-form/add-work-order
   styleUrls: ['./add-work-order-modal.component.scss']
 })
 export class AddWorkOrderModalComponent {
+  files: File[] = [];
+
   @Input() branch?: Branch;
 
   @ViewChild(AddWorkOrderFormComponent) addWorkOrderForm!: AddWorkOrderFormComponent;
@@ -22,11 +24,21 @@ export class AddWorkOrderModalComponent {
     private httpService: HttpService
   ) {}
 
+  onSelectFile(event: any) {
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemoveFile(file: File) {
+    this.files = this.files.filter(x => x != file);
+  }
+
   onSaveWO(wo: WorkOrder) {
     if(!wo.workItems.length) {
       this.toastr.error("Debe agregar al menos un ítem de trabajo.");
       return;
     };
+
+    const form = new FormData();
 
     const body: WorkOrder = {
       workOrderDescription: wo.workOrderDescription,
