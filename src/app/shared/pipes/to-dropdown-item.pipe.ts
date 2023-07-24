@@ -30,7 +30,10 @@ export class ToDropdownItemPipe implements PipeTransform {
       case "equipmentParameter":
         return values.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, description: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
       case "measurementUnits":
-        return values.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, description: `${x.displayName} (${x.symbol})` }));
+        return values.map((x: MeasurementUnit) => ({ 
+          id: x.measurementUnitId, 
+          description: x.displayName == 'NA' ? 'NA' : `${x.displayName} (${x.symbol})`
+        }));
       case "employee":
         return values.map((x: Employee) => ({ id: x.userId, description: x.name }));
       default:

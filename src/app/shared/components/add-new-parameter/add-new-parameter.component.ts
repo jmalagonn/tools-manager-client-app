@@ -34,7 +34,7 @@ export class AddNewParameterComponent implements OnInit{
     this.addParameterForm = this.fb.group({
       parameterName: [null, Validators.required],
       measurementUnitId: [null, Validators.required],
-      measurementUnitSymbol: [null, Validators.required],
+      measurementUnitSymbol: [null],
       parameterValue: [null, Validators.required]
     })
   }

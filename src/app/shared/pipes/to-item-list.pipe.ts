@@ -34,7 +34,12 @@ export class ToItemListPipe implements PipeTransform {
       case "measurementUnits":
         return value.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, name: `${x.displayName} (${x.symbol})` }));
       case "toolParameter":
-        return value.map((x: ToolParameter) => ({ id: x.id, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
+        return value.map((x: ToolParameter) => ({ 
+          id: x.id, 
+          name: x.measurementUnitSymbol 
+            ? `${x.name} | Magnitud: ${x.measurementUnitSymbol}`
+            : `${x.name}`
+        }));
       case "tool":
         return value.map((x: Tool) => ({ id: x.toolGuid.slice(-6), name: x.toolName }));
       default:

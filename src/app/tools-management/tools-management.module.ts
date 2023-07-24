@@ -14,6 +14,7 @@ import { AddToolsOutputModalComponent } from './components/add-tools-output-moda
 import { SelectedToolsListComponent } from './components/selected-tools-list/selected-tools-list.component';
 import { AvailableToolsListComponent } from './components/available-tools-list/available-tools-list.component';
 import { ToolOutputsListComponent } from './components/tool-outputs-list/tool-outputs-list.component';
+import { ParameterValuePipe } from './pipes/parameter-value.pipe';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ToolOutputsListComponent } from './components/tool-outputs-list/tool-ou
     SelectedToolsListComponent,
     AvailableToolsListComponent,
     ToolOutputsListComponent,
+    ParameterValuePipe,
   ],
   imports: [
     CommonModule,

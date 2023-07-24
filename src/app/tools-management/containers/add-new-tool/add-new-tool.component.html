@@ -11,8 +11,10 @@
             <h2 class="text-center">Parámetros añadidos</h2>
             <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let parameter of tool.toolParameters">
                 <label class="form-label">{{ parameter.name }}</label>
-                <input type="text" class="form-control"
-                    [value]="parameter.parameterValue + ' | ' + parameter.measurementUnitSymbol" disabled />
+                <input 
+                    type="text" class="form-control"
+                    [value]="parameter | parameterValue" 
+                    disabled />
             </div>
         </div>
         <div class="text-center mt-3" *ngIf="!isAddingAdditionalInfo; else addingAdditionalInfo">
