@@ -1,0 +1,51 @@
+<ng-container *ngIf="parametersList && !isCreatingNewParameter && !isSettingParameter">
+    <table class="table" *ngIf="parametersList.length">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Magnitud</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let parameter of parametersList">
+                <td>{{ parameter.name }}</td>
+                <td>{{ parameter.measurementUnitSymbol }}</td>
+                <td>
+                    <fa-icon 
+                        [icon]="faPlus" 
+                        role="button"
+                        (click)="onSetParameter(parameter)"></fa-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <p *ngIf="!parametersList.length">No hay más parámetros para agregar.</p>
+    </div>
+    <div class="text-center">
+        <button 
+            class="btn btn-outline-primary"
+            type="button"
+            (click)="onCreateNewParameter()">
+            Crear nuevo parámetro
+        </button>
+        <button 
+            class="btn btn-outline-danger ms-3"
+            type="button"
+            (click)="onCancelAddParameter()">
+            Cancelar
+        </button>
+    </div>
+</ng-container>
+
+<app-add-new-parameter
+    *ngIf="isCreatingNewParameter"
+    (addNewParameterEvent)="onNewParameterCreated($event)"
+    (cancelEvent)="onCancelCreateNewParameter()"></app-add-new-parameter>
+
+<app-set-parameter
+    *ngIf="isSettingParameter"
+    [toolParameter]="parameterToSet"
+    (cancelEvent)="onCancelSetParameter()"
+    (setParameterEvent)="parameterWasSet($event)"></app-set-parameter>

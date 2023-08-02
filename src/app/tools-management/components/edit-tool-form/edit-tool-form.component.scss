@@ -1,0 +1,24 @@
+.parameter-box {
+    display: flex;
+    align-items: center;
+    padding-right: .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .375rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+    &:focus-within {
+        box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+    }
+
+    input {
+        border: none;
+
+        &:focus {
+            box-shadow: none;            
+        }
+    }
+
+    fa-icon {
+        color: #DC3545;
+    }
+}

@@ -1,10 +1,42 @@
 <form *ngIf="editToolForm" [formGroup]="editToolForm" (ngSubmit)="editToolForm.valid && onSubmit()">
-    <div class="mb-3">
-        <label for="toolName" class="form-label fw-bold">Nombre</label>
-        <input type="text" class="form-control" id="toolName" formControlName="toolName">
+    <div class="row g-3 mb-3">
+        <div class="col-lg-6">
+            <label for="toolName" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="toolName" formControlName="toolName">
+        </div>
+        <ng-container *ngIf="tool!.toolParameters">
+            <div class="col-lg-6" *ngFor="let toolParameter of tool!.toolParameters!">
+                <label [for]="'toolParameter-' + toolParameter.id" class="form-label">{{ toolParameter.name }}</label>
+                <div class="parameter-box">
+                    <input 
+                        type="text" 
+                        name="'toolParameter-' + toolParameter.id" 
+                        [value]="toolParameter.parameterValue"
+                        class="form-control"
+                        (change)="onChangeParameterValue($event, toolParameter)" />
+                    <fa-icon [icon]="faTrash" role="button" (click)="onDeleteParameter(toolParameter)"></fa-icon>
+                </div>
+            </div>        
+            <div class="text-center">
+                <button 
+                    *ngIf="!isAddingToolParameter" 
+                    class="btn btn-outline-primary" 
+                    type="button"
+                    (click)="onAddMoreParameters()">
+                    Agregar más elementos
+                </button>
+                <app-add-parameter 
+                    *ngIf="isAddingToolParameter" 
+                    [existingParameters]="toolParameters"
+                    [parametersToFilter]="tool!.toolParameters"
+                    (newParameterAddedEvent)="onAddedNewParameter($event)"
+                    (cancelAddParameterEvent)="onCancelAddMoreParameters()">
+                </app-add-parameter>
+            </div>
+        </ng-container>
     </div>
-    <div>
+    <div class="text-end" *ngIf="!isAddingToolParameter">
         <button class="btn btn-outline-primary" [disabled]="!editToolForm.valid" type="submit">Guardar</button>
-        <button class="btn btn-outline-dark ms-3" type="button" (click)="onCancel()">Cancelar</button>
+        <button class="btn btn-outline-danger ms-3" type="button" (click)="onCancel()">Cancelar</button>
     </div>
 </form>

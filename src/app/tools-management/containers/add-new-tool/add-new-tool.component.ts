@@ -71,6 +71,8 @@ export class AddNewToolComponent implements OnInit {
     } else {
       this.tool.toolParameters.push(newParameter);
     };
+
+    this.setIsAddingAdditionalInfo(false);
   }
 
   addNewTool() {
