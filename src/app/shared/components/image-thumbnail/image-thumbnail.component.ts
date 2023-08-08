@@ -16,7 +16,6 @@ export class ImageThumbnailComponent implements OnChanges {
   constructor(private sanitizer: DomSanitizer) {}
   
   ngOnChanges(): void {
-    console.log(this.appFile);
     this.generateImageThumbnail();
   }
 

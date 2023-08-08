@@ -1,0 +1,10 @@
+<ngx-dropzone (change)="onSelectFile($event)" [accept]="'image/*'">
+    <ngx-dropzone-label>Haga click o arrastre hasta aquí para añadir archivos</ngx-dropzone-label>
+    <ngx-dropzone-image-preview 
+        *ngFor="let f of files"
+        [file]="f"
+        [removable]="true" 
+        (removed)="onRemoveFile(f)" 
+        ngProjectAs="ngx-dropzone-preview">
+    </ngx-dropzone-image-preview>
+</ngx-dropzone>

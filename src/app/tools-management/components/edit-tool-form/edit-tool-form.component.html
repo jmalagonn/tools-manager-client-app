@@ -35,6 +35,13 @@
             </div>
         </ng-container>
     </div>
+    <div class="row mb-3">
+        <h2 class="text-center">Imágenes</h2>
+        <app-add-images 
+            [appFiles]="tool!.files"
+            (addFilesEvent)="onAddFile($event)"
+            (removeFileEvent)="onDeleteFile($event)"></app-add-images>
+    </div>
     <div class="text-end" *ngIf="!isAddingToolParameter">
         <button class="btn btn-outline-primary" [disabled]="!editToolForm.valid" type="submit">Guardar</button>
         <button class="btn btn-outline-danger ms-3" type="button" (click)="onCancel()">Cancelar</button>

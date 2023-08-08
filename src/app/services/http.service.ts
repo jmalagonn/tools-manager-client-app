@@ -23,7 +23,7 @@ export class HttpService {
       "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     });
 
-    return this.httpClient.post<T>(this.api_url + path, body, {headers});
+    return this.httpClient.post<T>(this.api_url + path, body);
   }
 
   put<T>(path: string, body: object): Observable<T> {

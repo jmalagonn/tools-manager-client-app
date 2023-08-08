@@ -33,6 +33,7 @@ import { AddNewParameterComponent } from './components/add-new-parameter/add-new
 import { SetParameterComponent } from './components/set-parameter/set-parameter.component';
 import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 import { AddParameterComponent } from './components/add-parameter/add-parameter.component';
+import { AddImagesComponent } from './components/add-images/add-images.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AddParameterComponent } from './components/add-parameter/add-parameter.
     SetParameterComponent,
     ImageThumbnailComponent,
     AddParameterComponent,
+    AddImagesComponent,
   ],
   imports: [
     CommonModule,    
@@ -111,6 +113,7 @@ import { AddParameterComponent } from './components/add-parameter/add-parameter.
     ImageThumbnailComponent,
     NgxDropzoneModule,
     AddParameterComponent,
+    AddImagesComponent,
   ]
 })
 export class SharedModule { }

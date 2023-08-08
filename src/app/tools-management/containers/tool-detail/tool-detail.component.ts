@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faImage } from '@fortawesome/free-solid-svg-icons';
-import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { Tool } from 'src/app/Core/models/Tool.model';
+import { UpdateTool } from 'src/app/Core/models/tool/Update-tool.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -34,8 +33,16 @@ export class ToolDetailComponent {
     this.updatingTool = value;
   }
 
-  onToolUpdated(tool: Tool) {
-    this.httpService.put<Tool>(ApiConstants.toolsApi, tool)
+  onToolUpdated(updToDateTool: UpdateTool) {
+    const formData = new FormData();
+
+    formData.append("id", updToDateTool.id.toString());
+    formData.append("name", updToDateTool.name);
+    formData.append("toolParameters", JSON.stringify(updToDateTool.toolParameters));
+    formData.append("deletedFileIds", updToDateTool.deletedFileIds.length ? updToDateTool.deletedFileIds.toString() : "[]");
+    updToDateTool.addedFiles.map(file => formData.append("addedFiles", file));
+
+    this.httpService.put<Tool>(ApiConstants.toolsApi, formData)
       .subscribe(response => {
         this.tool = response;
         this.updatingTool = false;

@@ -2,8 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { AppFile } from 'src/app/Core/models/AppFile.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
+import { UpdateTool } from 'src/app/Core/models/tool/Update-tool.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -16,10 +18,12 @@ export class EditToolFormComponent implements OnInit {
   toolParameters?: ToolParameter[];
   isAddingToolParameter: boolean = false;
   faTrash = faTrash;
+  deletedFileIds: number[] = [];
+  addedFiles: File[] = [];
 
   @Input() tool?: Tool;
 
-  @Output() updatedToolEvent = new EventEmitter<Tool>();
+  @Output() updatedToolEvent = new EventEmitter<UpdateTool>();
   @Output() cancelUpdateToolEvent = new EventEmitter<void>();
   
   constructor (
@@ -33,8 +37,6 @@ export class EditToolFormComponent implements OnInit {
   initForm() {
     if (!this.tool) return;
 
-    console.log(this.tool);
-
     this.editToolForm = this.fb.group({
       toolId: [this.tool.toolId, Validators.required],
       toolName: [this.tool.toolName, Validators.required]
@@ -42,9 +44,18 @@ export class EditToolFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.tool);
-
-    // this.updatedToolEvent.emit(this.editToolForm?.value);
+    if (!this.tool) return;
+    this.tool!.toolName = this.editToolForm?.controls["toolName"].value; 
+    
+    const upToDateTool: UpdateTool = {
+      id: this.tool.toolId,
+      name: this.tool.toolName,
+      toolParameters: this.tool.toolParameters!,
+      deletedFileIds: this.deletedFileIds,
+      addedFiles: this.addedFiles
+    }
+    
+    this.updatedToolEvent.emit(upToDateTool);
   }
 
   onCancel() {
@@ -77,5 +88,15 @@ export class EditToolFormComponent implements OnInit {
 
   onDeleteParameter(param: ToolParameter) {
     this.tool!.toolParameters = this.tool!.toolParameters!.filter(x => x.id != param.id);
+  }
+
+  onAddFile(e: File) {
+    this.addedFiles.push(e);
+  }
+
+  onDeleteFile(e: AppFile) {
+    if (!this.tool || !e.appFileId) return;
+
+    this.deletedFileIds.push(e.appFileId);
   }
 }
