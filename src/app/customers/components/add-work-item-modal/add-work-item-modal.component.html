@@ -9,9 +9,6 @@
                 <app-dropdown [label]="'Equipo'" [options]="equipment! | toDropdownItem:'equipment'" (onSelectOptionEvent)="selectedDwElement($event, 1)"></app-dropdown>
             </div>
             <div class="col-lg-4">
-                <app-dropdown [label]="'Tipo de mantenimiento'" [options]="workItemTypes! | toDropdownItem" (onSelectOptionEvent)="selectedDwElement($event, 2)"></app-dropdown>
-            </div>
-            <div class="col-lg-4">
                 <app-dropdown [label]="'Asignado a'" [options]="employees! | toDropdownItem:'employee'" (onSelectOptionEvent)="selectedDwElement($event, 3)"></app-dropdown>
             </div>
         </div>

@@ -64,12 +64,11 @@ export class ApiConstants {
     public static readonly userRolesApi = "UserRole";
     public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
     public static readonly workItemApi = "WorkItem";
-    public static readonly workItemTypesApi = `${this.workItemApi}/workItemTypes`;
     public static readonly workOrderApi = "WorkOrder";
+    public static readonly workOrderTypesApi = `${this.workOrderApi}/workOrderTypes`;
     public static readonly toolsApi = "Tools";
     public static readonly toolParametersApi = "Tools/parameters";
     public static readonly toolOutputsApi = "ToolOutputs";
-    public static readonly workItemStateApi = `${this.workItemApi}/set-work-state`;
     public static readonly workStateApi = "WorkState";
 }
 

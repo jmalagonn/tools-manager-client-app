@@ -71,8 +71,5 @@ export class WorkItemComponent {
       workItemId: this.workItem!.workItemId!.toString(),
       workStateId: this.workStates!.find(x => x.workStateId == 3)!.workStateId.toString()
     };
-
-    this.httpService.get<boolean>(`${ApiConstants.workItemStateApi}?${new URLSearchParams(params).toString()}`)
-      .subscribe(response => response && this.getWorkItem());
   }
 }

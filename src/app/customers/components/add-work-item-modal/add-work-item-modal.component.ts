@@ -5,9 +5,8 @@ import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { Employee } from 'src/app/Core/models/Employee.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
-import { WorkItemType } from 'src/app/Core/models/Work-item-type';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
-import { WorkOrder } from 'src/app/Core/models/Work-order.model';
+import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -19,7 +18,6 @@ export class AddWorkItemModalComponent implements OnInit {
   workItem?: WorkItem;
   workItemForm?: FormGroup;
   equipment?: Equipment[];
-  workItemTypes?: WorkItemType[];
   employees?: Employee[];
 
   @Input() workOrder?: WorkOrder;
@@ -41,10 +39,7 @@ export class AddWorkItemModalComponent implements OnInit {
       .subscribe(result => this.equipment = result);
   }
 
-  getWorkItemTypes(): void {
-    this.httpService.get<WorkItemType[]>(`${ApiConstants.workItemTypesApi}`)
-      .subscribe(result => this.workItemTypes = result);
-  }
+  getWorkItemTypes(): void {}
 
   getEmployees(): void {
     this.httpService.get<Employee[]>(`${ApiConstants.userEmployeesApi}`)

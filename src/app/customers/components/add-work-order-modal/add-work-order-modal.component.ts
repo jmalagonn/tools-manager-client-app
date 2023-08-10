@@ -1,10 +1,10 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 import { Branch } from 'src/app/Core/models/Branch.model';
-import { WorkOrder } from 'src/app/Core/models/Work-order.model';
+import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddWorkOrderFormComponent } from '../add-work-order-form/add-work-order-form.component';
+import { AddWorkOrder } from 'src/app/Core/models/workOrder/Add-work-order.model';
 
 @Component({
   selector: 'app-add-work-order-modal',
@@ -20,7 +20,6 @@ export class AddWorkOrderModalComponent {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private toastr: ToastrService,
     private httpService: HttpService
   ) {}
 
@@ -32,23 +31,18 @@ export class AddWorkOrderModalComponent {
     this.files = this.files.filter(x => x != file);
   }
 
-  onSaveWO(wo: WorkOrder) {
-    if(!wo.workItems.length) {
-      this.toastr.error("Debe agregar al menos un ítem de trabajo.");
-      return;
-    };
+  onSaveWO(wo: AddWorkOrder) {
+    const formData = new FormData();
 
-    const form = new FormData();
+    formData.append("assignedUserId", wo.assignedUserId);
+    formData.append("branchId", wo.branchId);
+    formData.append("customerId", wo.customerId);
+    formData.append("equipmentId", wo.equipmentId);
+    formData.append("workOrderTypeId", wo.workOrderTypeId);
+    formData.append("workOrderDescription", wo.workOrderDescription || "");
+    this.files.map(file => {formData.append("files", file)});
 
-    const body: WorkOrder = {
-      workOrderDescription: wo.workOrderDescription,
-      customerId: wo.customerId,
-      branchId: wo.branchId,
-      workItems: wo.workItems,
-      workState: wo.workState
-    };
-
-    this.httpService.post<WorkOrder>('WorkOrder', body).subscribe(
+    this.httpService.post<WorkOrder>('WorkOrder', formData).subscribe(
       workOrder => this.activeModal.close(workOrder)
     );
   } 

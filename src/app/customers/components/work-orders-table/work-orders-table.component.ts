@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { WorkOrder } from 'src/app/Core/models/Work-order.model';
+import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 
 @Component({
   selector: 'app-work-orders-table',

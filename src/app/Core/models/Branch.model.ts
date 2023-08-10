@@ -1,6 +1,6 @@
 import { Customer } from "./Customer.model";
 import { Equipment } from "./Equipment.model";
-import { WorkOrder } from "./Work-order.model";
+import { WorkOrder } from "./workOrder/Work-order.model";
 
 export interface Branch {
     branchId?: number;
