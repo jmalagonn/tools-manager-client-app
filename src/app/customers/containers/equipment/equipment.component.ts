@@ -38,7 +38,7 @@ export class EquipmentComponent {
   }
 
   getWorkItems() {
-    this.httpService.get<WorkItem[]>(`WorkItem/equipment?equipmentId=${this.equipment!.equipmentId}`)
+    this.httpService.get<WorkItem[]>(`WorkItem/equipment?equipmentId=${this.equipment!.id}`)
       .subscribe(workItems => this.workItems = workItems);
   }
 

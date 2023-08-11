@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
-import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
+import { Parameter } from 'src/app/Core/models/Parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class AddNewEquipmentParameterComponent implements OnInit {
   equipmentParameterForm?: FormGroup;
 
   @Output() cancelAddNewParameterEvent = new EventEmitter<void>();
-  @Output() addNewEquipmentParameterEvent = new EventEmitter<EquipmentParameter>();
+  @Output() addNewEquipmentParameterEvent = new EventEmitter<Parameter>();
 
   constructor(
     private httpService: HttpService,
@@ -48,8 +48,7 @@ export class AddNewEquipmentParameterComponent implements OnInit {
     if(this.equipmentParameterForm!.invalid) return;
 
     this.addNewEquipmentParameterEvent.emit({
-      equipmentParameterEquipmentId: 0,
-      equipmentParameterId: 0,
+      id: 0,
       name: this.equipmentParameterForm!.controls["equipmentParameterName"].value,
       measurementUnitId: this.equipmentParameterForm!.controls["measurementUnit"].value.measurementUnitId,
       measurementUnitSymbol: this.equipmentParameterForm!.controls["measurementUnit"].value.symbol,

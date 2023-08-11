@@ -19,8 +19,8 @@
                 </a>
             </td>
             <td *ngIf="columns | contains:'Equipo'">
-                <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + item.equipment.equipmentId">
-                    {{ item.equipment.equipmentName }}
+                <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + item.equipment.id">
+                    {{ item.equipment.name }}
                 </a>
             </td>
             <td *ngIf="columns | contains:'Asignado a'">

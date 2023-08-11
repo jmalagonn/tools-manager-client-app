@@ -1,6 +1,6 @@
 <div class="container" *ngIf="equipment">
     <app-section-title
-        [title]="equipment.equipmentName"
+        [title]="equipment.name"
         [editableSection]="!editingEquipment"
         (editButtonClickedEvent)="setEditingEquipment(true)">
     </app-section-title>

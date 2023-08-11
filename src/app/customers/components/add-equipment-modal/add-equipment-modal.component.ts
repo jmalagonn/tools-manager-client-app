@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
-import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
+import { Parameter } from 'src/app/Core/models/Parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -15,7 +15,9 @@ import { HttpService } from 'src/app/services/http.service';
 export class AddEquipmentModalComponent implements OnInit {
   addEquipmentForm?: FormGroup;
   addNewParameter: boolean = false;
-  equipmentParameters: EquipmentParameter[] = [];
+  allEquipmentParameters: Parameter[] = [];
+  parametersToAdd: Parameter[] = [];
+  newEquipment?: Equipment;
 
   @Input() branch?: Branch;
 
@@ -26,62 +28,45 @@ export class AddEquipmentModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.getEquipmentParameters();
   }
 
   initForm() {
     this.addEquipmentForm = this.fb.group({
       equipmentName: ['', Validators.required],
-      equipmentDescription: []
+      equipmentDescription: [],
     });
   }
 
-  async onSubmit() {
-    const body = {
-      branchId: this.branch!.branchId,
-      customerId: this.branch!.customerId,
-      equipmentName: this.addEquipmentForm!.controls["equipmentName"].value,
-      equipmentDescription: this.addEquipmentForm!.controls["equipmentDescription"].value,
-      equipmentParameters: this.equipmentParameters!.map(x => ({
-        equipmentParameterId: x.equipmentParameterId,
-        name: x.name,
-        parameterValue: x.parameterValue || 0,
-        measurementUnitId: x.measurementUnitId
-      }))
-    };
+  onSubmit() {
+    // const body = {
+    //   branchId: this.branch!.branchId,
+    //   customerId: this.branch!.customerId,
+    //   equipmentName: this.addEquipmentForm!.controls["equipmentName"].value,
+    //   equipmentDescription: this.addEquipmentForm!.controls["equipmentDescription"].value,
+    //   equipmentParameters: this.equipmentParameters!.map(x => ({
+    //     equipmentParameterId: x.equipmentParameterId,
+    //     name: x.name,
+    //     parameterValue: x.parameterValue || 0,
+    //     measurementUnitId: x.measurementUnitId
+    //   }))
+    // };
 
-    this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
-      this.activeModal.close(equipment);
-    });
+    // this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
+    //   this.activeModal.close(equipment);
+    // });
   }  
 
   setAddNewParameter(value: boolean) {
     this.addNewParameter = value;
   }
 
-  onAddEquipmentParameter(parameter: EquipmentParameter): void {
-    this.setAddNewParameter(false);
-    this.addEquipmentParameter(parameter); 
+  getEquipmentParameters(): void {
+    this.httpService.get<Parameter[]>(ApiConstants.equipmentParametersApi)
+      .subscribe(response => this.allEquipmentParameters = response);
   }
 
-  addEquipmentParameter(parameter: EquipmentParameter) {
-    this.equipmentParameters.push(parameter);
-  }
-
-  createNewEquipmentParameters(parameters: EquipmentParameter[]): Promise<EquipmentParameter[]> {
-    const result = new Promise<EquipmentParameter[]>((resolve) => {
-      const newParams: EquipmentParameter[] = [];
-
-      parameters.map((x: EquipmentParameter, index: number) => {
-        this.httpService.post<EquipmentParameter>(ApiConstants.equipmentParametersApi, x)
-          .subscribe(response => {
-            newParams.push(response);
-  
-            if (index == parameters.length - 1)
-              resolve(newParams);
-          })
-      });
-    });
-
-    return result;
+  onNewParameterAdded(parameter: Parameter): void {
+    this.parametersToAdd.push(parameter);
   }
 }

@@ -48,6 +48,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   onNewParameterCreated(e: ToolParameter) {
+    this.isCreatingNewParameter = false;
     this.newParameterAddedEvent.emit(e);
   }
 
@@ -61,6 +62,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   parameterWasSet(e: ToolParameter) {
+    this.isSettingParameter = false;
     this.newParameterAddedEvent.emit(e);
   }
 }
