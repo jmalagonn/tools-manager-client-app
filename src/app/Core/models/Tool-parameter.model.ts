@@ -1,8 +1,5 @@
-export interface ToolParameter {
-    id?: number;
-    name: string;
-    measurementUnitId: number;
-    measurementUnitSymbol: string;
-    parameterValue?: number;
+import { Parameter } from "./Parameter.model";
+
+export interface ToolParameter extends Parameter {
     toolParameterToolId?: number;
 }

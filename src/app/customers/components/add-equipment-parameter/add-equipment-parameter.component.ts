@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { ApiConstants, ErrorConstants } from 'src/app/Core/constants/app-constants';
-import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
+import { Parameter } from 'src/app/Core/models/Parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -12,8 +12,8 @@ import { HttpService } from 'src/app/services/http.service';
   styleUrls: ['./add-equipment-parameter.component.scss']
 })
 export class AddEquipmentParameterComponent implements OnInit {
-  equipmentParameters?: EquipmentParameter[];
-  selectedItem?: EquipmentParameter;
+  equipmentParameters?: Parameter[];
+  selectedItem?: Parameter;
   selectingParameter: boolean = true;
   faCheck = faCheck;
   faX = faX;
@@ -21,7 +21,7 @@ export class AddEquipmentParameterComponent implements OnInit {
   parameterValue?: number;
 
   @Output() cancelAddParameterEvent = new EventEmitter<void>();
-  @Output() addParameterEvent = new EventEmitter<EquipmentParameter>();
+  @Output() addParameterEvent = new EventEmitter<Parameter>();
 
   constructor(
     private httpService: HttpService,
@@ -32,12 +32,12 @@ export class AddEquipmentParameterComponent implements OnInit {
   }
 
   getEquipmentParameters(): void {
-    this.httpService.get<EquipmentParameter[]>(ApiConstants.equipmentParametersApi)
+    this.httpService.get<Parameter[]>(ApiConstants.equipmentParametersApi)
       .subscribe(response => this.equipmentParameters = response);
   }
 
   onSelectItem(item: ItemList) {
-    this.selectedItem = this.equipmentParameters?.find(x => x.equipmentParameterId == item.id);
+    this.selectedItem = this.equipmentParameters?.find(x => x.id == item.id);
     this.setSelectingParameter(false);
   }
 
@@ -56,9 +56,8 @@ export class AddEquipmentParameterComponent implements OnInit {
       return;
     }
 
-    const parameter: EquipmentParameter = {
+    const parameter: Parameter = {
       ...this.selectedItem!,
-      equipmentParameterEquipmentId: this.selectedItem!.equipmentParameterEquipmentId || 0,
       parameterValue: this.parameterValue
     };
 

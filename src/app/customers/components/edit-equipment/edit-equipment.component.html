@@ -21,7 +21,7 @@
                     type="number" 
                     class="form-control form-control-sm parameter-card--value" 
                     [value]="parameter.parameterValue"
-                    (change)="equipmentParameterChanged($event, parameter.equipmentParameterId)">
+                    (change)="equipmentParameterChanged($event, parameter.id!)">
                 <p class="parameter-card--symbol m-0">{{ parameter.measurementUnitSymbol }}</p>
                 <div class="parameter-card--icon">
                     <fa-icon 

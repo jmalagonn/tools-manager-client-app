@@ -26,7 +26,7 @@
         <p class="mb-0"><b>Tipo de trabajo: </b> {{ workItem.workItemTypeName }}</p>
     </div>
     <div class="col-sm-6">
-        <p class="mb-0"><b>Equipo: </b><a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.equipmentId">{{ workItem!.equipment.equipmentName }}</a></p>
+        <p class="mb-0"><b>Equipo: </b><a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workItem.equipment.id">{{ workItem!.equipment.name }}</a></p>
     </div>
     <div class="col-sm-6">
         <p class="mb-0"><b>Estado: </b> {{ workItem.workState! | workState }}</p>

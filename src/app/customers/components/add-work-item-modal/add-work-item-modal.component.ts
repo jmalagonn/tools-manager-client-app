@@ -58,7 +58,7 @@ export class AddWorkItemModalComponent implements OnInit {
   selectedDwElement(item: DropdownItem, option: number): void {
     switch(option) {
       case 1:
-        this.workItemForm!.patchValue({ equipment: this.equipment!.find(x => x.equipmentId = item.id) });
+        this.workItemForm!.patchValue({ equipment: this.equipment!.find(x => x.id = item.id) });
         break;
       case 2:
         this.workItemForm!.patchValue({ workItemTypeId: item.id });

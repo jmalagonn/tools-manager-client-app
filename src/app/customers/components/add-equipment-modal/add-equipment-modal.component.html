@@ -18,27 +18,19 @@
         </div>
         <div class="row g-2 mt-2">
             <h6>Parámetros técnicos</h6>
-            <div class="technical-params d-flex" *ngIf="equipmentParameters.length">
+            <div class="technical-params d-flex" *ngIf="parametersToAdd.length">
                 <p 
-                    *ngFor="let parameter of equipmentParameters; let last = last" 
+                    *ngFor="let parameter of parametersToAdd; let last = last" 
                     class="technical-params--param"
                     [ngClass]="{'last-child': last}">
                     {{ parameter.name }}: {{ parameter.parameterValue }} {{ parameter.measurementUnitSymbol }}<span>,</span>
                 </p>
             </div>
-            <p *ngIf="!equipmentParameters.length">Aún no se ha agregado ningún parámetro.</p>
-            <div class="d-flex justify-content-center" *ngIf="!addNewParameter">
-                <button 
-                    class="btn btn-sm btn-outline-primary" 
-                    type="button"
-                    (click)="setAddNewParameter(true)">
-                    Agregar nuevo parámetro
-                </button>
-            </div>
-            <app-add-equipment-parameter 
-                *ngIf="addNewParameter"
-                (cancelAddParameterEvent)="setAddNewParameter(false)"
-                (addParameterEvent)="onAddEquipmentParameter($event)"></app-add-equipment-parameter>
+            <app-add-parameter 
+                [existingParameters]="allEquipmentParameters"
+                [parametersToFilter]="parametersToAdd"
+                (newParameterAddedEvent)="onNewParameterAdded($event)">
+            </app-add-parameter>
         </div>        
     </form>
 </div>

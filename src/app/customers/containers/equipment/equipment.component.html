@@ -1,6 +1,6 @@
 <div class="container" *ngIf="equipment">
     <app-section-title
-        [title]="equipment.equipmentName"
+        [title]="equipment.name"
         [editableSection]="!editingEquipment"
         (editButtonClickedEvent)="setEditingEquipment(true)">
     </app-section-title>
@@ -16,10 +16,8 @@
             </app-edit-equipment>
         </ng-template>
     </div>
-    <div class="row mt-3" *ngIf="workItems && workItems.length">
-        <h2 class="text-center">Ítems asociados</h2>
-        <app-work-items-list 
-            [workItems]="workItems" [columns]="['Id', 'OT', 'Asignado a', 'Estado', 'Descripción']">
-        </app-work-items-list>
+    <div class="row mt-3" *ngIf="workOrders?.length">
+        <h2 class="text-center">Ordenes de trabajo asociadas</h2>
+        <app-work-orders-table [items]="workOrders"></app-work-orders-table>
     </div>
 </div>

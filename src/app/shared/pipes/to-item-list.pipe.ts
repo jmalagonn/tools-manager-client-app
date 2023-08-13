@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { Customer } from 'src/app/Core/models/Customer.model';
-import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
@@ -9,6 +8,7 @@ import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { User } from 'src/app/Core/models/User.model';
 import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
+import { Parameter } from 'src/app/Core/models/Parameter.model';
 
 @Pipe({
   name: 'toItemList'
@@ -26,11 +26,11 @@ export class ToItemListPipe implements PipeTransform {
       case "branch":
         return value.map((x: Branch) => ({ id: x.branchId, name:  x.branchName}));
       case "equipment":
-        return value.map((x: Equipment) => ({ id: x.equipmentId, name:  x.equipmentName}));
+        return value.map((x: Equipment) => ({ id: x.id, name:  x.name}));
       case "workItemActivityLog":
         return value.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId, name: x.description }));
       case "equipmentParameter":
-        return value.map((x: EquipmentParameter) => ({ id: x.equipmentParameterId, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
+        return value.map((x: Parameter) => ({ id: x.id, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
       case "measurementUnits":
         return value.map((x: MeasurementUnit) => ({ id: x.measurementUnitId, name: `${x.displayName} (${x.symbol})` }));
       case "toolParameter":

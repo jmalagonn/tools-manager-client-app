@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { ApiConstants, AppConstants, ErrorConstants } from 'src/app/Core/constants/app-constants';
-import { EquipmentParameter } from 'src/app/Core/models/Equipment-parameter.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
+import { Parameter } from 'src/app/Core/models/Parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class EditEquipmentComponent implements OnInit {
   equipmentForm?: FormGroup;
   addingNewEquipmentParameter = false;
   appConstants = AppConstants;
-  tempEquipmentParameters: EquipmentParameter[] = [];
+  tempEquipmentParameters: Parameter[] = [];
 
   @Input() equipment?: Equipment;
 
@@ -37,16 +37,16 @@ export class EditEquipmentComponent implements OnInit {
     this.tempEquipmentParameters = this.equipment!.equipmentParameters;
     this.equipmentForm = this.fb.group(
       {
-        equipmentId: [this.equipment!.equipmentId, Validators.required],
-        equipmentName: [this.equipment!.equipmentName, Validators.required],
-        equipmentDescription: [this.equipment!.equipmentDescription],
+        equipmentId: [this.equipment!.id, Validators.required],
+        equipmentName: [this.equipment!.name, Validators.required],
+        equipmentDescription: [this.equipment!.description],
         equipmentParameters: [this.tempEquipmentParameters]
       }
     );
   }
 
   equipmentParameterChanged(e: any, id: number) {
-    const index = this.equipment!.equipmentParameters.findIndex(x => x.equipmentParameterId == id);
+    const index = this.equipment!.equipmentParameters.findIndex(x => x.id == id);
 
     if (index == -1) return;
 
@@ -58,13 +58,7 @@ export class EditEquipmentComponent implements OnInit {
     this.addingNewEquipmentParameter = value;
   }
 
-  addNewParameter(parameter: EquipmentParameter) {
-    if (parameter.equipmentParameterId != 0 &&
-      this.tempEquipmentParameters.find(x => x.equipmentParameterEquipmentId == parameter.equipmentParameterEquipmentId)) {
-      this.toastrService.error(ErrorConstants.parameterAlreadyExists);
-      return;
-    }
-
+  addNewParameter(parameter: Parameter) {
     this.tempEquipmentParameters.push(parameter);
     this.patchEquipmentParametersToForm();
     this.setAddingNewEquipmentParameter(false);
@@ -88,9 +82,9 @@ export class EditEquipmentComponent implements OnInit {
       return;
 
     const body: Equipment = {
-      equipmentId: this.equipment!.equipmentId,
-      equipmentName: this.equipmentForm!.controls["equipmentName"].value,
-      equipmentDescription: this.equipmentForm!.controls["equipmentDescription"].value,
+      id: this.equipment!.id,
+      name: this.equipmentForm!.controls["equipmentName"].value,
+      description: this.equipmentForm!.controls["equipmentDescription"].value,
       equipmentParameters: this.equipmentForm!.controls["equipmentParameters"].value
     };
 

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RouteConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
-import { WorkItem } from 'src/app/Core/models/Work-item.model';
+import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class EquipmentComponent {
   equipment?: Equipment;
-  workItems?: WorkItem[];
+  workOrders?: WorkOrder[];
   editingEquipment = false;
   routeConstants = RouteConstants;
   userRoles = UserRoles;
@@ -33,13 +33,13 @@ export class EquipmentComponent {
     this.httpService.get<Equipment>(`Equipment/${equipmentId}`)
       .subscribe(response => {
         this.equipment = response;
-        this.getWorkItems();
+        this.getWorkOrders();
       });
   }
 
-  getWorkItems() {
-    this.httpService.get<WorkItem[]>(`WorkItem/equipment?equipmentId=${this.equipment!.equipmentId}`)
-      .subscribe(workItems => this.workItems = workItems);
+  getWorkOrders() {
+    this.httpService.get<WorkOrder[]>(`${ApiConstants.workOrderApi}/equipment?equipmentId=${this.equipment!.id}`)
+      .subscribe(workOrders => this.workOrders = workOrders);
   }
 
   setEditingEquipment(value: boolean) {

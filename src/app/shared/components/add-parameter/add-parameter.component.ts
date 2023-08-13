@@ -26,7 +26,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   setParametersList(): void {
-    if (!this.existingParameters) return;    
+    if (!this.existingParameters) return;
     
     if (!this.parametersToFilter || !this.parametersToFilter!.length) {
       this.parametersList = this.existingParameters;
@@ -48,6 +48,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   onNewParameterCreated(e: ToolParameter) {
+    this.isCreatingNewParameter = false;
     this.newParameterAddedEvent.emit(e);
   }
 
@@ -61,6 +62,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   parameterWasSet(e: ToolParameter) {
+    this.isSettingParameter = false;
     this.newParameterAddedEvent.emit(e);
   }
 }

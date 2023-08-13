@@ -34,6 +34,7 @@ import { SetParameterComponent } from './components/set-parameter/set-parameter.
 import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 import { AddParameterComponent } from './components/add-parameter/add-parameter.component';
 import { AddImagesComponent } from './components/add-images/add-images.component';
+import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { AddImagesComponent } from './components/add-images/add-images.component
     ImageThumbnailComponent,
     AddParameterComponent,
     AddImagesComponent,
+    WorkOrdersTableComponent,
   ],
   imports: [
     CommonModule,    
@@ -114,6 +116,7 @@ import { AddImagesComponent } from './components/add-images/add-images.component
     NgxDropzoneModule,
     AddParameterComponent,
     AddImagesComponent,
+    WorkOrdersTableComponent,
   ]
 })
 export class SharedModule { }

@@ -7,7 +7,6 @@ import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { HttpService } from 'src/app/services/http.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { UploadFilesModalComponent } from 'src/app/shared/components/upload-files-modal/upload-files-modal.component';
 import { AddTool } from 'src/app/Core/models/Add-tool.model';
 
 @Component({
@@ -56,7 +55,7 @@ export class AddNewToolComponent implements OnInit {
 
   addToolParameter(parameter: Partial<ToolParameter>) {
     const newParameter: ToolParameter = {
-      id: parameter.id || undefined,
+      id: parameter.id,
       name: parameter.name!,
       measurementUnitId: parameter.measurementUnitId!,
       measurementUnitSymbol: parameter.measurementUnitSymbol!,

@@ -7,32 +7,22 @@
     <app-user-detail-edit *ngIf="isEditing" [user]="user" [userRoles]="userRoles"
         (cancelEditEvent)="setIsEditing(false)" (userUpdatedEvent)="userUpdated()">
     </app-user-detail-edit>
-    <div class="row mt-3" *ngIf="user.assignedWorkItems && user.assignedWorkItems.length">
+    <div class="row mt-3" *ngIf="user.assignedWorkOrders?.length">
         <h4 class="text-center mb-3">Trabajos asignados</h4>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>OT</th>
-                    <th>Descripción</th>
                     <th>Fecha de creación</th>
                     <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of user.assignedWorkItems">
-                    <td>
-                        <a [routerLink]="'/' + routeConstants.workItemPath + '/' + item.workItemId">
-                            {{ item.workItemId }}
-                        </a>
-                    </td>
+                <tr *ngFor="let item of user.assignedWorkOrders">
                     <td>
                         <a [routerLink]="'/' + routeConstants.workOrderPath + '/' + item.workOrderId">
                             {{ item.workOrderId }}
                         </a>
-                    </td>
-                    <td>
-                        {{ item.workItemDescription }}
                     </td>
                     <td>
                         {{ item.createdOn | date }}

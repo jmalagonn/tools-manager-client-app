@@ -5,7 +5,7 @@
             {{ equipment.branchName }}
         </a>                
     </p>
-    <p><b>Descripción: </b> {{ equipment.equipmentDescription ? equipment.equipmentDescription : "No se ingresó descripción del equipo." }}</p>
+    <p><b>Descripción: </b> {{ equipment.description ? equipment.description : "No se ingresó descripción del equipo." }}</p>
     <div class="row g-2" *ngIf="equipment.equipmentParameters.length">
         <h4 class="mb-1">Parámetros del equipo:</h4>
         <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let param of equipment.equipmentParameters">
