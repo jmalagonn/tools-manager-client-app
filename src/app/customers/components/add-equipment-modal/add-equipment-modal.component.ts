@@ -5,6 +5,7 @@ import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { Parameter } from 'src/app/Core/models/Parameter.model';
+import { AddEquipment } from 'src/app/Core/models/equipment/Add-equipment.model';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -39,22 +40,21 @@ export class AddEquipmentModalComponent implements OnInit {
   }
 
   onSubmit() {
-    // const body = {
-    //   branchId: this.branch!.branchId,
-    //   customerId: this.branch!.customerId,
-    //   equipmentName: this.addEquipmentForm!.controls["equipmentName"].value,
-    //   equipmentDescription: this.addEquipmentForm!.controls["equipmentDescription"].value,
-    //   equipmentParameters: this.equipmentParameters!.map(x => ({
-    //     equipmentParameterId: x.equipmentParameterId,
-    //     name: x.name,
-    //     parameterValue: x.parameterValue || 0,
-    //     measurementUnitId: x.measurementUnitId
-    //   }))
-    // };
+    if (!this.branch ||
+      !this.addEquipmentForm?.valid ||
+      !this.parametersToAdd)
+      return;
 
-    // this.httpService.post<Equipment>('Equipment', body).subscribe(equipment => {
-    //   this.activeModal.close(equipment);
-    // });
+    const body: AddEquipment = {
+      branchId: this.branch.branchId!,
+      customerId: this.branch.customerId!,
+      description: this.addEquipmentForm.controls["equipmentDescription"].value,
+      name: this.addEquipmentForm.controls["equipmentName"].value,
+      parameters: this.parametersToAdd
+    };
+
+    this.httpService.post<Equipment>(ApiConstants.equipmentApi, body)
+      .subscribe(response => this.activeModal.close(response));
   }  
 
   setAddNewParameter(value: boolean) {
@@ -67,6 +67,7 @@ export class AddEquipmentModalComponent implements OnInit {
   }
 
   onNewParameterAdded(parameter: Parameter): void {
-    this.parametersToAdd.push(parameter);
+    console.log(parameter);
+    this.parametersToAdd = [...this.parametersToAdd, parameter];
   }
 }

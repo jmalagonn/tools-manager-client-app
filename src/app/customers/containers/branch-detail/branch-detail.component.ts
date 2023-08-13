@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';

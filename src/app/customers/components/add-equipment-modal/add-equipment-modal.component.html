@@ -28,7 +28,9 @@
             </div>
             <app-add-parameter 
                 [existingParameters]="allEquipmentParameters"
-                (newParameterAddedEvent)="onNewParameterAdded($event)"></app-add-parameter>
+                [parametersToFilter]="parametersToAdd"
+                (newParameterAddedEvent)="onNewParameterAdded($event)">
+            </app-add-parameter>
         </div>        
     </form>
 </div>
