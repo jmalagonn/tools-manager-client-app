@@ -18,8 +18,14 @@ export class EditCustomerComponent implements OnInit {
   constructor (private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.initForm();    
+  }
+
+  initForm(): void {
+    if (!this.customer) return;
+    
     this.editForm = this.fb.group({
-      customerName: [this.customer!.customerName, Validators.required]
+      customerName: [this.customer!.name, Validators.required]
     });
   }
 
@@ -28,7 +34,7 @@ export class EditCustomerComponent implements OnInit {
 
     const body: Customer = {
       ...this.customer!,
-      customerName: this.editForm.controls["customerName"].value
+      name: this.editForm.controls["customerName"].value
     };
 
     this.updateEvent.emit(body);

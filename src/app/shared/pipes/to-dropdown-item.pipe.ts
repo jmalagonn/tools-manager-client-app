@@ -19,9 +19,9 @@ export class ToDropdownItemPipe implements PipeTransform {
       case "user":
         return values.map((x: User) => ({ id: x.userId, description:  x.name}));
       case "customer":
-        return values.map((x: Customer) => ({ id: x.customerId, description:  x.customerName}));
+        return values.map((x: Customer) => ({ id: x.id, description:  x.name}));
       case "branch":
-        return values.map((x: Branch) => ({ id: x.branchId!, description:  x.branchName}));
+        return values.map((x: Branch) => ({ id: x.id!, description:  x.name}));
       case "workItemActivityLog":
         return values.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId!, description: x.description }));
       case "measurementUnits":

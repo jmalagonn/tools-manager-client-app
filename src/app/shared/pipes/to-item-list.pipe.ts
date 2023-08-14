@@ -22,9 +22,9 @@ export class ToItemListPipe implements PipeTransform {
       case "user":
         return value.map((x: User) => ({ id: x.userId, name:  x.name}));
       case "customer":
-        return value.map((x: Customer) => ({ id: x.customerId, name:  x.customerName}));
+        return value.map((x: Customer) => ({ id: x.id, name:  x.name}));
       case "branch":
-        return value.map((x: Branch) => ({ id: x.branchId, name:  x.branchName}));
+        return value.map((x: Branch) => ({ id: x.id, name:  x.name}));
       case "equipment":
         return value.map((x: Equipment) => ({ id: x.id, name:  x.name}));
       case "workItemActivityLog":

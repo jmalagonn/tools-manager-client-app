@@ -28,7 +28,7 @@ import { EditBranchComponent } from './components/edit-branch/edit-branch.compon
 import { CoreModule } from '../Core/core.module';
 import { WorkItemGeneralInfoComponent } from './components/work-item-general-info/work-item-general-info.component';
 import { WorkItemEditComponent } from './components/work-item-edit/work-item-edit.component';
-
+import { BranchesListComponent } from './components/branches-list/branches-list.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { WorkItemEditComponent } from './components/work-item-edit/work-item-edi
     EquipmentInfoComponent,
     EditBranchComponent,
     WorkItemGeneralInfoComponent,
-    WorkItemEditComponent
+    WorkItemEditComponent,
+    BranchesListComponent
   ],
   imports: [
     CommonModule,

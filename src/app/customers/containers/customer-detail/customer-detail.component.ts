@@ -40,18 +40,14 @@ export class CustomerDetailComponent implements OnInit {
     this.modalRef = this.modalService.open(AddBranchModalComponent);
     this.modalRef!.componentInstance.customer = this.customer!;
     this.modalRef.closed.subscribe((response) => response && this.getCustomer());
-  }
-
-  goToBranch(item: ItemList) {
-    this.router.navigateByUrl(`customers/customer/${this.customer.customerId}/branch/${item.id}`);
-  }
+  }  
 
   setEditingCustomer(value: boolean) {
     this.editingCustomer = value;
   }
 
   onUpdateCustomer(customer: Customer) {
-    this.httpService.put<Customer>(`${ApiConstants.customersApi}/${customer.customerId}`, customer)
+    this.httpService.put<Customer>(`${ApiConstants.customersApi}/${customer.id}`, customer)
       .subscribe(() => {
         this.getCustomer();
         this.setEditingCustomer(false);

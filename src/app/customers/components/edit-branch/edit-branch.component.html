@@ -2,7 +2,11 @@
     <div class="row justify-content-center">
         <div class="col-sm-6">
             <label for="branchName" class="form-label">Nombre de la sucursal</label>
-            <input type="text" class="form-control" id="branchName" [placeholder]="branch!.branchName" formControlName="branchName">
+            <input type="text" class="form-control" id="branchName" [placeholder]="branch!.name" formControlName="branchName">
+        </div>
+        <div class="col-sm-6">
+            <label for="branchCode" class="form-label">Código</label>
+            <input type="text" class="form-control" id="branchCode" [placeholder]="branch!.code" formControlName="branchCode">
         </div>
     </div>
     <div class="row mt-3">

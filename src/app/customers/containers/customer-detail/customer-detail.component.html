@@ -1,7 +1,7 @@
 <div class="container" *ngIf="customer">
     <div class="row mt-3">
         <h1 class="text-center d-flex justify-content-center align-items-center" *ngIf="!editingCustomer">
-            {{ customer.customerName }}
+            {{ customer.name }}
             <app-edit-model (click)="setEditingCustomer(true)" *ngIf="userRoles.CustomersAdmin | userRoles"></app-edit-model>
         </h1>
         <app-edit-customer 
@@ -13,9 +13,7 @@
             <button class="btn btn-outline-primary" (click)="onOpenAddBranchModal()">Agregar nueva sucursal</button>
         </div>
         <div class="col mt-3">
-            <app-items-list 
-                [items]="customer.branches | toItemList:'branch'"
-                (rowClickedEvent)="goToBranch($event)"></app-items-list>
+            <app-branches-list [branches]="customer.branches"></app-branches-list>
         </div>
     </div>
 </div>

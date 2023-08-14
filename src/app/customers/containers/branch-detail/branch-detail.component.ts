@@ -61,7 +61,7 @@ export class BranchDetailComponent implements OnInit {
   }
 
   onUpdateBranch(updatedBranch: Branch) {
-    this.httpService.put<Branch>(`${ApiConstants.branchesApi}/${updatedBranch.branchId}`, updatedBranch)
+    this.httpService.put<Branch>(`${ApiConstants.branchesApi}/${updatedBranch.id}`, updatedBranch)
       .subscribe(() => {
         this.getBranch();
         this.setEditingBranch(false);
