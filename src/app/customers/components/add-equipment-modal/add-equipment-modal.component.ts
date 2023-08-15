@@ -46,7 +46,7 @@ export class AddEquipmentModalComponent implements OnInit {
       return;
 
     const body: AddEquipment = {
-      branchId: this.branch.branchId!,
+      branchId: this.branch.id!,
       customerId: this.branch.customerId!,
       description: this.addEquipmentForm.controls["equipmentDescription"].value,
       name: this.addEquipmentForm.controls["equipmentName"].value,
