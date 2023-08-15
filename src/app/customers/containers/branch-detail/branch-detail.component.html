@@ -1,7 +1,7 @@
 <div class="container" *ngIf="branch">
     <div class="row mt-3">
         <h1 *ngIf="!editingBranch" class="text-center d-flex justify-content-center align-items-center">
-            {{ branch.branchName }}
+            {{ branch.name }}<span *ngIf="branch.code">&nbsp;({{ branch.code }})</span>
             <app-edit-model (click)="setEditingBranch(true)"
                 *ngIf="userRoles.CustomersAdmin | userRoles"></app-edit-model>
         </h1>

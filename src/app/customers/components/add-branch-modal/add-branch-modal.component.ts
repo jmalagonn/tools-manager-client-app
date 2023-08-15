@@ -27,14 +27,17 @@ export class AddBranchModalComponent implements OnInit {
 
   initForm() {
     this.addBranchForm = this.fb.group({
-      branchName: ['', Validators.required]
+      branchName: ['', Validators.required],
+      branchCode: ['']
     });
   }
 
   onSubmit() {
-    const body = {
-      branchName: this.addBranchForm!.controls["branchName"].value,
-      customerId: this.customer!.customerId
+    const body: Branch = {
+      id: 0,
+      name: this.addBranchForm!.controls["branchName"].value,
+      code: this.addBranchForm!.controls["branchCode"].value,
+      customerId: this.customer!.id
     }
 
     this.httpService.post<Branch>('Branches', body).subscribe(branch => {

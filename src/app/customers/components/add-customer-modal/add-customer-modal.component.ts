@@ -29,13 +29,11 @@ export class AddCustomerModalComponent implements OnInit {
 
   onSubmit() {
     const body = {
-      customerName: this.addCustomerForm!.controls["customerName"].value
-    }
+      name: this.addCustomerForm!.controls["customerName"].value
+    };
 
     this.httpService.post<Customer>('Customers', body).subscribe(customer => {
       this.activeModal.close(customer);
-      // this.bsModalRef.hide();
-      // this.bsModalRef.onHide.emit(customer);
     });
   }
 }

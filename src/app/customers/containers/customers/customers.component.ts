@@ -48,7 +48,7 @@ export class CustomersComponent implements OnInit {
   updateCustomers(customer: Customer) {
     if(!customer) return;
 
-    const index = this.customers!.findIndex(x => x.customerId == customer.customerId);
+    const index = this.customers!.findIndex(x => x.id == customer.id);
     this.customers?.splice(index, 1, customer);
 
     this.customers = Object.assign([], this.customers);

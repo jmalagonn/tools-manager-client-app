@@ -19,14 +19,18 @@ export class EditBranchComponent implements OnInit {
 
   ngOnInit(): void {
     this.editBranchForm = this.fb.group({
-      branchName: [this.branch!.branchName, Validators.required]
+      branchName: [this.branch!.name, Validators.required],
+      branchCode: [this.branch!.code],
     })
   }
   
   onSubmit() {
+    if (!this.branch) return;
+    
     const updatedBranch: Branch = {
       ...this.branch,
-      branchName: this.editBranchForm?.controls["branchName"].value
+      name: this.editBranchForm?.controls["branchName"].value,
+      code: this.editBranchForm?.controls["branchCode"].value,
     }
 
     this.updateBranchEvent.emit(updatedBranch);
