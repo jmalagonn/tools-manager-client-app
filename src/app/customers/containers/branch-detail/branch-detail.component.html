@@ -10,8 +10,10 @@
         </app-edit-branch>
         <div class="col-lg-6 mt-3">
             <h5 class="text-center">Equipos</h5>
-            <div class="text-center mt-3 mb-3">
-                <button *ngIf="userRoles.CustomersAdmin | userRoles" class="btn btn-outline-primary"
+            <div class="text-center mt-3">
+                <button 
+                    *ngIf="userRoles.CustomersAdmin | userRoles" 
+                    class="btn btn-outline-primary"
                     (click)="onOpenAddEquipmentModal()">
                     Agregar nuevo equipo
                 </button>
@@ -23,7 +25,10 @@
         <div class="col-lg-6 mt-3">
             <h5 class="text-center">Órdenes de trabajo</h5>
             <div class="text-center mt-3">
-                <button *ngIf="userRoles.CustomersAdmin | userRoles" class="btn btn-outline-primary" (click)="onOpenAddWorkOrder()">Agregar nueva OT</button>
+                <button 
+                    *ngIf="userRoles.CustomersAdmin | userRoles" 
+                    class="btn btn-outline-primary" 
+                    (click)="onOpenAddWorkOrder()">Agregar nueva OT</button>
             </div>
             <app-work-orders-table [items]="branch.workOrders"></app-work-orders-table>
         </div>

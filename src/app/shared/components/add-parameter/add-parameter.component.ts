@@ -26,7 +26,7 @@ export class AddParameterComponent implements OnChanges{
   }
 
   setParametersList(): void {
-    if (!this.existingParameters) return;    
+    if (!this.existingParameters) return;
     
     if (!this.parametersToFilter || !this.parametersToFilter!.length) {
       this.parametersList = this.existingParameters;

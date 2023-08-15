@@ -9,7 +9,6 @@ import { CustomerDetailComponent } from './containers/customer-detail/customer-d
 import { AddBranchModalComponent } from './components/add-branch-modal/add-branch-modal.component';
 import { BranchDetailComponent } from './containers/branch-detail/branch-detail.component';
 import { AddEquipmentModalComponent } from './components/add-equipment-modal/add-equipment-modal.component';
-import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
 import { AddWorkOrderModalComponent } from './components/add-work-order-modal/add-work-order-modal.component';
 import { AddWorkOrderFormComponent } from './components/add-work-order-form/add-work-order-form.component';
 import { WorkItemsListComponent } from './components/work-items-list/work-items-list.component';
@@ -38,7 +37,6 @@ import { BranchesListComponent } from './components/branches-list/branches-list.
     AddBranchModalComponent,
     BranchDetailComponent,
     AddEquipmentModalComponent,
-    WorkOrdersTableComponent,
     AddWorkOrderModalComponent,
     AddWorkOrderFormComponent,
     WorkItemsListComponent,

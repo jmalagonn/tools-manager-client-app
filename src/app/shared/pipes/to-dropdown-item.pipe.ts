@@ -31,6 +31,8 @@ export class ToDropdownItemPipe implements PipeTransform {
         }));
       case "employee":
         return values.map((x: Employee) => ({ id: x.userId, description: x.name }));
+      case "equipment":
+        return values.map((x: Equipment) => ({id: x.id, description: x.name}));
       default:
         const { idPropName, descriptionPropName } = this.findProperties(values[0]);
         return values.map((x: any) => ({ id: x[idPropName], description: x[descriptionPropName] }));
