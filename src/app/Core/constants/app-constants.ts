@@ -1,4 +1,4 @@
-import { faBuilding, faScrewdriverWrench, faToolbox, faUserGroup, faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faBuilding, faScrewdriverWrench, faUserGroup, faUserPen, faGear } from "@fortawesome/free-solid-svg-icons";
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from "@techiediaries/ngx-qrcode";
 import { UserRoles } from "../enums/User-roles.enum";
 
@@ -27,6 +27,12 @@ export class AppConstants {
             icon: faUserPen,
             path: 'profile',
             userRoles: null
+        },
+        {
+            title: 'Configuración general',
+            icon: faGear,
+            path: 'general-settings',
+            userRoles: [UserRoles.AppAdmin]
         },
     ];
     public static readonly itemsListDefault = ['Id', 'Nombre'];

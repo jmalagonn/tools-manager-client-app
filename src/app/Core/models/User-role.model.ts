@@ -1,6 +1,6 @@
 export interface UserRole {
     displayName: string;
-    userRoleId: number;
-    userRoleName: string;
+    id: number;
+    name: string;
     isActive?: boolean;
 }

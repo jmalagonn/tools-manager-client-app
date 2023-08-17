@@ -47,9 +47,9 @@ export class AddWorkOrderFormComponent implements OnInit {
   initWorkOrderForm() {
     this.workOrderForm = this.fb.group({
       assignedUserId:       [null, Validators.required],
-      equipmentId:          [null, Validators.required],
-      workOrderTypeId:      [null, Validators.required],
+      equipmentId:          [null],
       workOrderDescription: [''],
+      workOrderTypeId:      [null, Validators.required],
     });
   }
 

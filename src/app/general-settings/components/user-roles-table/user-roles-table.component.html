@@ -1,0 +1,32 @@
+<table class="table" *ngIf="editableUserRole.length">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let role of editableUserRole">
+            <td scope="row">{{ role.id }}</td>
+            <ng-container *ngIf="!role.isEditing; else isEditingRole">
+                <td><span>{{ role.displayName }}</span></td>
+                <td class="text-center">
+                    <fa-icon [icon]="faEdit" role="button"
+                        (click)="onClickEditButton(role!)">
+                    </fa-icon>
+                </td>
+            </ng-container>
+            <ng-template #isEditingRole>
+                <td>
+                    <input class="form-control" type="text" [value]="role.displayName" />
+                </td>
+                <td class="text-center">
+                    <fa-icon [icon]="faX" role="button"
+                        (click)="onClickCancelButton(role!)">
+                    </fa-icon>
+                </td>
+            </ng-template>            
+        </tr>
+    </tbody>
+</table>

@@ -41,7 +41,7 @@ export class UserDetailEditComponent implements OnChanges {
     if(!this.userRoles || !this.user) return;
 
     this.userRoles = this.userRoles.map(x => {
-      this.user!.userRoles.some(y => y.userRoleId == x.userRoleId)
+      this.user!.userRoles.some(y => y.id == x.id)
         ? x.isActive = true
         : x.isActive = false;
 
@@ -52,7 +52,7 @@ export class UserDetailEditComponent implements OnChanges {
   }
 
   setUserRoleValue(e: any): void {
-    const index = this.userRoles!.findIndex(x => x.userRoleId == e.target.value);
+    const index = this.userRoles!.findIndex(x => x.id == e.target.value);
     this.userRoles![index].isActive = e.target.checked;
     this.editForm!.markAsDirty();
 
@@ -61,7 +61,7 @@ export class UserDetailEditComponent implements OnChanges {
 
   filterUserRoleFormValues(): void {
     this.editForm?.patchValue({
-      userRoles: this.userRoles!.filter(x => x.isActive).map(x => x.userRoleId)
+      userRoles: this.userRoles!.filter(x => x.isActive).map(x => x.id)
     });
   }
 
@@ -72,7 +72,7 @@ export class UserDetailEditComponent implements OnChanges {
       idCard: this.editForm!.controls["idCard"].value,
       name: this.editForm!.controls["name"].value,
       userId: this.user!.userId,
-      userRoles: this.editForm!.controls["userRoles"].value.map((x: number) => ({userRoleId: x})),
+      userRoles: this.editForm!.controls["userRoles"].value.map((x: number) => ({id: x})),
     };
 
     this.httpService.put<User>(ApiConstants.userApi, body)

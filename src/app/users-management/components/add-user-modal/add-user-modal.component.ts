@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
 import { ApiConstants } from 'src/app/Core/constants/app-constants';
@@ -39,7 +39,7 @@ export class AddUserModalComponent {
     this.addUserForm = this.fb.group({
       name: ['', Validators.required],
       email: [null],
-      idCard: ['', Validators.required],
+      idCard: ['', [Validators.required, this.validateId]],
       userRoles: [null, this.rolesLengthValidator]
     });
   }
@@ -48,9 +48,9 @@ export class AddUserModalComponent {
     const body = {
       companyId: this.user!.companyId,
       email: this.addUserForm!.controls["email"].value,
-      idCard: parseInt(this.addUserForm!.controls["idCard"].value),
+      idCard: parseInt(this.addUserForm!.controls["idCard"].value.replaceAll('.', '')),
       name: this.addUserForm!.controls["name"].value,
-      userRoles: this.addUserForm!.controls["userRoles"].value.map((x: number) => ({userRoleId: x})),
+      userRoles: this.addUserForm!.controls["userRoles"].value.map((x: number) => ({id: x})),
     };
     
     this.httpService.post<User>(ApiConstants.addUserApi, body).subscribe(User => {
@@ -59,7 +59,7 @@ export class AddUserModalComponent {
   }
 
   setUserRoleValue(e: any) {
-    const index = this.userRoles!.findIndex(x => x.userRoleId == e.target.value);
+    const index = this.userRoles!.findIndex(x => x.id == e.target.value);
     this.userRoles![index].isActive = e.target.checked;
 
     this.filterUserRoleFormValues();
@@ -67,13 +67,23 @@ export class AddUserModalComponent {
 
   filterUserRoleFormValues(): void {
     this.addUserForm?.patchValue({
-      userRoles: this.userRoles!.filter(x => x.isActive).map(x => x.userRoleId)
+      userRoles: this.userRoles!.filter(x => x.isActive).map(x => x.id)
     });
   }
 
   rolesLengthValidator(control: FormControl) {
     if(!control.value || !control.value.length) {
       return { invalidCustomValue: true };
+    }
+
+    return null;
+  }
+
+  validateId(control: FormControl) {
+    const regex = /[^\d\.]/g;
+
+    if (control.value.match(regex)) {
+      return { invalidIdCard: true };
     }
 
     return null;
