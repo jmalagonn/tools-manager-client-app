@@ -9,6 +9,6 @@ export class FilterDashboardByRolesPipe implements PipeTransform {
     return menuItems.filter(x => 
       x.userRoles == null || 
       x.userRoles.some((y: number) => 
-        userRoles.some(z => z.userRoleId == y)));
+        userRoles.some(z => z.id == y)));
   }
 }

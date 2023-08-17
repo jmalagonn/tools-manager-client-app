@@ -34,10 +34,10 @@ export class AddWorkOrderModalComponent {
   onSaveWO(wo: AddWorkOrder) {
     const formData = new FormData();
 
+    wo.equipmentId && formData.append("equipmentId", wo.equipmentId);
     formData.append("assignedUserId", wo.assignedUserId);
     formData.append("branchId", wo.branchId);
     formData.append("customerId", wo.customerId);
-    formData.append("equipmentId", wo.equipmentId);
     formData.append("workOrderTypeId", wo.workOrderTypeId);
     formData.append("workOrderDescription", wo.workOrderDescription || "");
     this.files.map(file => {formData.append("files", file)});

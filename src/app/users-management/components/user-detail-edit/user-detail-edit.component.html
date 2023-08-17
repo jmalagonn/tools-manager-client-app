@@ -21,11 +21,11 @@
                             <input 
                             class="form-check-input" 
                             type="checkbox" 
-                            [value]="role.userRoleId" 
-                            [id]="'userRoles-' + role.userRoleId"  
+                            [value]="role.id" 
+                            [id]="'userRoles-' + role.id"  
                             [checked]="role.isActive"
                             (change)="setUserRoleValue($event)">
-                            <label class="form-check-label" [attr.for]="'userRoles-' + role.userRoleId">
+                            <label class="form-check-label" [attr.for]="'userRoles-' + role.id">
                                 {{ role.displayName }}
                             </label>
                         </div>

@@ -18,10 +18,10 @@ export class UserRolesPipe implements PipeTransform {
     if (!this.user) return false;
 
     if (this.user.userRoles
-      .some(x => x.userRoleId == UserRoles.AppAdmin || x.userRoleId == UserRoles.CompanyAdmin))
+      .some(x => x.id == UserRoles.AppAdmin || x.id == UserRoles.CompanyAdmin))
       return true;
       
-    return this.user.userRoles.some(x => x.userRoleId == requiredRole);
+    return this.user.userRoles.some(x => x.id == requiredRole);
   }
 
 }
