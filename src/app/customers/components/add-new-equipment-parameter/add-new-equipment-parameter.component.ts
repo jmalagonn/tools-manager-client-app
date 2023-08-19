@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
 import { Parameter } from 'src/app/Core/models/Parameter.model';

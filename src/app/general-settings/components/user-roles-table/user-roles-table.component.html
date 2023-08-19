@@ -1,4 +1,4 @@
-<table class="table" *ngIf="editableUserRole.length">
+<table class="table" *ngIf="editableUserRoles.length">
     <thead>
         <tr>
             <th scope="col">Id</th>
@@ -7,26 +7,26 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let role of editableUserRole">
+        <tr *ngFor="let role of editableUserRoles">
             <td scope="row">{{ role.id }}</td>
             <ng-container *ngIf="!role.isEditing; else isEditingRole">
                 <td><span>{{ role.displayName }}</span></td>
                 <td class="text-center">
-                    <fa-icon [icon]="faEdit" role="button"
-                        (click)="onClickEditButton(role!)">
+                    <fa-icon [icon]="faEdit" role="button" (click)="onClickEditButton(role!)">
                     </fa-icon>
                 </td>
             </ng-container>
             <ng-template #isEditingRole>
                 <td>
-                    <input class="form-control" type="text" [value]="role.displayName" />
+                    <input class="form-control" type="text" [attr.id]="'role-' + role.id" [value]="role.displayName" [(ngModel)]="roleDisplayName" />
                 </td>
                 <td class="text-center">
-                    <fa-icon [icon]="faX" role="button"
-                        (click)="onClickCancelButton(role!)">
+                    <fa-icon [icon]="faSave" role="button" class="me-2" (click)="onClickSaveButton(role)">
+                    </fa-icon>
+                    <fa-icon [icon]="faX" role="button" (click)="onClickCancelButton(role!)">
                     </fa-icon>
                 </td>
-            </ng-template>            
+            </ng-template>
         </tr>
     </tbody>
 </table>

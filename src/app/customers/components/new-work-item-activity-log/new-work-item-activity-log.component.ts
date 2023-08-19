@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DomSanitizer } from '@angular/platform-browser';
 import { faClose, faImage, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { HttpService } from 'src/app/services/http.service';
 import { ModalImageComponent } from 'src/app/shared/components/modal-image/modal-image.component';
 import { UploadFilesModalComponent } from 'src/app/shared/components/upload-files-modal/upload-files-modal.component';

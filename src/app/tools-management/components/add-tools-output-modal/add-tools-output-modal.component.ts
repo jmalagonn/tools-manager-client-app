@@ -6,7 +6,7 @@ import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { User } from 'src/app/Core/models/User.model';
 import { HttpService } from 'src/app/services/http.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-add-tools-output-modal',

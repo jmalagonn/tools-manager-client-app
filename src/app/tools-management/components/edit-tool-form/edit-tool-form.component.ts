@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { AppFile } from 'src/app/Core/models/AppFile.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { Tool } from 'src/app/Core/models/Tool.model';

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ApiConstants, AppConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { WorkItem } from 'src/app/Core/models/Work-item.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddWorkItemModalComponent } from '../../components/add-work-item-modal/add-work-item-modal.component';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-work-order',

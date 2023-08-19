@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/Core/models/Customer.model';
-import { ItemList } from 'src/app/Core/models/Item-list.model';
 import { HttpService } from 'src/app/services/http.service';
 import { AddBranchModalComponent } from '../../components/add-branch-modal/add-branch-modal.component';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-customer-detail',

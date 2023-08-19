@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { UpdateTool } from 'src/app/Core/models/tool/Update-tool.model';
 import { HttpService } from 'src/app/services/http.service';

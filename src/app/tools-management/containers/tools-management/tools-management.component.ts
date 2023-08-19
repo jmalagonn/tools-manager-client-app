@@ -4,8 +4,9 @@ import { HttpService } from 'src/app/services/http.service';
 import { AddToolModalComponent } from '../../components/add-tool-modal/add-tool-modal.component';
 import { ToolOutput } from 'src/app/Core/models/Tool-output.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { AddToolsOutputModalComponent } from '../../components/add-tools-output-modal/add-tools-output-modal.component';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-tools-management',

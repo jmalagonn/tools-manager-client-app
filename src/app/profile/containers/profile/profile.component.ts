@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { take } from 'rxjs';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Account } from 'src/app/Core/models/Account.model';
 import { User } from 'src/app/Core/models/User.model';
 import { AccountService } from 'src/app/services/account.service';

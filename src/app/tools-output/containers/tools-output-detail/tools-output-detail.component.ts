@@ -7,8 +7,9 @@ import { ReturnToolsWithNews } from 'src/app/Core/models/Return-tool-with-news.m
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { HttpService } from 'src/app/services/http.service';
 import { ReturnToolsComponent } from '../../components/return-tools/return-tools.component';
-import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { ItemList } from 'src/app/Core/models/Item-list.model';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-tools-output-detail',
