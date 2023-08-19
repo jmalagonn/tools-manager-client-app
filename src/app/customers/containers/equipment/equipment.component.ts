@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiConstants, RouteConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';

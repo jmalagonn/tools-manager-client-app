@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { Parameter } from 'src/app/Core/models/Parameter.model';

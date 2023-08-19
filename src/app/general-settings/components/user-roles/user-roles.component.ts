@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
+import { ToastrService } from 'ngx-toastr';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { ClientMessagesConstants } from 'src/app/Core/constants/client-messages-constants';
 import { UserRole } from 'src/app/Core/models/User-role.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -11,7 +13,9 @@ import { HttpService } from 'src/app/services/http.service';
 export class UserRolesComponent implements OnInit {
   userRoles?: UserRole[];
 
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.getUserRoles();
@@ -20,5 +24,17 @@ export class UserRolesComponent implements OnInit {
   getUserRoles(): void {
     this.httpService.get<UserRole[]>(ApiConstants.userRolesApi)
       .subscribe(response => this.userRoles = response);
+  }
+
+  onUserRoleEdited(userRole: UserRole) {
+    if (!this.userRoles) return;
+
+    const userRoleIndex = this.userRoles.findIndex(x => x.id == userRole.id);
+
+    this.httpService.put<UserRole>(ApiConstants.userRolesApi, userRole)
+      .subscribe(response => {
+        this.userRoles![userRoleIndex] = response;
+        this.toastr.success(ClientMessagesConstants.roleNameUpdated);
+      })
   }
 }

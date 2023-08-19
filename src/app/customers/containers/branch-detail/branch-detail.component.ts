@@ -7,8 +7,8 @@ import { HttpService } from 'src/app/services/http.service';
 import { AddEquipmentModalComponent } from '../../components/add-equipment-modal/add-equipment-modal.component';
 import { AddWorkOrderModalComponent } from '../../components/add-work-order-modal/add-work-order-modal.component';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { ApiConstants } from 'src/app/Core/constants/app-constants';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 
 @Component({
   selector: 'app-branch-detail',
