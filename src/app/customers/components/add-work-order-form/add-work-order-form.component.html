@@ -6,14 +6,14 @@
         <div class="col-6">
             <p><b>Sucursal:</b> {{ branch.name }}</p>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-sm-6">
             <app-dropdown 
                 [label]="'Equipo'" 
                 [options]="branch.equipment! | toDropdownItem:'equipment'"
                 (onSelectOptionEvent)="onSelectItem($event, 1)">
             </app-dropdown>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-sm-6">
             <app-dropdown 
                 *ngIf="workOrderTypes"
                 [label]="'Tipo de trabajo'" 
@@ -21,7 +21,7 @@
                 (onSelectOptionEvent)="onSelectItem($event, 2)">
             </app-dropdown>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4 col-sm-6">
             <app-dropdown 
                 *ngIf="employees"
                 [label]="'Asignado a'" 

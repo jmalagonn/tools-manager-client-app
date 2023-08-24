@@ -8,11 +8,13 @@ export interface WorkOrder {
     branchName?: string;
     closedOn?: Date;
     createdOn?: Date;
+    customerCode?: number;
     customerId: number;
     customerName?: string;
     equipmentId: number;
     equipmentName: string;
     files: AppFile[];
+    internalCode?: number;
     workOrderDescription?: string;
     workOrderId?: number;
     workOrderTypeId: number;

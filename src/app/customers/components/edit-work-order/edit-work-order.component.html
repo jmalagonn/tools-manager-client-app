@@ -1,0 +1,19 @@
+<form *ngIf="workOrder" [formGroup]="workOrderForm!" (ngSubmit)="onSubmit()">
+    <div class="row mt-3">
+        <div class="col-lg-4 col-sm-6">
+            <p><b>Cliente: </b>{{ workOrder.customerName }}</p>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <app-dropdown 
+                [label]="'Sucursal'" 
+                [options]="branches! | toDropdownItem:'branch'"
+                [selectedOptionId]="workOrder.branchId"
+                (onSelectOptionEvent)="onSelectBranch($event)">
+            </app-dropdown>
+        </div>
+    </div>
+    <div class="d-flex">
+        <button type="buttol" class="btn btn-outline-danger me-3" (click)="cancelUpdateEvent.emit()">Cancelar</button>
+        <button class="btn btn-outline-primary" [disabled]="!workOrderForm!.valid">Guardar</button>
+    </div>
+</form>

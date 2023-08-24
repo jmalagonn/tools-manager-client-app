@@ -8,6 +8,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { AddWorkItemModalComponent } from '../../components/add-work-item-modal/add-work-item-modal.component';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { WorkState } from 'src/app/Core/models/Work-state.model';
 
 @Component({
   selector: 'app-work-order',
@@ -19,6 +20,7 @@ export class WorkOrderComponent implements OnInit {
   routeConstants = RouteConstants;
   modalRef?: NgbModalRef;
   userRoles = UserRoles;
+  isEditingWorkOrder: boolean = false;
 
   constructor (
     private httpService: HttpService,
@@ -46,5 +48,30 @@ export class WorkOrderComponent implements OnInit {
     this.modalRef = this.modalService.open(AddWorkItemModalComponent, { size: 'lg' });
     this.modalRef.componentInstance.workOrder = this.workOrder;
     this.modalRef.closed.subscribe(response => response && this.getWorkOrder());
+  }
+
+  setWorkOrderStateClass(workState: WorkState): string {
+    switch (workState.id) 
+    {
+      case 2:
+        return "in-progress";
+      case 3:
+        return "closed";
+      default:
+        return "open";
+    }
+  }
+
+  onEditWorkOrder() {
+    this.isEditingWorkOrder = true;
+  }
+
+  onWorkOrderEdited() {
+    this.isEditingWorkOrder = false;
+    this.getWorkOrder();
+  }
+
+  onCancelEditWorkOrder() {
+    this.isEditingWorkOrder = false;
   }
 }

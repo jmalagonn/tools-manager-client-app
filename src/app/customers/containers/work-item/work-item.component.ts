@@ -70,7 +70,7 @@ export class WorkItemComponent {
 
     const params = {
       workItemId: this.workItem!.workItemId!.toString(),
-      workStateId: this.workStates!.find(x => x.workStateId == 3)!.workStateId.toString()
+      workStateId: this.workStates!.find(x => x.id == 3)!.id.toString()
     };
   }
 }
