@@ -1,7 +1,7 @@
 <div class="container" *ngIf="workItem">
     <app-section-title
         [title]="'Ítem de trabajo: ' + workItem!.workItemId"
-        [editableSection]="workItem.workState!.workStateId != 3">
+        [editableSection]="workItem.workState!.id != 3">
     </app-section-title>
     <app-work-item-general-info 
         [workItem]="workItem">
@@ -16,12 +16,12 @@
             [items]="workItem.workItemActivityLogs | toItemList:'workItemActivityLog'"
             (rowClickedEvent)="showWorkActivityLogDetail($event)"></app-items-list>
         <app-new-work-item-activity-log 
-            *ngIf="workItem.workState!.workStateId != 3"
+            *ngIf="workItem.workState!.id != 3"
             [workItemId]="workItem.workItemId"
             (workItemActivityLogCreatedEvent)="activityLogCreated()">
         </app-new-work-item-activity-log>
     </div>
-    <div class="row mb-3" *ngIf="workItem.workState!.workStateId != 3">
+    <div class="row mb-3" *ngIf="workItem.workState!.id != 3">
         <div class="col text-center">
             <button class="btn btn-outline-primary" (click)="closeWorkItem()">Cerrar ítem</button>
         </div>

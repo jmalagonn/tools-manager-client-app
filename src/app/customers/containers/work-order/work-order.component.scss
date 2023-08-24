@@ -1,0 +1,9 @@
+.work-order-state {
+    color: white;
+    padding: .2rem .5rem;
+    border-radius: .2rem;
+    
+    &.open {
+        background-color: #0d6efd;
+    }
+}

@@ -1,4 +1,3 @@
-export interface WorkState {
-    workStateId: number;
-    workStateName?: string;
-}
+import { Base } from "./Base.model";
+
+export interface WorkState extends Base {}

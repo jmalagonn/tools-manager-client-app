@@ -76,7 +76,7 @@ export class AddWorkOrderFormComponent implements OnInit {
 
     const workOrder: AddWorkOrder = {
       assignedUserId: this.workOrderForm.controls["assignedUserId"].value,
-      branchId: this.branch.customerId!.toString(),
+      branchId: this.branch.id.toString(),
       customerId: this.branch.customerId!.toString(),
       equipmentId: this.workOrderForm.controls["equipmentId"].value,
       workOrderTypeId: this.workOrderForm.controls["workOrderTypeId"].value,

@@ -5,11 +5,10 @@ import { WorkState } from 'src/app/Core/models/Work-state.model';
   name: 'workState'
 })
 export class WorkStatePipe implements PipeTransform {
-
   transform(value: WorkState): string {
     if (!value) return "";
     
-    switch(value.workStateId) {
+    switch(value.id) {
       case 1:
         return "Abierta";
       case 2:
