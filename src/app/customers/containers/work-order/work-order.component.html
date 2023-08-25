@@ -1,12 +1,13 @@
 <div class="container" *ngIf="workOrder">
     <section class="d-flex justify-content-center align-items-center gap-3 mt-3">
-
         <p [ngClass]="[setWorkOrderStateClass(workOrder.workState!), 'work-order-state m-0']">
             {{ workOrder.workState! | workState }}
         </p>
         <h1 class="m-0 d-flex justify-content-center align-items-center">
             Orden de trabajo: {{ workOrder.workOrderId }}
-            <app-edit-model (click)="onEditWorkOrder()"></app-edit-model>
+            <app-edit-model 
+                *ngIf="!isEditingWorkOrder"
+                (click)="onEditWorkOrder()"></app-edit-model>
         </h1>
     </section>
     <ng-container *ngIf="!isEditingWorkOrder; else editingWorkOrder">
@@ -17,8 +18,7 @@
             </div>
             <div class="col-lg-4 col-sm-6">
                 <p><b>Sucursal: </b>
-                    <a
-                        [routerLink]="'/' + routeConstants.customersPath + '/' + workOrder.customerId + '/' + routeConstants.branchPath + '/' + workOrder.branchId">
+                    <a [routerLink]="'/' + routeConstants.customersPath + '/' + workOrder.customerId + '/' + routeConstants.branchPath + '/' + workOrder.branchId">
                         {{ workOrder.branchName }}
                     </a>
                 </p>
@@ -30,10 +30,18 @@
                 <p><b>Tipo: </b> {{ workOrder.workOrderTypeName }}</p>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <p><b>Asignado a: </b> {{ workOrder.assignedUserName }}</p>
+                <p><b>Asignado a: </b>
+                    <a [routerLink]="'/' + routeConstants.usersManagement + '/' + workOrder.assignedUserId">
+                        {{ workOrder.assignedUserName }}
+                    </a> 
+                </p>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <p><b>Equipo: </b> {{ workOrder.equipmentName }}</p>
+                <p><b>Equipo: </b> 
+                    <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workOrder.equipmentId">
+                        {{ workOrder.equipmentName }}
+                    </a>
+                </p>
             </div>
             <div class="col-12">
                 <p><b>Descripción: </b> 
