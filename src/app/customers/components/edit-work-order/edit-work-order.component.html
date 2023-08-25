@@ -1,6 +1,6 @@
 <form *ngIf="workOrder" [formGroup]="workOrderForm!" (ngSubmit)="onSubmit()">
     <div class="row mt-3">
-        <div class="col-lg-4 col-sm-6">
+        <div class="col-12">
             <p><b>Cliente: </b>{{ workOrder.customerName }}</p>
         </div>
         <div class="col-lg-4 col-sm-6">
@@ -11,9 +11,17 @@
                 (onSelectOptionEvent)="onSelectBranch($event)">
             </app-dropdown>
         </div>
+        <div class="col-lg-4 col-sm-6">
+            <app-dropdown 
+                [label]="'Asignado a'" 
+                [options]="employees! | toDropdownItem:'user'"
+                [selectedOptionId]="workOrder.assignedUserId"
+                (onSelectOptionEvent)="onSelectEmployee($event)">
+            </app-dropdown>
+        </div>
     </div>
-    <div class="d-flex">
+    <div class="d-flex mt-3 justify-content-center">
         <button type="buttol" class="btn btn-outline-danger me-3" (click)="cancelUpdateEvent.emit()">Cancelar</button>
         <button class="btn btn-outline-primary" [disabled]="!workOrderForm!.valid">Guardar</button>
-    </div>
+    </div>  
 </form>

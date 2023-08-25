@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
+import { Employee } from 'src/app/Core/models/Employee.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -13,6 +14,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class EditWorkOrderComponent implements OnChanges {
   workOrderForm?: FormGroup;
+  employees?: Employee[];
   branches?: Branch[];
 
   @Input() workOrder?: WorkOrder;
@@ -28,6 +30,7 @@ export class EditWorkOrderComponent implements OnChanges {
     if (this.workOrder) {
       this.initForm();
       this.getCustomerBranches();
+      this.getEmployeesList();
     }
   }
 
@@ -39,23 +42,24 @@ export class EditWorkOrderComponent implements OnChanges {
     });
   }
 
-  getCustomerBranches() {
-    if (!this.workOrder) return;
-
-    this.httpService.get<Branch[]>(`${ApiConstants.branchesApi}/${this.workOrder.customerId}`)
-      .subscribe(response => this.branches = response);
-  }
-
   onSubmit() {
     if (!this.workOrder || !this.workOrderForm?.valid) return;
 
     const workOrder: WorkOrder = {
       ...this.workOrder,
-      branchId: this.workOrderForm!.controls["branchId"].value
+      branchId: this.workOrderForm!.controls["branchId"].value,
+      assignedUserId: this.workOrderForm!.controls["assignedUserId"].value
     }
 
     this.httpService.put(ApiConstants.workOrderApi, workOrder)
       .subscribe(() => this.workOrderUpdatedEvent.emit());
+  }
+
+  getCustomerBranches() {
+    if (!this.workOrder) return;
+
+    this.httpService.get<Branch[]>(`${ApiConstants.branchesApi}/${this.workOrder.customerId}`)
+      .subscribe(response => this.branches = response);
   }
 
   onSelectBranch(branch: DropdownItem): void {
@@ -66,6 +70,25 @@ export class EditWorkOrderComponent implements OnChanges {
     if (selectedBranch) {
       this.workOrderForm?.patchValue({
         branchId: selectedBranch.id
+      });
+    }
+  }
+
+  getEmployeesList() {
+    if (!this.workOrder) return;
+
+    this.httpService.get<Employee[]>(`${ApiConstants.userEmployeesApi}`)
+      .subscribe(response => this.employees = response);
+  }
+
+  onSelectEmployee(employee: DropdownItem): void {
+    if (!this.workOrderForm) return;
+
+    const selectedEmployee = this.employees!.find(x => x.userId == employee.id);
+
+    if (selectedEmployee) {
+      this.workOrderForm?.patchValue({
+        assignedUserId: selectedEmployee.userId
       });
     }
   }
