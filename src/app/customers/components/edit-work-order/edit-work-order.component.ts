@@ -38,12 +38,13 @@ export class EditWorkOrderComponent implements OnChanges {
     if (!this.workOrder) return;
 
     this.workOrderForm = this.fb.group({
-      branchId: [this.workOrder.branchId, Validators.required]
+      branchId: [this.workOrder.branchId, Validators.required],
+      assignedUserId: [this.workOrder.assignedUserId, Validators.required]
     });
   }
 
   onSubmit() {
-    if (!this.workOrder || !this.workOrderForm?.valid) return;
+    if (!this.workOrder || !this.workOrderForm || !this.workOrderForm.valid) return;
 
     const workOrder: WorkOrder = {
       ...this.workOrder,
