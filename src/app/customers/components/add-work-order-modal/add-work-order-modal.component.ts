@@ -39,8 +39,10 @@ export class AddWorkOrderModalComponent {
     formData.append("branchId", wo.branchId);
     formData.append("customerId", wo.customerId);
     formData.append("workOrderTypeId", wo.workOrderTypeId);
-    formData.append("workOrderDescription", wo.workOrderDescription || "");
-    this.files.map(file => {formData.append("files", file)});
+    wo.customerCode && formData.append("customerCode", wo.customerCode);
+    wo.workOrderDescription && formData.append("workOrderDescription", wo.workOrderDescription);
+    wo.internalCode && formData.append("internalCode", wo.internalCode);
+    this.files.map(file => {formData.append("files", file)});    
 
     this.httpService.post<WorkOrder>('WorkOrder', formData).subscribe(
       workOrder => this.activeModal.close(workOrder)

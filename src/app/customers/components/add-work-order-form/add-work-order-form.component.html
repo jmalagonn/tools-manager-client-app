@@ -1,13 +1,22 @@
 <form class="mb-3" [formGroup]="workOrderForm!">
-    <div class="row g-2" *ngIf="branch">
+    <div class="row g-3" *ngIf="branch">
         <div class="col-6">
-            <p><b>Cliente:</b> {{ branch.customerName }}</p>
+            <p class="m-0"><b>Cliente:</b> {{ branch.customerName }}</p>
         </div>
         <div class="col-6">
-            <p><b>Sucursal:</b> {{ branch.name }}</p>
+            <p class="m-0"><b>Sucursal:</b> {{ branch.name }}</p>
+        </div>
+        <div class="col-lg-6">
+            <label class="form-label">Código GMC</label>
+            <input type="text" class="form-control" formControlName="internalCode">
+        </div>
+        <div class="col-lg-6">
+            <label class="form-label">Código OT cliente</label>
+            <input type="text" class="form-control" formControlName="customerCode">
         </div>
         <div class="col-lg-4 col-sm-6">
             <app-dropdown 
+                *ngIf="branch.equipment && branch.equipment.length"
                 [label]="'Equipo'" 
                 [options]="branch.equipment! | toDropdownItem:'equipment'"
                 (onSelectOptionEvent)="onSelectItem($event, 1)">

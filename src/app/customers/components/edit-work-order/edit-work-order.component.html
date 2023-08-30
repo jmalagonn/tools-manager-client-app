@@ -1,7 +1,15 @@
 <form *ngIf="workOrder && workOrderForm" [formGroup]="workOrderForm" (ngSubmit)="onSubmit()">
-    <div class="row mt-3">
+    <div class="row mt-3 g-3">
         <div class="col-12">
-            <p><b>Cliente: </b>{{ workOrder.customerName }}</p>
+            <p class="m-0"><b>Cliente: </b>{{ workOrder.customerName }}</p>
+        </div>        
+        <div class="col-lg-4 col-sm-6">
+            <label class="form-label">Código GMC</label>
+            <input type="text" class="form-control" formControlName="internalCode">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <label class="form-label">Código OT cliente</label>
+            <input type="text" class="form-control" formControlName="customerCode">
         </div>
         <div class="col-lg-4 col-sm-6">
             <app-dropdown 

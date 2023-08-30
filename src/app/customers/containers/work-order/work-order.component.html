@@ -4,58 +4,14 @@
             {{ workOrder.workState! | workState }}
         </p>
         <h1 class="m-0 d-flex justify-content-center align-items-center">
-            Orden de trabajo: {{ workOrder.workOrderId }}
+            Orden de trabajo: {{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}
             <app-edit-model 
                 *ngIf="!isEditingWorkOrder"
                 (click)="onEditWorkOrder()"></app-edit-model>
         </h1>
     </section>
     <ng-container *ngIf="!isEditingWorkOrder; else editingWorkOrder">
-        <div class="row mt-3">
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Cliente: </b> <a [routerLink]="'/' + routeConstants.customersPath + '/' + workOrder.customerId">{{
-                        workOrder.customerName }}</a></p>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Sucursal: </b>
-                    <a [routerLink]="'/' + routeConstants.customersPath + '/' + workOrder.customerId + '/' + routeConstants.branchPath + '/' + workOrder.branchId">
-                        {{ workOrder.branchName }}
-                    </a>
-                </p>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Fecha de creación: </b> {{ workOrder.createdOn | date }}</p>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Tipo: </b> {{ workOrder.workOrderTypeName }}</p>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Asignado a: </b>
-                    <a [routerLink]="'/' + routeConstants.usersManagement + '/' + workOrder.assignedUserId">
-                        {{ workOrder.assignedUserName }}
-                    </a> 
-                </p>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <p><b>Equipo: </b> 
-                    <a [routerLink]="'/' + routeConstants.equipmentPath + '/' + workOrder.equipmentId">
-                        {{ workOrder.equipmentName }}
-                    </a>
-                </p>
-            </div>
-            <div class="col-12">
-                <p><b>Descripción: </b> 
-                    {{ workOrder.workOrderDescription ? workOrder.workOrderDescription : "No se ingresódescripción de la OT." }}
-                </p>
-            </div>
-        </div>
-        <div class="row mt-3" *ngIf="workOrder.files?.length">
-            <h2 class="text-center">Archivos</h2>
-            <app-image-thumbnail 
-                *ngFor="let file of workOrder.files"
-                [appFile]="file">
-            </app-image-thumbnail>
-        </div>
+        <app-work-order-info [workOrder]="workOrder"></app-work-order-info>        
     </ng-container>
     <ng-template #editingWorkOrder>
         <app-edit-work-order 

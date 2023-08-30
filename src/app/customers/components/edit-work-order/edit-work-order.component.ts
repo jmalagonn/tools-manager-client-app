@@ -38,8 +38,10 @@ export class EditWorkOrderComponent implements OnChanges {
     if (!this.workOrder) return;
 
     this.workOrderForm = this.fb.group({
+      assignedUserId: [this.workOrder.assignedUserId, Validators.required],
       branchId: [this.workOrder.branchId, Validators.required],
-      assignedUserId: [this.workOrder.assignedUserId, Validators.required]
+      customerCode: [this.workOrder.customerCode],
+      internalCode: [this.workOrder.internalCode]
     });
   }
 
@@ -48,8 +50,10 @@ export class EditWorkOrderComponent implements OnChanges {
 
     const workOrder: WorkOrder = {
       ...this.workOrder,
-      branchId: this.workOrderForm!.controls["branchId"].value,
-      assignedUserId: this.workOrderForm!.controls["assignedUserId"].value
+      assignedUserId: this.workOrderForm.controls["assignedUserId"].value,
+      branchId: this.workOrderForm.controls["branchId"].value,
+      customerCode: this.workOrderForm.controls["customerCode"].value,
+      internalCode: this.workOrderForm.controls["internalCode"].value,
     }
 
     this.httpService.put(ApiConstants.workOrderApi, workOrder)

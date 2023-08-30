@@ -29,6 +29,7 @@ import { WorkItemGeneralInfoComponent } from './components/work-item-general-inf
 import { WorkItemEditComponent } from './components/work-item-edit/work-item-edit.component';
 import { BranchesListComponent } from './components/branches-list/branches-list.component';
 import { EditWorkOrderComponent } from './components/edit-work-order/edit-work-order.component';
+import { WorkOrderInfoComponent } from './components/work-order-info/work-order-info.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { EditWorkOrderComponent } from './components/edit-work-order/edit-work-o
     WorkItemGeneralInfoComponent,
     WorkItemEditComponent,
     BranchesListComponent,
-    EditWorkOrderComponent
+    EditWorkOrderComponent,
+    WorkOrderInfoComponent
   ],
   imports: [
     CommonModule,

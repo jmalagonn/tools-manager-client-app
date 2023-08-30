@@ -47,6 +47,8 @@ export class AddWorkOrderFormComponent implements OnInit {
   initWorkOrderForm() {
     this.workOrderForm = this.fb.group({
       assignedUserId:       [null, Validators.required],
+      customerCode:         [],
+      internalCode:         [],
       equipmentId:          [null],
       workOrderDescription: [''],
       workOrderTypeId:      [null, Validators.required],
@@ -78,7 +80,9 @@ export class AddWorkOrderFormComponent implements OnInit {
       assignedUserId: this.workOrderForm.controls["assignedUserId"].value,
       branchId: this.branch.id.toString(),
       customerId: this.branch.customerId!.toString(),
+      customerCode: this.workOrderForm.controls["customerCode"].value,
       equipmentId: this.workOrderForm.controls["equipmentId"].value,
+      internalCode: this.workOrderForm.controls["internalCode"].value,
       workOrderTypeId: this.workOrderForm.controls["workOrderTypeId"].value,
       workOrderDescription: this.workOrderForm.controls["workOrderDescription"].value,
     };
