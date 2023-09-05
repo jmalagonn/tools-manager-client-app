@@ -1,0 +1,16 @@
+.search-field {
+    border-radius: .375rem;
+    background-color: transparent;
+    border: 1px solid black;
+    padding: .25rem .5rem;
+
+    input {
+        background: transparent;
+        border: none;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { Employee } from 'src/app/Core/models/Employee.model';
+import { WorkState } from 'src/app/Core/models/Work-state.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -16,6 +17,7 @@ export class EditWorkOrderComponent implements OnChanges {
   workOrderForm?: FormGroup;
   employees?: Employee[];
   branches?: Branch[];
+  workOrderStates?: WorkState[];
 
   @Input() workOrder?: WorkOrder;
 
@@ -31,6 +33,7 @@ export class EditWorkOrderComponent implements OnChanges {
       this.initForm();
       this.getCustomerBranches();
       this.getEmployeesList();
+      this.getWorkOrderStates();
     }
   }
 
@@ -41,7 +44,8 @@ export class EditWorkOrderComponent implements OnChanges {
       assignedUserId: [this.workOrder.assignedUserId, Validators.required],
       branchId: [this.workOrder.branchId, Validators.required],
       customerCode: [this.workOrder.customerCode],
-      internalCode: [this.workOrder.internalCode]
+      internalCode: [this.workOrder.internalCode],
+      workState: [this.workOrder.workState, Validators.required]
     });
   }
 
@@ -54,6 +58,7 @@ export class EditWorkOrderComponent implements OnChanges {
       branchId: this.workOrderForm.controls["branchId"].value,
       customerCode: this.workOrderForm.controls["customerCode"].value,
       internalCode: this.workOrderForm.controls["internalCode"].value,
+      workState: this.workOrderForm.controls["workState"].value,
     }
 
     this.httpService.put(ApiConstants.workOrderApi, workOrder)
@@ -94,6 +99,25 @@ export class EditWorkOrderComponent implements OnChanges {
     if (selectedEmployee) {
       this.workOrderForm?.patchValue({
         assignedUserId: selectedEmployee.userId
+      });
+    }
+  }
+
+  getWorkOrderStates() {
+    if (!this.workOrder) return;
+
+    this.httpService.get<WorkState[]>(`${ApiConstants.workStateApi}`)
+      .subscribe(response => this.workOrderStates = response);
+  }
+
+  onSelectWorkOrderState(state: DropdownItem): void {
+    if (!this.workOrderForm) return;
+    
+    const selectedWorkOrderState = this.workOrderStates!.find(x => x.id == state.id);
+
+    if (selectedWorkOrderState) {
+      this.workOrderForm?.patchValue({
+        workState: selectedWorkOrderState
       });
     }
   }

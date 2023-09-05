@@ -7,6 +7,8 @@ import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
 import { User } from 'src/app/Core/models/User.model';
 import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
+import { WorkState } from 'src/app/Core/models/Work-state.model';
+import { WorkStatePipe } from './work-state.pipe';
 
 @Pipe({
   name: 'toDropdownItem'
@@ -33,6 +35,9 @@ export class ToDropdownItemPipe implements PipeTransform {
         return values.map((x: Employee) => ({ id: x.userId, description: x.name }));
       case "equipment":
         return values.map((x: Equipment) => ({id: x.id, description: x.name}));
+      case "workState":
+        const workStateNamesPipe = new WorkStatePipe();
+        return values.map((x: WorkState) => ({id: x.id, description: workStateNamesPipe.transform(x) }));
       default:
         const { idPropName, descriptionPropName } = this.findProperties(values[0]);
         return values.map((x: any) => ({ id: x[idPropName], description: x[descriptionPropName] }));

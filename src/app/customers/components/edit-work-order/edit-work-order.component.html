@@ -21,6 +21,14 @@
         </div>
         <div class="col-lg-4 col-sm-6">
             <app-dropdown 
+                [label]="'Estado'" 
+                [options]="workOrderStates! | toDropdownItem:'workState'"
+                [selectedOptionId]="workOrder.workState?.id"
+                (onSelectOptionEvent)="onSelectWorkOrderState($event)">
+            </app-dropdown>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <app-dropdown 
                 [label]="'Asignado a'" 
                 [options]="employees! | toDropdownItem:'user'"
                 [selectedOptionId]="workOrder.assignedUserId"
