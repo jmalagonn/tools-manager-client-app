@@ -3,14 +3,14 @@
         <tr>
             <th>
                 <span>Código</span>
-                <div class="ms-3 search-field d-inline">
+                <div class="ms-3 search-field d-none d-lg-inline-block">
                     <input type="text" placeholder="Buscar" (keyup)="filterBy($event, 'code')"/>
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </div>
             </th>
             <th>
                 <span>Nombre</span>
-                <div class="ms-3 search-field d-inline">
+                <div class="ms-3 search-field d-none d-lg-inline-block">
                     <input type="text" placeholder="Buscar" (keyup)="filterBy($event, 'name')"/>
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </div>
