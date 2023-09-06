@@ -1,0 +1,18 @@
+<table class="table" *ngIf="workOrders && workOrders.length">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Estado</th>
+            <th>Cliente</th>
+            <th>Sucursal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workOrder of workOrders">
+            <td>{{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}</td>
+            <td>{{ workOrder.workState! | workState }}</td>
+            <td>{{ workOrder.customerName }}</td>
+            <td>{{ workOrder.branchName }}</td>
+        </tr>
+    </tbody>
+</table>

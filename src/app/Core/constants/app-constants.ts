@@ -1,4 +1,4 @@
-import { faBuilding, faScrewdriverWrench, faUserGroup, faUserPen, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faBuilding, faScrewdriverWrench, faUserGroup, faUserPen, faGear, faLaptopFile } from "@fortawesome/free-solid-svg-icons";
 import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from "@techiediaries/ngx-qrcode";
 import { UserRoles } from "../enums/User-roles.enum";
 
@@ -26,6 +26,12 @@ export class AppConstants {
             title: 'Editar perfil',
             icon: faUserPen,
             path: 'profile',
+            userRoles: null
+        },
+        {
+            title: 'Ordenes de trabajo',
+            icon: faLaptopFile,
+            path: 'work-orders',
             userRoles: null
         },
         {

@@ -46,6 +46,10 @@ const routes: Routes = [
       {
         path: 'general-settings',
         loadChildren: () => import('./general-settings/general-settings.module').then(m => m.GeneralSettingsModule)
+      },
+      {
+        path: 'work-orders',
+        loadChildren: () => import('./work-orders/work-orders.module').then(m => m.WorkOrderstModule)
       }
     ]
   },
