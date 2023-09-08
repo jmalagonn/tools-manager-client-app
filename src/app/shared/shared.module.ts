@@ -35,6 +35,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
 import { AddParameterComponent } from './components/add-parameter/add-parameter.component';
 import { AddImagesComponent } from './components/add-images/add-images.component';
 import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
+import { ColumnFilterComponent } from './components/column-filter/column-filter.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { WorkOrdersTableComponent } from './components/work-orders-table/work-or
     AddParameterComponent,
     AddImagesComponent,
     WorkOrdersTableComponent,
+    ColumnFilterComponent,
   ],
   imports: [
     CommonModule,    
@@ -117,6 +119,7 @@ import { WorkOrdersTableComponent } from './components/work-orders-table/work-or
     AddParameterComponent,
     AddImagesComponent,
     WorkOrdersTableComponent,
+    ColumnFilterComponent,
   ]
 })
 export class SharedModule { }

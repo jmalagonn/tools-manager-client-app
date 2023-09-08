@@ -1,18 +1,44 @@
-<table class="table" *ngIf="workOrders && workOrders.length">
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>Código</th>
-            <th>Estado</th>
-            <th>Cliente</th>
-            <th>Sucursal</th>
+            <th>
+                <div class="d-flex justify-content-between">
+                    <p>Código</p>
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>                    
+                </div>         
+            </th>
+            <th>
+                <div class="d-flex justify-content-between">
+                    <p>Estado</p>                  
+                </div> 
+            </th>
+            <th>
+                <div class="d-flex justify-content-between">
+                    <p>Cliente</p>
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.customer)"></app-column-filter>                    
+                </div>                
+            </th>
+            <th>
+                <div class="d-flex justify-content-between">
+                    <p>Sucursal</p>
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.branch)"></app-column-filter>                    
+                </div>                
+            </th>
+            <th>
+                <div class="d-flex justify-content-between">
+                    <p>Asignado a</p>
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.user)"></app-column-filter>                    
+                </div>
+            </th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let workOrder of workOrders">
+    <tbody *ngIf="filteredWorkOrders && filteredWorkOrders.length">
+        <tr *ngFor="let workOrder of filteredWorkOrders | sortWorkOrders" (click)="navigateToWorkOrder(workOrder)">
             <td>{{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}</td>
             <td>{{ workOrder.workState! | workState }}</td>
             <td>{{ workOrder.customerName }}</td>
             <td>{{ workOrder.branchName }}</td>
+            <td>{{ workOrder.assignedUserName }}</td>
         </tr>
     </tbody>
 </table>

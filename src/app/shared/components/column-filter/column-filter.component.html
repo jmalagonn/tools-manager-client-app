@@ -1,0 +1,11 @@
+<div class="container-box">
+    <fa-icon [icon]="faFilter" role="button" (click)="toggleFilterColumn($event)"></fa-icon>
+    
+    <div class="content" *ngIf="showContent">
+        <div class="form-area d-flex align-items-center">
+            <input type="text" class="form-control" placeholder="Buscar" [(ngModel)]="inputText"/>
+            <fa-icon [icon]="faCheck" role="button" class="text-success" (click)="onClickApply()"></fa-icon>
+            <fa-icon [icon]="faX" role="button" class="text-danger" (click)="onClickCancel()"></fa-icon>
+        </div>       
+    </div>
+</div>
