@@ -1,9 +1,9 @@
 <form class="mb-3" [formGroup]="workOrderForm!">
     <div class="row g-3" *ngIf="branch">
-        <div class="col-6">
+        <div class="col-sm-6">
             <p class="m-0"><b>Cliente:</b> {{ branch.customerName }}</p>
         </div>
-        <div class="col-6">
+        <div class="col-sm-6">
             <p class="m-0"><b>Sucursal:</b> {{ branch.name }}</p>
         </div>
         <div class="col-lg-6">
@@ -39,9 +39,9 @@
             </app-dropdown>
         </div>
         <div class="col-12">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Descripción general" id="workOrderDescription" formControlName="workOrderDescription"></textarea>
-                <label for="workOrderDescription">Descripción general</label>
+            <div>
+                <label class="form-label">Trabajo realizado</label>
+                <textarea class="form-control" id="workOrderDescription" formControlName="workOrderDescription"></textarea>
             </div>
         </div>
     </div>

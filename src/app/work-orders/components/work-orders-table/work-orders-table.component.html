@@ -2,30 +2,30 @@
     <thead>
         <tr>
             <th>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between gap-2">
                     <p>Código</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>                    
                 </div>         
             </th>
             <th>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between gap-2">
                     <p>Estado</p>                  
                 </div> 
             </th>
             <th>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between gap-2">
                     <p>Cliente</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.customer)"></app-column-filter>                    
                 </div>                
             </th>
             <th>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between gap-2">
                     <p>Sucursal</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.branch)"></app-column-filter>                    
                 </div>                
             </th>
             <th>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between gap-2">
                     <p>Asignado a</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.user)"></app-column-filter>                    
                 </div>
