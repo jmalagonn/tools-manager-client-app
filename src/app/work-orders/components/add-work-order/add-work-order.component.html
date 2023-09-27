@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title">Nueva orden de trabajo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form *ngIf="workOrderForm" [formGroup]="workOrderForm">
+        <div class="row g-3">
+            <div class="col-lg-3 col-sm-6">
+                <app-dropdown *ngIf="customers && customers.length" [label]="'Cliente'"
+                    [options]="customers | toDropdownItem"
+                    (onSelectOptionEvent)="onSelectItem($event, workOrderProperties.customer)">
+                </app-dropdown>
+            </div>
+            <div class="col-lg-3 col-sm-6" *ngIf="branches && branches.length">
+                <app-dropdown [label]="'Sucursal'" [options]="branches | toDropdownItem"
+                    (onSelectOptionEvent)="onSelectItem($event, workOrderProperties.branch)">
+                </app-dropdown>
+            </div>
+            <div class="col-lg-3 col-sm-6" *ngIf="equipment && equipment.length">
+                <app-dropdown [label]="'Equipo'" [options]="equipment | toDropdownItem"
+                    (onSelectOptionEvent)="onSelectItem($event, workOrderProperties.equipment)">
+                </app-dropdown>
+            </div>
+            <div class="col-lg-3 col-sm-6" *ngIf="users && users.length">
+                <app-dropdown [label]="'Asignado a'" [options]="users | toDropdownItem:'employee'"
+                    (onSelectOptionEvent)="onSelectItem($event, workOrderProperties.user)">
+                </app-dropdown>
+            </div>
+            <div class="col-lg-3 col-sm-6" *ngIf="workOrderTypes && workOrderTypes.length">
+                <app-dropdown [label]="'Tipo de trabajo'" [options]="workOrderTypes | toDropdownItem"
+                    (onSelectOptionEvent)="onSelectItem($event, workOrderProperties.workOrderType)">
+                </app-dropdown>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <label class="form-label">Código GMC</label>
+                <input type="text" class="form-control" formControlName="internalCode">
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <label class="form-label">Código cliente</label>
+                <input type="text" class="form-control" formControlName="customerCode">
+            </div>
+            <div class="col-12">
+                <label class="form-label">Trabajo a realizar:</label>
+                <textarea class="form-control" formControlName="description"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <button type="button" class="btn btn-outline-primary" (click)="saveWorkOrder()">Guardar</button>
+</div>

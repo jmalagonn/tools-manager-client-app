@@ -1,5 +1,5 @@
 <div class="container" *ngIf="workOrder">
-    <section class="d-flex justify-content-center align-items-center gap-3 mt-3">
+    <section class="d-none d-md-flex justify-content-center align-items-center gap-3 mt-3">
         <p [ngClass]="[setWorkOrderStateClass(workOrder.workState!), 'work-order-state m-0']">
             {{ workOrder.workState! | workState }}
         </p>
@@ -9,6 +9,19 @@
                 *ngIf="!isEditingWorkOrder"
                 (click)="onEditWorkOrder()"></app-edit-model>
         </h1>
+    </section>
+    <section class="d-md-none mt-3">        
+        <h1 class="m-0 d-flex justify-content-center align-items-center">
+            Orden de trabajo: {{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}
+            <app-edit-model 
+                *ngIf="!isEditingWorkOrder"
+                (click)="onEditWorkOrder()"></app-edit-model>            
+        </h1>
+        <div class="text-center">
+            <p [ngClass]="[setWorkOrderStateClass(workOrder.workState!), 'work-order-state d-inline-block mt-2 mb-0']">
+                {{ workOrder.workState! | workState }}
+            </p>
+        </div>
     </section>
     <ng-container *ngIf="!isEditingWorkOrder; else editingWorkOrder">
         <app-work-order-info [workOrder]="workOrder"></app-work-order-info>        

@@ -49,10 +49,10 @@ export class ToDropdownItemPipe implements PipeTransform {
     let descriptionPropName: string = "";
 
     for(let prop in obj){
-      if (prop.match(/id/i)?.length)
+      if (prop.match(/^id$/i)?.length)
         idPropName = prop;
 
-      if (prop.match(/name/i)?.length || prop.includes('Description'))
+      if (prop.match(/^name$/i)?.length || prop.includes('Description'))
         descriptionPropName = prop;
     };
 
