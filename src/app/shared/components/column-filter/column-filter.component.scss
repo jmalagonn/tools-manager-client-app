@@ -17,5 +17,10 @@
                 font-size: 1.25rem;
             }
         }
+
+        &.left {
+            right: auto;
+            left: 0;
+        }
     }
 }

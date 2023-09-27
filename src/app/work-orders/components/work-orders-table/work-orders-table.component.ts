@@ -59,7 +59,6 @@ export class WorkOrdersTableComponent implements OnChanges {
     if (!this.workOrders) return;
 
     this.filteredWorkOrders = this.workOrders.filter(x => {
-      debugger;
       let result: boolean = false;
 
       result = !this.filteredCodes.length ? true : x.internalCode 

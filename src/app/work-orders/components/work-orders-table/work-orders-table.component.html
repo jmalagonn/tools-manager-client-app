@@ -4,41 +4,41 @@
             <th>
                 <div class="d-flex justify-content-between gap-2">
                     <p>Código</p>
-                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>                    
-                </div>         
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>
+                </div>
             </th>
             <th>
                 <div class="d-flex justify-content-between gap-2">
-                    <p>Estado</p>                  
-                </div> 
+                    <p>Estado</p>
+                </div>
             </th>
             <th>
                 <div class="d-flex justify-content-between gap-2">
                     <p>Cliente</p>
-                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.customer)"></app-column-filter>                    
-                </div>                
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.customer)"></app-column-filter>
+                </div>
             </th>
             <th>
                 <div class="d-flex justify-content-between gap-2">
                     <p>Sucursal</p>
-                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.branch)"></app-column-filter>                    
-                </div>                
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.branch)"></app-column-filter>
+                </div>
             </th>
             <th>
                 <div class="d-flex justify-content-between gap-2">
                     <p>Asignado a</p>
-                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.user)"></app-column-filter>                    
+                    <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.user)"></app-column-filter>
                 </div>
             </th>
         </tr>
     </thead>
     <tbody *ngIf="filteredWorkOrders && filteredWorkOrders.length">
         <tr *ngFor="let workOrder of filteredWorkOrders | sortWorkOrders" (click)="navigateToWorkOrder(workOrder)">
-            <td>{{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}</td>
-            <td>{{ workOrder.workState! | workState }}</td>
-            <td>{{ workOrder.customerName }}</td>
-            <td>{{ workOrder.branchName }}</td>
-            <td>{{ workOrder.assignedUserName }}</td>
+            <td><p>{{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}</p></td>
+            <td><p>{{ workOrder.workState! | workState }}</p></td>
+            <td><p>{{ workOrder.customerName }}</p></td>
+            <td><p>{{ workOrder.branchName }}</p></td>
+            <td><p>{{ workOrder.assignedUserName }}</p></td>
         </tr>
     </tbody>
 </table>

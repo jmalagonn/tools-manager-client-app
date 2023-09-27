@@ -36,6 +36,7 @@ import { AddParameterComponent } from './components/add-parameter/add-parameter.
 import { AddImagesComponent } from './components/add-images/add-images.component';
 import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
 import { ColumnFilterComponent } from './components/column-filter/column-filter.component';
+import { LeftPositionElementDirective } from './directives/left-position-element.directive';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ColumnFilterComponent } from './components/column-filter/column-filter.
     AddImagesComponent,
     WorkOrdersTableComponent,
     ColumnFilterComponent,
+    LeftPositionElementDirective,
   ],
   imports: [
     CommonModule,    
