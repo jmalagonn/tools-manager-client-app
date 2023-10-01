@@ -4,7 +4,6 @@ import { BranchDetailComponent } from './containers/branch-detail/branch-detail.
 import { CustomerDetailComponent } from './containers/customer-detail/customer-detail.component';
 import { CustomersComponent } from './containers/customers/customers.component';
 import { EquipmentComponent } from './containers/equipment/equipment.component';
-import { WorkItemComponent } from './containers/work-item/work-item.component';
 import { WorkOrderComponent } from './containers/work-order/work-order.component';
 
 const routes: Routes = [
@@ -33,10 +32,6 @@ const routes: Routes = [
     path: 'equipment/:id',
     component: EquipmentComponent,
   },
-  {
-    path: 'work-item/:id',
-    component: WorkItemComponent,
-  }
 ];
 
 @NgModule({

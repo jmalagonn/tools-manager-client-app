@@ -1,7 +1,7 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>
+            <th (click)="sortBy(columns.code)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Código</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>
@@ -33,7 +33,7 @@
         </tr>
     </thead>
     <tbody *ngIf="filteredWorkOrders && filteredWorkOrders.length">
-        <tr *ngFor="let workOrder of filteredWorkOrders | sortWorkOrders" (click)="navigateToWorkOrder(workOrder)">
+        <tr *ngFor="let workOrder of filteredWorkOrders" (click)="navigateToWorkOrder(workOrder)">
             <td><p>{{ workOrder.internalCode ? workOrder.internalCode : workOrder.workOrderId }}</p></td>
             <td><p>{{ workOrder.workState! | workState }}</p></td>
             <td><p>{{ workOrder.customerName }}</p></td>

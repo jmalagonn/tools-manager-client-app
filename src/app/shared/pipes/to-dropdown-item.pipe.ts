@@ -6,7 +6,7 @@ import { Employee } from 'src/app/Core/models/Employee.model';
 import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
 import { User } from 'src/app/Core/models/User.model';
-import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
+import { WorkOrderActivity } from 'src/app/Core/models/workOrder/Work-order-activity.model';
 import { WorkState } from 'src/app/Core/models/Work-state.model';
 import { WorkStatePipe } from './work-state.pipe';
 
@@ -24,8 +24,8 @@ export class ToDropdownItemPipe implements PipeTransform {
         return values.map((x: Customer) => ({ id: x.id, description:  x.name}));
       case "branch":
         return values.map((x: Branch) => ({ id: x.id!, description:  x.name}));
-      case "workItemActivityLog":
-        return values.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId!, description: x.description }));
+      case "workOrderActivity":
+        return values.map((x: WorkOrderActivity) => ({ id: x.id, description: x.description }));
       case "measurementUnits":
         return values.map((x: MeasurementUnit) => ({ 
           id: x.measurementUnitId, 

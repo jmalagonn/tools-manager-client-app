@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">Registrar trabajo realizado</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form *ngIf="activityForm" [formGroup]="activityForm">
+        <div class="row">
+            <div class="col">
+                <label for="label-form">Descripción:</label>
+                <textarea class="form-control" rows="5" formControlName="description"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(false)">Cerrar</button>
+    <button type="button" class="btn btn-outline-primary" (click)="onSubmit()" [disabled]="!activityForm || !activityForm.valid">Guardar</button>
+</div>

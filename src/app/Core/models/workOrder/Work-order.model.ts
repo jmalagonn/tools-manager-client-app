@@ -1,7 +1,9 @@
 import { AppFile } from "../AppFile.model";
 import { WorkState } from "../Work-state.model";
+import { WorkOrderActivity } from "./Work-order-activity.model";
 
 export interface WorkOrder {
+    activities?: WorkOrderActivity[];
     assignedUserId: number;
     assignedUserName: string;
     branchId: number;

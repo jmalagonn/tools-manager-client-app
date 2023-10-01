@@ -7,7 +7,7 @@ import { MeasurementUnit } from 'src/app/Core/models/MeasurementUnit.model';
 import { Tool } from 'src/app/Core/models/Tool.model';
 import { ToolParameter } from 'src/app/Core/models/Tool-parameter.model';
 import { User } from 'src/app/Core/models/User.model';
-import { WorkItemActivityLog } from 'src/app/Core/models/Work-item-activity-log.model';
+import { WorkOrderActivity } from 'src/app/Core/models/workOrder/Work-order-activity.model';
 import { Parameter } from 'src/app/Core/models/Parameter.model';
 
 @Pipe({
@@ -27,8 +27,8 @@ export class ToItemListPipe implements PipeTransform {
         return value.map((x: Branch) => ({ id: x.id, name:  x.name}));
       case "equipment":
         return value.map((x: Equipment) => ({ id: x.id, name:  x.name}));
-      case "workItemActivityLog":
-        return value.map((x: WorkItemActivityLog) => ({ id: x.workItemActivityLogId, name: x.description }));
+      case "workOrderActivity":
+        return value.map((x: WorkOrderActivity) => ({ id: x.id, name: x.description }));
       case "equipmentParameter":
         return value.map((x: Parameter) => ({ id: x.id, name: `${x.name} | Magnitud: ${x.measurementUnitSymbol}` }));
       case "measurementUnits":

@@ -19,6 +19,14 @@
                 (onSelectOptionEvent)="onSelectBranch($event)">
             </app-dropdown>
         </div>
+        <div class="col-lg-4 col-sm-6" *ngIf="equipment && equipment.length">
+            <app-dropdown 
+                [label]="'Equipo'" 
+                [options]="equipment | toDropdownItem:'equipment'"
+                [selectedOptionId]="workOrder.equipmentId"
+                (onSelectOptionEvent)="onSelectEquipment($event)">
+            </app-dropdown>
+        </div>
         <div class="col-lg-4 col-sm-6">
             <app-dropdown 
                 [label]="'Estado'" 
@@ -34,6 +42,10 @@
                 [selectedOptionId]="workOrder.assignedUserId"
                 (onSelectOptionEvent)="onSelectEmployee($event)">
             </app-dropdown>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Trabajo a realizar</label>
+            <textarea rows="5" class="form-control" formControlName="description"></textarea>
         </div>
     </div>
     <div class="d-flex mt-3 justify-content-center">

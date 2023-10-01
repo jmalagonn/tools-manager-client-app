@@ -11,7 +11,7 @@ import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 })
 export class WorkOrdersTableComponent implements OnChanges {
   filteredWorkOrders?: WorkOrder[];
-  columns = columns;
+  columns = Columns;
   filteredCodes: string = "";
   filteredCustomer: string = "";
   filteredBranch: string = "";
@@ -45,14 +45,15 @@ export class WorkOrdersTableComponent implements OnChanges {
         break;
       case this.columns.user:
         this.filteredUser = text.toLocaleLowerCase();
-        break;      
+        break;
     }
 
     this.filterWorkOrders();
   }
 
   initWorkOrders() {
-    this.filteredWorkOrders = this.workOrders;
+    this.filteredWorkOrders = this.workOrders!;
+    this.sortBy(Columns.code);
   }
 
   filterWorkOrders() {
@@ -61,10 +62,11 @@ export class WorkOrdersTableComponent implements OnChanges {
     this.filteredWorkOrders = this.workOrders.filter(x => {
       let result: boolean = false;
 
-      result = !this.filteredCodes.length ? true : x.internalCode 
+      result = !this.filteredCodes.length ? true : x.internalCode
         ? x.internalCode.toString().includes(this.filteredCodes)
         : x.workOrderId!.toString().includes(this.filteredCodes);
-      if (!result) return result;  
+
+      if (!result) return result;
 
       result = !this.filteredCustomer.length ? true : x.customerName!.toLocaleLowerCase().includes(this.filteredCustomer);
       if (!result) return result;
@@ -73,13 +75,31 @@ export class WorkOrdersTableComponent implements OnChanges {
       if (!result) return result;
 
       result = !this.filteredUser.length ? true : x.assignedUserName!.toLocaleLowerCase().includes(this.filteredUser);
-      
+
       return result;
-    })
+    });
+  }
+
+  sortBy(column: number) {
+    switch (column) {
+      case Columns.code:
+        this.filteredWorkOrders!.sort((a, b) => {
+          if (a.internalCode && b.internalCode) {
+            return a.internalCode - b.internalCode;
+          } else if (a.internalCode && !b.internalCode) {
+            return -1;
+          } else if (!a.internalCode && b.internalCode) {
+            return 1;
+          } else {
+            return a.workOrderId! - b.workOrderId!;
+          }
+        });
+        break;
+    }
   }
 }
 
-enum columns {
+enum Columns {
   code = 0,
   state,
   customer,

@@ -9,9 +9,9 @@ export class ApiConstants {
     public static readonly userEmployeeApi = "Users/employee";
     public static readonly userEmployeesApi = "Users/employees";
     public static readonly userRolesApi = "UserRole";
-    public static readonly workItemActivityLogApi = "WorkItem/workItemActivityLog";
     public static readonly workItemApi = "WorkItem";
     public static readonly workOrderApi = "WorkOrder";
+    public static readonly workOrderActivity = `${this.workOrderApi}/activity`;
     public static readonly workOrderTypesApi = `${this.workOrderApi}/workOrderTypes`;
     public static readonly toolsApi = "Tools";
     public static readonly toolParametersApi = "Tools/parameters";

@@ -4,6 +4,7 @@ import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { Employee } from 'src/app/Core/models/Employee.model';
+import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { WorkState } from 'src/app/Core/models/Work-state.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
@@ -17,6 +18,7 @@ export class EditWorkOrderComponent implements OnChanges {
   workOrderForm?: FormGroup;
   employees?: Employee[];
   branches?: Branch[];
+  equipment?: Equipment[];
   workOrderStates?: WorkState[];
 
   @Input() workOrder?: WorkOrder;
@@ -34,16 +36,21 @@ export class EditWorkOrderComponent implements OnChanges {
       this.getCustomerBranches();
       this.getEmployeesList();
       this.getWorkOrderStates();
+      this.getEquipment();
     }
   }
 
   initForm() {
     if (!this.workOrder) return;
 
+    console.log(this.workOrder);
+
     this.workOrderForm = this.fb.group({
       assignedUserId: [this.workOrder.assignedUserId, Validators.required],
       branchId: [this.workOrder.branchId, Validators.required],
       customerCode: [this.workOrder.customerCode],
+      description: [this.workOrder.workOrderDescription],
+      equipmentId: [this.workOrder.equipmentId],
       internalCode: [this.workOrder.internalCode],
       workState: [this.workOrder.workState, Validators.required]
     });
@@ -57,9 +64,11 @@ export class EditWorkOrderComponent implements OnChanges {
       assignedUserId: this.workOrderForm.controls["assignedUserId"].value,
       branchId: this.workOrderForm.controls["branchId"].value,
       customerCode: this.workOrderForm.controls["customerCode"].value,
+      equipmentId: this.workOrderForm.controls["equipmentId"].value,
       internalCode: this.workOrderForm.controls["internalCode"].value,
+      workOrderDescription: this.workOrderForm.controls["description"].value,
       workState: this.workOrderForm.controls["workState"].value,
-    }
+    };
 
     this.httpService.put(ApiConstants.workOrderApi, workOrder)
       .subscribe(() => this.workOrderUpdatedEvent.emit());
@@ -76,10 +85,31 @@ export class EditWorkOrderComponent implements OnChanges {
     if (!this.workOrderForm) return;
 
     const selectedBranch = this.branches!.find(x => x.id == branch.id);
-
+    
     if (selectedBranch) {
-      this.workOrderForm?.patchValue({
+      this.getEquipment(selectedBranch.id);
+      this.workOrderForm.patchValue({
         branchId: selectedBranch.id
+      });
+    }
+  }
+
+  getEquipment(branchId: number = 0) {
+    if (branchId == 0)
+      branchId = this.workOrder!.branchId;
+
+    this.httpService.get<Equipment[]>(`${ApiConstants.equipmentApi}?branchId=${branchId}`)
+      .subscribe(response => this.equipment = response);
+  }
+
+  onSelectEquipment(equipment: DropdownItem): void {
+    if (!this.workOrderForm) return;
+
+    const selectedEquipment = this.equipment!.find(x => x.id == equipment.id);
+    
+    if (selectedEquipment) {
+      this.workOrderForm.patchValue({
+        equipmentId: selectedEquipment.id
       });
     }
   }

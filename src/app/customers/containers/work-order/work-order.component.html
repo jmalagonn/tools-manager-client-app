@@ -24,7 +24,9 @@
         </div>
     </section>
     <ng-container *ngIf="!isEditingWorkOrder; else editingWorkOrder">
-        <app-work-order-info [workOrder]="workOrder"></app-work-order-info>        
+        <app-work-order-info 
+            [workOrder]="workOrder"
+            (workOrderActivityCreatedEvent)="woActivityCreated()"></app-work-order-info>        
     </ng-container>
     <ng-template #editingWorkOrder>
         <app-edit-work-order 
