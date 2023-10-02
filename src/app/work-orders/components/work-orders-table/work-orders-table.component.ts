@@ -16,6 +16,8 @@ export class WorkOrdersTableComponent implements OnChanges {
   filteredCustomer: string = "";
   filteredBranch: string = "";
   filteredUser: string = "";
+  sortedBy?: number;
+  sortingType?: SortingType;
 
   @Input() workOrders?: WorkOrder[];
 
@@ -81,19 +83,43 @@ export class WorkOrdersTableComponent implements OnChanges {
   }
 
   sortBy(column: number) {
+    if (!this.sortingType || this.sortedBy != column) 
+      this.sortingType = SortingType.ascending;
+
+    if (this.sortedBy == column) {
+      this.sortingType = this.sortingType == SortingType.ascending 
+        ? SortingType.descending
+        : SortingType.ascending;
+    }      
+
     switch (column) {
       case Columns.code:
-        this.filteredWorkOrders!.sort((a, b) => {
-          if (a.internalCode && b.internalCode) {
-            return a.internalCode - b.internalCode;
-          } else if (a.internalCode && !b.internalCode) {
-            return -1;
-          } else if (!a.internalCode && b.internalCode) {
-            return 1;
-          } else {
-            return a.workOrderId! - b.workOrderId!;
-          }
-        });
+        this.sortedBy = column;
+        if (this.sortingType == SortingType.ascending) {
+          this.filteredWorkOrders!.sort((a, b) => {
+            if (a.internalCode && b.internalCode) {
+              return a.internalCode - b.internalCode;
+            } else if (a.internalCode && !b.internalCode) {
+              return -1;
+            } else if (!a.internalCode && b.internalCode) {
+              return 1;
+            } else {
+              return a.workOrderId! - b.workOrderId!;
+            }
+          });
+        } else {
+          this.filteredWorkOrders!.sort((a, b) => {
+            if (a.internalCode && b.internalCode) {
+              return a.internalCode - b.internalCode;
+            } else if (a.internalCode && !b.internalCode) {
+              return 1;
+            } else if (!a.internalCode && b.internalCode) {
+              return -1;
+            } else {
+              return b.workOrderId! - a.workOrderId!;
+            }
+          });
+        }        
         break;
     }
   }
@@ -105,4 +131,9 @@ enum Columns {
   customer,
   branch,
   user
+}
+
+enum SortingType {
+  ascending = 0,
+  descending
 }
