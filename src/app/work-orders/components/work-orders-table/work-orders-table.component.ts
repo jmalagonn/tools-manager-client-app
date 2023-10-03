@@ -92,9 +92,12 @@ export class WorkOrdersTableComponent implements OnChanges {
         : SortingType.ascending;
     }      
 
+    console.log(column, this.sortingType);
+
+    this.sortedBy = column;
+
     switch (column) {
       case Columns.code:
-        this.sortedBy = column;
         if (this.sortingType == SortingType.ascending) {
           this.filteredWorkOrders!.sort((a, b) => {
             if (a.internalCode && b.internalCode) {
@@ -120,6 +123,34 @@ export class WorkOrdersTableComponent implements OnChanges {
             }
           });
         }        
+        break;
+      case Columns.state:
+        if (this.sortingType == SortingType.ascending) {
+          this.filteredWorkOrders!.sort((a, b) => a.workState!.id - b.workState!.id);
+        } else {
+          this.filteredWorkOrders!.sort((a, b) => b.workState!.id - a.workState!.id);
+        }
+        break;
+      case Columns.customer:
+        if (this.sortingType == SortingType.ascending) {
+          this.filteredWorkOrders!.sort((a, b) => a.customerName!.localeCompare(b.customerName!));
+        } else {
+          this.filteredWorkOrders!.sort((a, b) => b.customerName!.localeCompare(a.customerName!));
+        }
+        break;
+      case Columns.branch:
+        if (this.sortingType == SortingType.ascending) {
+          this.filteredWorkOrders!.sort((a, b) => a.branchName!.localeCompare(b.branchName!));
+        } else {
+          this.filteredWorkOrders!.sort((a, b) => b.branchName!.localeCompare(a.branchName!));
+        }
+        break;
+      case Columns.user:
+        if (this.sortingType == SortingType.ascending) {
+          this.filteredWorkOrders!.sort((a, b) => a.assignedUserName!.localeCompare(b.assignedUserName!));
+        } else {
+          this.filteredWorkOrders!.sort((a, b) => b.assignedUserName!.localeCompare(a.assignedUserName!));
+        }
         break;
     }
   }
