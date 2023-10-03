@@ -113,7 +113,7 @@ export class WorkOrdersTableComponent implements OnChanges {
         } else {
           this.filteredWorkOrders!.sort((a, b) => {
             if (a.internalCode && b.internalCode) {
-              return a.internalCode - b.internalCode;
+              return b.internalCode - a.internalCode;
             } else if (a.internalCode && !b.internalCode) {
               return 1;
             } else if (!a.internalCode && b.internalCode) {
