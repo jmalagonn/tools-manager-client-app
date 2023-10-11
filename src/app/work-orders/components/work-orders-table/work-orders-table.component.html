@@ -1,30 +1,30 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th (click)="sortBy(columns.code)">
+            <th (click)="sortBy($event, columns.code)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Código</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.code)"></app-column-filter>
                 </div>
             </th>
-            <th (click)="sortBy(columns.state)">
+            <th (click)="sortBy($event, columns.state)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Estado</p>
                 </div>
             </th>
-            <th (click)="sortBy(columns.customer)">
+            <th (click)="sortBy($event, columns.customer)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Cliente</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.customer)"></app-column-filter>
                 </div>
             </th>
-            <th (click)="sortBy(columns.branch)">
+            <th (click)="sortBy($event, columns.branch)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Sucursal</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.branch)"></app-column-filter>
                 </div>
             </th>
-            <th (click)="sortBy(columns.user)">
+            <th (click)="sortBy($event, columns.user)">
                 <div class="d-flex justify-content-between gap-2">
                     <p>Asignado a</p>
                     <app-column-filter (applyFilterEvent)="onApplyFilter($event, columns.user)"></app-column-filter>

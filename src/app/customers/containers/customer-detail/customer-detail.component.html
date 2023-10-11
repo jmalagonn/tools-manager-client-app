@@ -13,7 +13,9 @@
             <button class="btn btn-outline-primary" (click)="onOpenAddBranchModal()">Agregar nueva sucursal</button>
         </div>
         <div class="col mt-3">
-            <app-branches-list [branches]="customer.branches"></app-branches-list>
+            <app-table 
+                [tableData]="customer.branches | toTableData"
+                (rowClickedEvent)="onBranchClicked($event)"></app-table>
         </div>
     </div>
 </div>

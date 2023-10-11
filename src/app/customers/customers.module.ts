@@ -46,7 +46,7 @@ import { WorkOrderInfoComponent } from './components/work-order-info/work-order-
     EditBranchComponent,
     BranchesListComponent,
     EditWorkOrderComponent,
-    WorkOrderInfoComponent
+    WorkOrderInfoComponent,
   ],
   imports: [
     CommonModule,

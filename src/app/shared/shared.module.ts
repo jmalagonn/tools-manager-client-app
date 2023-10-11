@@ -37,6 +37,8 @@ import { AddImagesComponent } from './components/add-images/add-images.component
 import { WorkOrdersTableComponent } from './components/work-orders-table/work-orders-table.component';
 import { ColumnFilterComponent } from './components/column-filter/column-filter.component';
 import { LeftPositionElementDirective } from './directives/left-position-element.directive';
+import { TableComponent } from './components/table/table.component';
+import { ToTableDataPipe } from './pipes/to-table-data.pipe';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { LeftPositionElementDirective } from './directives/left-position-element
     WorkOrdersTableComponent,
     ColumnFilterComponent,
     LeftPositionElementDirective,
+    TableComponent,
+    ToTableDataPipe,
   ],
   imports: [
     CommonModule,    
@@ -122,6 +126,8 @@ import { LeftPositionElementDirective } from './directives/left-position-element
     AddImagesComponent,
     WorkOrdersTableComponent,
     ColumnFilterComponent,
+    TableComponent,    
+    ToTableDataPipe,
   ]
 })
 export class SharedModule { }

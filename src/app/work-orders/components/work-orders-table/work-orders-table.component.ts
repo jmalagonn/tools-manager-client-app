@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 
@@ -55,7 +54,7 @@ export class WorkOrdersTableComponent implements OnChanges {
 
   initWorkOrders() {
     this.filteredWorkOrders = this.workOrders!;
-    this.sortBy(Columns.code);
+    this.sortBy(null, Columns.code);
   }
 
   filterWorkOrders() {
@@ -82,7 +81,10 @@ export class WorkOrdersTableComponent implements OnChanges {
     });
   }
 
-  sortBy(column: number) {
+  sortBy(e: any, column: number) {
+    if (e && (e.target.tagName.includes("path") || e.target.tagName.includes("svg")))
+      return;
+
     if (!this.sortingType || this.sortedBy != column) 
       this.sortingType = SortingType.ascending;
 
@@ -90,9 +92,7 @@ export class WorkOrdersTableComponent implements OnChanges {
       this.sortingType = this.sortingType == SortingType.ascending 
         ? SortingType.descending
         : SortingType.ascending;
-    }      
-
-    console.log(column, this.sortingType);
+    }
 
     this.sortedBy = column;
 

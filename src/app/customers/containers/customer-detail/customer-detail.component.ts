@@ -6,6 +6,7 @@ import { AddBranchModalComponent } from '../../components/add-branch-modal/add-b
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { RouteConstants } from 'src/app/Core/constants/app-constants';
 
 @Component({
   selector: 'app-customer-detail',
@@ -51,5 +52,9 @@ export class CustomerDetailComponent implements OnInit {
         this.getCustomer();
         this.setEditingCustomer(false);
       });
+  }
+
+  onBranchClicked(branch: any) {
+    this.router.navigateByUrl(`/${RouteConstants.customersPath}/${this.customer.id}/${RouteConstants.branchPath}/${branch.id}`);
   }
 }
