@@ -1,4 +1,5 @@
 export class ApiConstants {
+    public static readonly accountLogin = "Account/login";
     public static readonly addUserApi = "Users/addUser";
     public static readonly branchesApi = "Branches";
     public static readonly customersApi = "Customers";

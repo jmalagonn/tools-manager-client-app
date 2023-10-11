@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { Account } from 'src/app/Core/models/Account.model';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -23,19 +24,29 @@ export class LoginFormComponent implements OnInit {
 
   initForm() {
     this.loginForm = this.fb.group({
-      id: ['', Validators.required],
-      password: ['', Validators.required]
+      id: ['', [Validators.required, this.onlyNumbersValidator]],
     })
   }
 
   onSubmit() {
     const body = {
       id: this.loginForm?.controls["id"].value,
-      password: this.loginForm?.controls["password"].value,
     }
 
-    this.httpService.post<Account>('Account/login', body).subscribe(response => { 
+    this.httpService.post<Account>(ApiConstants.accountLogin, body).subscribe(response => { 
       this.submitEvent.emit(response);
     })
   }
+
+  onlyNumbersValidator(control: AbstractControl) {  
+    const regex = new RegExp("[^0-9]"); 
+    
+    if (regex.test(control.value)) {
+      return { invalidId: true };
+    }
+    
+    return null;
+  }
 }
+
+

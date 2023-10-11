@@ -7,12 +7,8 @@
     </div>
     <form class="mt-3" [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onSubmit()">
         <div class="mb-3">
-            <label for="id" class="form-label">ID o Email</label>
+            <label for="id" class="form-label">Número de cédula</label>
             <input type="text" class="form-control" id="id" formControlName="id">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" formControlName="password">
         </div>
         <div class="text-center">
             <button class="btn btn-outline-primary" [disabled]="!loginForm.valid">Ingresar</button>
