@@ -1,0 +1,34 @@
+<h2>Tipos de trabajo</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of workOrderTypes">
+            <td>{{ item.name }}</td>
+            <td class="text-center">
+                <fa-icon [icon]="faEdit" role="button"></fa-icon>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <button *ngIf="!isAddingNewItem" class="btn btn-outline-primary" (click)="onClickAddNewItem()">Añadir nuevo elemento</button>
+        <form *ngIf="isAddingNewItem && addNewItemForm" [formGroup]="addNewItemForm" (ngSubmit)="onSubmit()">
+            <div class="row align-items-end">
+                <div class="col">
+                    <label class="form-label">Nombre</label>
+                    <input class="form-control" type="text" formControlName="name">
+                </div>
+                <div class="col">
+                    <button class="btn btn-outline-danger me-2" (click)="setIsAddingNewItem(false)" type="button">Cancelar</button>
+                    <button class="btn btn-outline-primary" [disabled]="!addNewItemForm.valid" type="submit">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

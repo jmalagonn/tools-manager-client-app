@@ -14,7 +14,7 @@
         </div>
         <div class="col mt-3">
             <app-table 
-                [tableData]="customer.branches | toTableData"
+                [tableData]="customer.branches | toTableData:'branch'"
                 (rowClickedEvent)="onBranchClicked($event)"></app-table>
         </div>
     </div>

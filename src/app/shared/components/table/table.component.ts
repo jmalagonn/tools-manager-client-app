@@ -8,8 +8,10 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 export class TableComponent implements OnChanges {
   filteredData: any[] = [];
   sortingType: SortingType = SortingType.ascending;
+  hasCustomHeaders: boolean = false;
 
   @Input() tableData?: any[];
+  @Input() customHeaders?: string[];
 
   @Output() rowClickedEvent = new EventEmitter<any>();
   
@@ -17,6 +19,7 @@ export class TableComponent implements OnChanges {
     if (!this.tableData) return;
 
     this.filteredData = this.tableData;
+    this.hasCustomHeaders = this.customHeaders && this.customHeaders.length ? true : false;
   }
 
   onFilterApplied(text: string, propName: any) {

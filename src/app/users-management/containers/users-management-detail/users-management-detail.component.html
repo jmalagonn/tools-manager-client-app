@@ -9,30 +9,9 @@
     </app-user-detail-edit>
     <div class="row mt-3" *ngIf="user.assignedWorkOrders?.length">
         <h4 class="text-center mb-3">Trabajos asignados</h4>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Fecha de creación</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of user.assignedWorkOrders">
-                    <td>
-                        <a [routerLink]="'/' + routeConstants.workOrderPath + '/' + item.workOrderId">
-                            {{ item.workOrderId }}
-                        </a>
-                    </td>
-                    <td>
-                        {{ item.createdOn | date }}
-                    </td>
-                    <td>
-                        {{ item.workState! | workState }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <app-table 
+            [tableData]="user.assignedWorkOrders! | toTableData:'workOrder'"
+            (rowClickedEvent)="onWorkOrderClicked($event)"></app-table>
     </div>
     <div class="row mt-3" *ngIf="user.outputsTool && user.outputsTool.length">
         <h4 class="text-center mb-3">Salidas de herramienta</h4>

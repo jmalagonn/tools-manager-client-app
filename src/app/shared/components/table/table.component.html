@@ -1,14 +1,23 @@
 <table class="table table-hover" *ngIf="filteredData">
     <thead>
         <tr>
-            <ng-container *ngFor="let data of filteredData[0] | keyvalue">
-                <th *ngIf="data.key != 'id'" >
+            <ng-container *ngIf="hasCustomHeaders; else elseBlock">
+                <th *ngFor="let header of customHeaders">
                     <div class="d-flex justify-content-between gap-2">
-                        <p (click)="sortBy($event, data.key)">{{ data.key }}</p>
-                        <app-column-filter (applyFilterEvent)="onFilterApplied($event, data.key)"></app-column-filter>
+                        <p>{{ header }}</p>
                     </div>
                 </th>
             </ng-container>
+            <ng-template #elseBlock>
+                <ng-container *ngFor="let data of filteredData[0] | keyvalue">
+                    <th *ngIf="data.key != 'id'" >
+                        <div class="d-flex justify-content-between gap-2">
+                            <p (click)="sortBy($event, data.key)">{{ data.key }}</p>
+                            <app-column-filter (applyFilterEvent)="onFilterApplied($event, data.key)"></app-column-filter>
+                        </div>
+                    </th>
+                </ng-container>
+            </ng-template>
         </tr>
     </thead>
     <tbody>

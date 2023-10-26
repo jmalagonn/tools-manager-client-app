@@ -6,12 +6,14 @@ import { GeneralSettingsRoutingModule } from './general-settings.routing.module'
 import { UserRolesComponent } from './components/user-roles/user-roles.component';
 import { GeneralSettingsComponent } from './containers/general-settings/general-settings.component';
 import { UserRolesTableComponent } from './components/user-roles-table/user-roles-table.component';
+import { WorkOrderTypesComponent } from './components/work-order-types/work-order-types.component';
 
 @NgModule({
   declarations: [
     GeneralSettingsComponent,
     UserRolesComponent,
     UserRolesTableComponent,
+    WorkOrderTypesComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
 import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { UserRoles } from 'src/app/Core/enums/User-roles.enum';
@@ -21,7 +21,8 @@ export class UsersManagementDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private httpService: HttpService) {}
+    private httpService: HttpService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.getUser();
@@ -47,5 +48,9 @@ export class UsersManagementDetailComponent implements OnInit {
   userUpdated() {
     this.setIsEditing(false);
     this.getUser();
+  }
+
+  onWorkOrderClicked(e: any) {
+    this.router.navigateByUrl(`/${RouteConstants.workOrderPath}/${e.id}`);
   }
 }
