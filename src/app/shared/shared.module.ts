@@ -39,6 +39,7 @@ import { ColumnFilterComponent } from './components/column-filter/column-filter.
 import { LeftPositionElementDirective } from './directives/left-position-element.directive';
 import { TableComponent } from './components/table/table.component';
 import { ToTableDataPipe } from './pipes/to-table-data.pipe';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ToTableDataPipe } from './pipes/to-table-data.pipe';
     LeftPositionElementDirective,
     TableComponent,
     ToTableDataPipe,
+    DeleteModalComponent,
   ],
   imports: [
     CommonModule,    

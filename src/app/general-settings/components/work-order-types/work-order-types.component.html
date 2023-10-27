@@ -8,10 +8,24 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of workOrderTypes">
-            <td>{{ item.name }}</td>
-            <td class="text-center">
-                <fa-icon [icon]="faEdit" role="button"></fa-icon>
-            </td>
+            <ng-container *ngIf="!item.isEditing; else elseBlock">
+                <td>{{ item.name }}</td>
+                <td class="text-center">
+                    <fa-icon [icon]="faEdit" role="button" class="me-2" (click)="onClickEditButton(item)"></fa-icon>
+                    <fa-icon [icon]="faTrash" role="button" (click)="onClickTrashButton(item)"></fa-icon>
+                </td>
+            </ng-container>
+            <ng-template #elseBlock>
+                <td>
+                    <input class="form-control form-control-row" type="text" [attr.id]="'work-order-type-id-' + item.id" [value]="item.name" [(ngModel)]="workOrderTypeName" />
+                </td>
+                <td class="text-center">
+                    <fa-icon [icon]="faSave" role="button" class="me-2" (click)="onClickSaveButton(item)">
+                    </fa-icon>
+                    <fa-icon [icon]="faX" role="button" (click)="onClickCancelButton(item!)">
+                    </fa-icon>
+                </td>
+            </ng-template>
         </tr>
     </tbody>
 </table>
