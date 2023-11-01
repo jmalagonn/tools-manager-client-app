@@ -1,4 +1,4 @@
-<ngx-dropzone (change)="onSelectFile($event)" [accept]="'image/*'">
+<ngx-dropzone (change)="onSelectFile($event)" [accept]="'image/*'" [ngClass]="{'shrink': !files || !files.length }">
     <ngx-dropzone-label>Haga click o arrastre hasta aquí para añadir archivos</ngx-dropzone-label>
     <ngx-dropzone-image-preview 
         *ngFor="let f of files"

@@ -90,13 +90,13 @@ export class EditToolFormComponent implements OnInit {
     this.tool!.toolParameters = this.tool!.toolParameters!.filter(x => x.id != param.id);
   }
 
-  onAddFile(e: File) {
-    this.addedFiles.push(e);
+  onAddFile(e: File[]) {
+    this.addedFiles.push(...e);
   }
 
-  onDeleteFile(e: AppFile) {
-    if (!this.tool || !e.appFileId) return;
+  onDeleteFile(e: AppFile | File) {
+    // if (!this.tool || !e.appFileId) return;
 
-    this.deletedFileIds.push(e.appFileId);
+    // this.deletedFileIds.push(e.appFileId);
   }
 }

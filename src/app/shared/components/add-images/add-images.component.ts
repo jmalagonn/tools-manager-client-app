@@ -12,8 +12,8 @@ export class AddImagesComponent implements OnChanges {
   @Input() files?: File[] = [];
   @Input() appFiles?: AppFile[];
 
-  @Output() removeFileEvent = new EventEmitter<AppFile>();
-  @Output() addFilesEvent = new EventEmitter<File>();
+  @Output() removeFileEvent = new EventEmitter<AppFile | File>();
+  @Output() addFilesEvent = new EventEmitter<File[]>();
 
   constructor() {}
 
@@ -43,6 +43,8 @@ export class AddImagesComponent implements OnChanges {
       const appFileDeleted = this.appFiles.find(x => x.appFileId == parseInt(fileId));
 
       this.removeFileEvent.emit(appFileDeleted);
+    } else {
+      this.removeFileEvent.emit(file);
     }
   }
 

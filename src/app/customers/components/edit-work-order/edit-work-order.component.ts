@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, mergeMap, switchMap } from 'rxjs';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { AppFile } from 'src/app/Core/models/AppFile.model';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
 import { Employee } from 'src/app/Core/models/Employee.model';
@@ -8,6 +10,7 @@ import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { WorkState } from 'src/app/Core/models/Work-state.model';
 import { WorkOrder } from 'src/app/Core/models/workOrder/Work-order.model';
 import { HttpService } from 'src/app/services/http.service';
+import { UpdatedFilesModel } from '../../../Core/models/Updated-files.model';
 
 @Component({
   selector: 'app-edit-work-order',
@@ -20,6 +23,8 @@ export class EditWorkOrderComponent implements OnChanges {
   branches?: Branch[];
   equipment?: Equipment[];
   workOrderStates?: WorkState[];
+  addedFiles: File[] = [];
+  deletedFileIds: number[] = [];
 
   @Input() workOrder?: WorkOrder;
 
@@ -30,7 +35,7 @@ export class EditWorkOrderComponent implements OnChanges {
     private httpService: HttpService,
     private fb: FormBuilder) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.workOrder) {
       this.initForm();
       this.getCustomerBranches();
@@ -42,8 +47,6 @@ export class EditWorkOrderComponent implements OnChanges {
 
   initForm() {
     if (!this.workOrder) return;
-
-    console.log(this.workOrder);
 
     this.workOrderForm = this.fb.group({
       assignedUserId: [this.workOrder.assignedUserId, Validators.required],
@@ -70,7 +73,19 @@ export class EditWorkOrderComponent implements OnChanges {
       workState: this.workOrderForm.controls["workState"].value,
     };
 
-    this.httpService.put(ApiConstants.workOrderApi, workOrder)
+    const updatedFiles: UpdatedFilesModel = {
+      entityId: this.workOrder.workOrderId!,
+      deletedFileIds: this.deletedFileIds,
+      addedFiles: this.addedFiles
+    };
+  
+    const formData = new FormData();
+    formData.append("EntityId", updatedFiles.entityId.toString());
+    updatedFiles.deletedFileIds.map(fileId => {formData.append("deletedFileIds", fileId.toString())});
+    updatedFiles.addedFiles.map(file => {formData.append("addedFiles", file)});
+
+    this.httpService.put<boolean>(ApiConstants.workOrderApi, workOrder)
+      .pipe(switchMap(() => this.httpService.put<boolean>(ApiConstants.workOrderFilesApi, formData)))
       .subscribe(() => this.workOrderUpdatedEvent.emit());
   }
 
@@ -149,6 +164,22 @@ export class EditWorkOrderComponent implements OnChanges {
       this.workOrderForm?.patchValue({
         workState: selectedWorkOrderState
       });
+    }
+  }
+
+  onFileAdded(files: File[]) {
+    this.addedFiles.push(...files);
+  }
+
+  onFileRemoved(file: AppFile | File) {
+    if ('appFileId' in file) {
+      const index = this.workOrder!.files.findIndex(x => x.appFileId == file.appFileId);
+      this.workOrder!.files.splice(index, 1);
+      this.deletedFileIds.push(file.appFileId!);
+    }
+    else if ('name' in file) {
+      const index = this.addedFiles!.findIndex(x => x.name == file.name);
+      this.addedFiles = this.addedFiles!.splice(index, 1);
     }
   }
 }

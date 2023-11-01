@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { take } from 'rxjs';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { Account } from 'src/app/Core/models/Account.model';
 import { Branch } from 'src/app/Core/models/Branch.model';
 import { Customer } from 'src/app/Core/models/Customer.model';
 import { DropdownItem } from 'src/app/Core/models/Dropdown-item.model';
@@ -10,6 +12,7 @@ import { Equipment } from 'src/app/Core/models/Equipment.model';
 import { User } from 'src/app/Core/models/User.model';
 import { AddWorkOrder } from 'src/app/Core/models/workOrder/Add-work-order.model';
 import { WorkOrderType } from 'src/app/Core/models/workOrder/Work-order-type';
+import { AccountService } from 'src/app/services/account.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -25,17 +28,25 @@ export class AddWorkOrderComponent implements OnInit {
   users?: Employee[];
   equipment?: Equipment[];
   workOrderTypes?: WorkOrderType[];
+  currentUser?: Account;
 
   constructor(
     public activeModal: NgbActiveModal,
     private fb: FormBuilder,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.getCurrentUser();
     this.getCustomers();
     this.getUsers();
     this.getWorkOrderTypes();
+  }
+
+  getCurrentUser(): void {
+    this.accountService.currentAccount$.pipe(take(1))
+      .subscribe(user => this.currentUser = user!);
   }
 
   initForm() {

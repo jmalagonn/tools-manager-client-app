@@ -48,8 +48,15 @@
             <textarea rows="5" class="form-control" formControlName="description"></textarea>
         </div>
     </div>
+    <div class="row mt-3">
+        <h2 class="text-center">Archivos</h2>
+        <app-add-images 
+            [appFiles]="workOrder!.files"
+            (addFilesEvent)="onFileAdded($event)"
+            (removeFileEvent)="onFileRemoved($event)"></app-add-images>
+    </div>
     <div class="d-flex mt-3 justify-content-center">
-        <button type="buttol" class="btn btn-outline-danger me-3" (click)="cancelUpdateEvent.emit()">Cancelar</button>
+        <button type="button" class="btn btn-outline-danger me-3" (click)="cancelUpdateEvent.emit()">Cancelar</button>
         <button class="btn btn-outline-primary" [disabled]="!workOrderForm!.valid">Guardar</button>
     </div>  
 </form>

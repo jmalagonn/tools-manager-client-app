@@ -15,6 +15,7 @@ export class ApiConstants {
     public static readonly workOrderActivity = `${this.workOrderApi}/activity`;
     public static readonly workOrderTypesApi = `${this.workOrderApi}/workOrderTypes`;
     public static readonly workOrderTypeApi = `${this.workOrderApi}/workOrderType`;
+    public static readonly workOrderFilesApi = `${this.workOrderApi}/workOrderFiles`;
     public static readonly toolsApi = "Tools";
     public static readonly toolParametersApi = "Tools/parameters";
     public static readonly toolOutputsApi = "ToolOutputs";

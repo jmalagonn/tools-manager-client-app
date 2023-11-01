@@ -59,9 +59,11 @@
     </div>
     <div class="row mt-3" *ngIf="workOrder.files.length">
         <h2 class="text-center">Archivos</h2>
-        <app-image-thumbnail 
-            *ngFor="let file of workOrder.files"
-            [appFile]="file">
-        </app-image-thumbnail>
+        <div class="d-flex gap-2">
+            <app-image-thumbnail 
+                *ngFor="let file of workOrder.files"
+                [appFile]="file">
+            </app-image-thumbnail>
+        </div>
     </div>
 </ng-container>
