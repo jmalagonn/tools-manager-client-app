@@ -7,6 +7,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RouteConstants } from 'src/app/Core/constants/app-constants';
 import { AddToolsOutputModalComponent } from '../../components/add-tools-output-modal/add-tools-output-modal.component';
 import { ApiConstants } from 'src/app/Core/constants/api-constants';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-tools-management',
@@ -37,6 +38,7 @@ export class ToolsManagementComponent implements OnInit {
 
   getToolsList(): void {
     this.httpService.get<Tool[]>('Tools')
+      .pipe(map((tools: Tool[]) => tools.sort((a, b) => a.toolName.localeCompare(b.toolName))))
       .subscribe(response => this.tools = response);
   }
 

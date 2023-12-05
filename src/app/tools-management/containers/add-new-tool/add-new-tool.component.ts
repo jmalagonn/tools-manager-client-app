@@ -82,7 +82,7 @@ export class AddNewToolComponent implements OnInit {
     const data = new FormData();
 
     data.append("name", this.addNewToolForm!.controls["toolName"].value);
-    data.append("toolParameters", JSON.stringify(this.tool!.toolParameters!));
+    this.tool?.toolParameters && data.append("toolParameters", JSON.stringify(this.tool!.toolParameters));
     files.map(file => data.append("files", file));
 
     this.httpService.post<Tool>(ApiConstants.toolsApi, data)
