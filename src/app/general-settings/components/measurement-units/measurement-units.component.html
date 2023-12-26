@@ -1,0 +1,46 @@
+<h2 class="text-center">Unidades de medida</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Símbolo</th>
+            <th>Magnitud</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let unit of measurementUnits">
+            <ng-container *ngIf="!unit.isEditing; else elseBlock">
+                <td>{{ unit.displayName }}</td>
+                <td>{{ unit.symbol }}</td>
+                <td>{{ unit.magnitude | titlecase }}</td>
+                <td class="text-center">
+                    <fa-icon [icon]="faEdit" role="button" class="me-2" (click)="onClickEditButton(unit)"></fa-icon>
+                    <fa-icon [icon]="faTrash" role="button" (click)="onClickTrashButton(unit)"></fa-icon>
+                </td>
+            </ng-container>
+            <ng-template #elseBlock>
+                <td>
+                    <input class="form-control form-control-row" type="text" [attr.id]="'unit-id-' + unit.measurementUnitId" [value]="unit.measurementUnitName" [(ngModel)]="newData.name" />
+                </td>
+                <td>
+                    <input type="text" class="form-control form-control-row" [(ngModel)]="newData.symbol" />    
+                </td>
+                <td>
+                    <input type="text" class="form-control form-control-row" [(ngModel)]="newData.magnitude" />    
+                </td>
+                <td class="text-center">
+                    <fa-icon [icon]="faSave" role="button" class="me-2" (click)="onClickSaveButton(unit)">
+                    </fa-icon>
+                    <fa-icon [icon]="faX" role="button" (click)="onClickCancelButton(unit!)">
+                    </fa-icon>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <app-add-measurement-unit></app-add-measurement-unit>
+    </div>
+</div>

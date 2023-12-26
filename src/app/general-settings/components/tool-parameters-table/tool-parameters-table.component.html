@@ -1,0 +1,39 @@
+<table class="table" *ngIf="editableParameters">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Unidad de medida</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let parameter of editableParameters">
+            <ng-container *ngIf="!parameter.isEditing; else elseBlock">
+                <td>{{ parameter.name }}</td>
+                <td>{{ parameter.measurementUnitSymbol }}</td>
+                <td class="text-center">
+                    <fa-icon [icon]="faEdit" role="button" class="me-2" (click)="onClickEditButton(parameter)"></fa-icon>
+                    <fa-icon [icon]="faTrash" role="button" (click)="onClickTrashButton(parameter)"></fa-icon>
+                </td>
+            </ng-container>
+            <ng-template #elseBlock>
+                <td>
+                    <input class="form-control form-control-row" type="text" [attr.id]="'parameter-id-' + parameter.id" [value]="parameter.name" [(ngModel)]="newData!.name" />
+                </td>
+                <td>
+                    <app-dropdown 
+                        *ngIf="measurementUnits"
+                        [options]="measurementUnits | toDropdownItem:'measurementUnits'"
+                        [selectedOptionId]="newData.measurementUnitId"
+                        (onSelectOptionEvent)="onSelectNewMeasurementUnit($event)"></app-dropdown>
+                </td>  
+                <td class="text-center">
+                    <fa-icon [icon]="faSave" role="button" class="me-2" (click)="onClickSaveButton(parameter)">
+                    </fa-icon>
+                    <fa-icon [icon]="faX" role="button" (click)="onClickCancelButton(parameter!)">
+                    </fa-icon>
+                </td>
+            </ng-template>
+        </tr>
+    </tbody>
+</table>

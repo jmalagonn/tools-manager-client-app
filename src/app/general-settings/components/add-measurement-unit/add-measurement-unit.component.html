@@ -1,0 +1,24 @@
+<button *ngIf="!isAddingNewItem" class="btn btn-outline-primary" (click)="onClickAddNewItem()">
+    Añadir nuevo elemento
+</button>
+<form *ngIf="isAddingNewItem && addNewItemForm" [formGroup]="addNewItemForm" (ngSubmit)="onSubmit()">
+    <div class="row align-items-end">
+        <div class="col-lg-3 col-md-6">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" type="text" formControlName="displayName" />
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <label class="form-label">Symbolo</label>
+            <input class="form-control" type="text" formControlName="symbol" />
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <label class="form-label">Magnitud</label>
+            <input class="form-control" type="text" formControlName="magnitude" />
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <button class="btn btn-outline-danger me-2" (click)="setIsAddingNewItem(false)"
+                type="button">Cancelar</button>
+            <button class="btn btn-outline-primary" [disabled]="!addNewItemForm.valid" type="submit">Guardar</button>
+        </div>
+    </div>
+</form>

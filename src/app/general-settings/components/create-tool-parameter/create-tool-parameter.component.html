@@ -1,0 +1,15 @@
+<form *ngIf="parameterForm" [formGroup]="parameterForm" (ngSubmit)="onSubmit()">
+    <div class="row align-items-end">
+        <div class="col-lg-3 col-md-6">
+            <label class="form-label">Nombre</label>
+            <input class="form-control" type="text" formControlName="name" />
+        </div>
+        <div class="col-lg-3 col-md-6">
+            
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <button class="btn btn-outline-danger me-2" type="button">Cancelar</button>
+            <button class="btn btn-outline-primary" [disabled]="!parameterForm.valid" type="submit">Guardar</button>
+        </div>
+    </div>
+</form>

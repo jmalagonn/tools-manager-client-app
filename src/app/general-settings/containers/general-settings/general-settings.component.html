@@ -1,8 +1,15 @@
 <div class="container">    
     <h1 class="text-center mt-3">Configuración general</h1>
     <section>
-        <div class="row">
-            <app-work-order-types></app-work-order-types>
+        <div class="row mt-3">
+            <div class="col d-flex gap-2">
+                <button class="btn btn-outline-primary" (click)="displaySetting(0)">Tipos de trabajo</button>
+                <button class="btn btn-outline-primary" (click)="displaySetting(1)">Unidades de medida</button>
+                <button class="btn btn-outline-primary" (click)="displaySetting(2)">Parámetros de herramienta</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <ng-container *ngComponentOutlet="currentSetting.component"></ng-container>
         </div>
     </section>
 </div>
