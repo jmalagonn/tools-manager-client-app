@@ -34,4 +34,9 @@ export class ToolParametersComponent implements OnInit {
   setIsCreatingNewItem(value: boolean) {
     this.isCreatingNewItem = value;
   }
+
+  onParameterCreated(): void {
+    this.setIsCreatingNewItem(false);
+    this.getToolParameters();
+  }
 }

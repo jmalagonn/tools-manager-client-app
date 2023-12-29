@@ -1,14 +1,18 @@
 <form *ngIf="parameterForm" [formGroup]="parameterForm" (ngSubmit)="onSubmit()">
     <div class="row align-items-end">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
             <label class="form-label">Nombre</label>
             <input class="form-control" type="text" formControlName="name" />
         </div>
-        <div class="col-lg-3 col-md-6">
-            
+        <div class="col-lg-4 col-md-6">
+            <app-dropdown 
+                *ngIf="measurementUnits"
+                [label]="'Unidad de medida'"
+                [options]="measurementUnits | toDropdownItem:'measurementUnits'"
+                (onSelectOptionEvent)="onSelectMeasurementUnit($event)"></app-dropdown>
         </div>
-        <div class="col-lg-3 col-md-6">
-            <button class="btn btn-outline-danger me-2" type="button">Cancelar</button>
+        <div class="col-lg-4 col-md-6 d-flex">
+            <button class="btn btn-outline-danger me-2" type="button" (click)="cancelCreationEvent.emit()">Cancelar</button>
             <button class="btn btn-outline-primary" [disabled]="!parameterForm.valid" type="submit">Guardar</button>
         </div>
     </div>

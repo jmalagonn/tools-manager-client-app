@@ -1,12 +1,16 @@
 <h2 class="text-center">Parámetros de herramientas</h2>
 <app-tool-parameters-table [parameters]="toolParameters"
-    [measurementUnits]="measurementUnits"></app-tool-parameters-table>
+    [measurementUnits]="measurementUnits"
+    (parameterUpdatedEvent)="getToolParameters()"></app-tool-parameters-table>
 <div class="row">
     <div class="col-12 d-flex justify-content-center">
         <button *ngIf="!isCreatingNewItem; else elseBlock" class="btn btn-outline-primary"
             (click)="setIsCreatingNewItem(true)">Añadir nuevo elemento</button>
         <ng-template #elseBlock>
-            <app-create-tool-parameter [measurementUnits]="measurementUnits"></app-create-tool-parameter>
+            <app-create-tool-parameter 
+                [measurementUnits]="measurementUnits"
+                (cancelCreationEvent)="setIsCreatingNewItem(false)"
+                (parameterCreatedEvent)="onParameterCreated()"></app-create-tool-parameter>
         </ng-template>
     </div>
 </div>
